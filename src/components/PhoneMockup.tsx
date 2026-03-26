@@ -1,0 +1,172 @@
+import React from "react";
+import {
+  AbsoluteFill,
+  interpolate,
+  useCurrentFrame,
+  spring,
+  useVideoConfig,
+} from "remotion";
+
+/*
+ * WhatsApp-style phone mockup that wraps chat content.
+ * Drop this around any scene's chat bubbles for a consistent phone frame.
+ */
+
+interface PhoneMockupProps {
+  children: React.ReactNode;
+  contactName?: string;
+  contactAvatar?: string; // emoji or URL
+  enterFrom?: "bottom" | "right" | "none";
+}
+
+export const PhoneMockup: React.FC<PhoneMockupProps> = ({
+  children,
+  contactName = "Petverse 🐾",
+  contactAvatar = "🐾",
+  enterFrom = "bottom",
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const entrance = spring({ frame, fps, config: { damping: 18, mass: 0.8 } });
+
+  const translateY =
+    enterFrom === "bottom" ? interpolate(entrance, [0, 1], [120, 0]) : 0;
+  const translateX =
+    enterFrom === "right" ? interpolate(entrance, [0, 1], [200, 0]) : 0;
+  const opacity = interpolate(entrance, [0, 1], [0, 1]);
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "88%",
+        maxWidth: 420,
+        margin: "0 auto",
+        transform: `translateY(${translateY}px) translateX(${translateX}px)`,
+        opacity,
+      }}
+    >
+      {/* Phone frame */}
+      <div
+        style={{
+          background: "linear-gradient(145deg, #1a1a2e 0%, #16213e 100%)",
+          borderRadius: 40,
+          border: "3px solid rgba(255,255,255,0.08)",
+          padding: "12px 8px",
+          boxShadow:
+            "0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(37,211,102,0.08)",
+        }}
+      >
+        {/* Status bar */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "6px 20px 4px",
+            fontSize: 13,
+            color: "rgba(255,255,255,0.5)",
+            fontWeight: 600,
+          }}
+        >
+          <span>9:41</span>
+          <span style={{ display: "flex", gap: 4 }}>
+            <span>📶</span>
+            <span>🔋</span>
+          </span>
+        </div>
+
+        {/* WhatsApp header */}
+        <div
+          style={{
+            background: "#075E54",
+            borderRadius: "20px 20px 0 0",
+            padding: "14px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+          }}
+        >
+          <span style={{ fontSize: 14, color: "white" }}>←</span>
+          <div
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 20,
+            }}
+          >
+            {contactAvatar}
+          </div>
+          <div>
+            <div
+              style={{ color: "white", fontWeight: 700, fontSize: 16 }}
+            >
+              {contactName}
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 12 }}>
+              online
+            </div>
+          </div>
+        </div>
+
+        {/* Chat area */}
+        <div
+          style={{
+            background: "#0B141A",
+            minHeight: 320,
+            padding: "16px 12px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          {children}
+        </div>
+
+        {/* Input bar */}
+        <div
+          style={{
+            background: "#0B141A",
+            borderRadius: "0 0 20px 20px",
+            padding: "8px 12px 14px",
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              background: "#1F2C34",
+              borderRadius: 24,
+              padding: "10px 16px",
+              color: "rgba(255,255,255,0.3)",
+              fontSize: 14,
+            }}
+          >
+            Type a message...
+          </div>
+          <div
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "#25D366",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 18,
+            }}
+          >
+            🎤
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
