@@ -40,8 +40,8 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
     <div
       style={{
         position: "relative",
-        width: "88%",
-        maxWidth: 420,
+        width: "92%",
+        maxWidth: 580,
         margin: "0 auto",
         transform: `translateY(${translateY}px) translateX(${translateX}px)`,
         opacity,
