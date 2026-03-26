@@ -23,7 +23,7 @@ export const SceneRepeatInvite: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#6c5ce7" />
+      <GlowBackground color="#E7D3FC" />
 
       <div
         style={{
@@ -63,7 +63,7 @@ export const SceneRepeatInvite: React.FC = () => {
           </div>
           <span
             style={{
-              color: "rgba(255,255,255,0.5)",
+              color: "rgba(54,42,130,0.6)",
               fontSize: 14,
               fontWeight: 700,
               letterSpacing: "0.1em",
@@ -74,7 +74,7 @@ export const SceneRepeatInvite: React.FC = () => {
           </span>
         </div>
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
             message="Hey! 🐾 It's been a month since Max's last groom. He's probably due for some pampering!"
@@ -92,14 +92,14 @@ Tap below to grab your slot 👇"
           {/* CTA */}
           <div
             style={{
-              background: "linear-gradient(135deg, #6c5ce7, #a29bfe)",
+              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
               borderRadius: 12,
               padding: "14px 20px",
               textAlign: "center" as const,
               color: "white",
               fontWeight: 700,
               fontSize: 15,
-              boxShadow: "0 4px 20px rgba(108,92,231,0.3)",
+              boxShadow: "0 4px 20px rgba(54,42,130,0.3)",
               opacity: interpolate(
                 spring({ frame: Math.max(0, frame - 45), fps, config: { damping: 14 } }),
                 [0, 1],

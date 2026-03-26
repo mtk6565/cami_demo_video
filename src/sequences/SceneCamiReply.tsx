@@ -24,7 +24,7 @@ export const SceneCamiReply: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#25D366" intensity={1.2} />
+      <GlowBackground color="#362A82" intensity={1.2} />
 
       <div
         style={{
@@ -41,7 +41,7 @@ export const SceneCamiReply: React.FC = () => {
       >
         <StepBadge step={2} label="Cami Replies Instantly" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
             message="Hi! I'd like to book a grooming for Max 🐕"
@@ -73,13 +73,13 @@ Just tap the one that works!"
               top: "18%",
               right: "8%",
               transform: `scale(${badgeScale}) rotate(-8deg)`,
-              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
               borderRadius: 16,
               padding: "8px 18px",
               color: "white",
               fontWeight: 800,
               fontSize: 16,
-              boxShadow: "0 8px 30px rgba(37,211,102,0.4)",
+              boxShadow: "0 8px 30px rgba(54,42,130,0.4)",
               letterSpacing: "0.05em",
             }}
           >

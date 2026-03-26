@@ -21,7 +21,7 @@ export const SceneGroomingPics: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#e17055" />
+      <GlowBackground color="#E7D3FC" />
 
       <div
         style={{
@@ -38,7 +38,7 @@ export const SceneGroomingPics: React.FC = () => {
       >
         <StepBadge step={6} label="Live Updates" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
             message="Max is having a blast! Here's a sneak peek 📸"
@@ -70,15 +70,15 @@ export const SceneGroomingPics: React.FC = () => {
                     width: 85,
                     height: 85,
                     borderRadius: 12,
-                    background: `linear-gradient(135deg, #1a2a35, #1f3545)`,
-                    border: "1px solid rgba(37,211,102,0.2)",
+                    background: `linear-gradient(135deg, #ffffff, #f0f4ff)`,
+                    border: "1px solid rgba(54,42,130,0.15)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: 36,
                     transform: `scale(${interpolate(cardSpring, [0, 1], [0, 1])}) rotate(${interpolate(cardSpring, [0, 1], [15, 0])}deg)`,
                     opacity: interpolate(cardSpring, [0, 1], [0, 1]),
-                    boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
+                    boxShadow: "0 4px 15px rgba(54,42,130,0.12)",
                   }}
                 >
                   {emoji}

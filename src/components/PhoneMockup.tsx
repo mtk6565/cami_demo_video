@@ -21,7 +21,7 @@ interface PhoneMockupProps {
 
 export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   children,
-  contactName = "Petverse 🐾",
+  contactName = "Cami 🐾",
   contactAvatar = "🐾",
   enterFrom = "bottom",
 }) => {
@@ -50,12 +50,12 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
       {/* Phone frame */}
       <div
         style={{
-          background: "linear-gradient(145deg, #1a1a2e 0%, #16213e 100%)",
+          background: "linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%)",
           borderRadius: 40,
-          border: "3px solid rgba(255,255,255,0.08)",
+          border: "3px solid rgba(54,42,130,0.12)",
           padding: "12px 8px",
           boxShadow:
-            "0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(37,211,102,0.08)",
+            "0 25px 80px rgba(54,42,130,0.15), 0 0 40px rgba(54,42,130,0.06)",
         }}
       >
         {/* Status bar */}
@@ -65,7 +65,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
             justifyContent: "space-between",
             padding: "6px 20px 4px",
             fontSize: 13,
-            color: "rgba(255,255,255,0.5)",
+            color: "rgba(54,42,130,0.5)",
             fontWeight: 600,
           }}
         >
@@ -79,7 +79,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
         {/* WhatsApp header */}
         <div
           style={{
-            background: "#075E54",
+            background: "#362A82",
             borderRadius: "20px 20px 0 0",
             padding: "14px 16px",
             display: "flex",
@@ -93,7 +93,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
               width: 38,
               height: 38,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              background: "linear-gradient(135deg, #E7D3FC, #C2F6BA)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -108,7 +108,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
             >
               {contactName}
             </div>
-            <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 12 }}>
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>
               online
             </div>
           </div>
@@ -117,7 +117,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
         {/* Chat area */}
         <div
           style={{
-            background: "#0B141A",
+            background: "#E8F5FC",
             minHeight: 320,
             padding: "16px 12px",
             display: "flex",
@@ -131,7 +131,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
         {/* Input bar */}
         <div
           style={{
-            background: "#0B141A",
+            background: "#E8F5FC",
             borderRadius: "0 0 20px 20px",
             padding: "8px 12px 14px",
             display: "flex",
@@ -142,10 +142,10 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
           <div
             style={{
               flex: 1,
-              background: "#1F2C34",
+              background: "rgba(54,42,130,0.08)",
               borderRadius: 24,
               padding: "10px 16px",
-              color: "rgba(255,255,255,0.3)",
+              color: "rgba(54,42,130,0.4)",
               fontSize: 14,
             }}
           >
@@ -156,7 +156,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
               width: 40,
               height: 40,
               borderRadius: "50%",
-              background: "#25D366",
+              background: "#362A82",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

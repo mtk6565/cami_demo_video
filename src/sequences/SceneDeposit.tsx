@@ -23,7 +23,7 @@ export const SceneDeposit: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#00b894" />
+      <GlowBackground color="#C2F6BA" />
 
       <div
         style={{
@@ -40,7 +40,7 @@ export const SceneDeposit: React.FC = () => {
       >
         <StepBadge step={4} label="Pay Inside WhatsApp" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
             message="Here's your booking summary:
@@ -56,7 +56,7 @@ Tap below to pay securely 👇"
           {/* Payment button */}
           <div
             style={{
-              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
               borderRadius: 12,
               padding: "14px 20px",
               textAlign: "center" as const,
@@ -64,7 +64,7 @@ Tap below to pay securely 👇"
               fontWeight: 700,
               fontSize: 15,
               cursor: "pointer",
-              boxShadow: "0 4px 20px rgba(37,211,102,0.3)",
+              boxShadow: "0 4px 20px rgba(54,42,130,0.3)",
               opacity: interpolate(
                 spring({ frame: Math.max(0, frame - 30), fps, config: { damping: 14 } }),
                 [0, 1],
@@ -92,19 +92,19 @@ Tap below to pay securely 👇"
                   width: 36,
                   height: 36,
                   borderRadius: "50%",
-                  background: "#25D366",
+                  background: "#C2F6BA",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: 20,
-                  boxShadow: "0 0 30px rgba(37,211,102,0.5)",
+                  boxShadow: "0 0 30px rgba(194,246,186,0.5)",
                 }}
               >
                 ✓
               </div>
               <span
                 style={{
-                  color: "#25D366",
+                  color: "#362A82",
                   fontWeight: 700,
                   fontSize: 15,
                 }}

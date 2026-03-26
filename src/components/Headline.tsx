@@ -14,8 +14,8 @@ interface HeadlineProps {
 export const Headline: React.FC<HeadlineProps> = ({
   text,
   fontSize = 48,
-  color = "#ffffff",
-  accentColor = "#25D366",
+  color = "#1a1a2e",
+  accentColor = "#362A82",
   accentWords = [],
   delay = 0,
   style = {},

@@ -1,12 +1,12 @@
-# Petverse WhatsApp Ad
+# Cami WhatsApp Ad
 
-Animated promotional video for **Petverse**, a pet services platform. The ad showcases an AI-powered WhatsApp booking flow — from a client's first message through appointment confirmation, grooming updates, and rebooking.
+Animated promotional video for **Cami**, a pet services platform. The ad showcases an AI-powered WhatsApp booking flow — from a client's first message through appointment confirmation, grooming updates, and rebooking.
 
 Built with [Remotion](https://remotion.dev) 4, React 19, TypeScript, and Tailwind CSS v4.
 
 ## What It Does
 
-The video walks through a complete WhatsApp conversation between a pet owner and Petverse's AI assistant "Cami". It demonstrates the full booking lifecycle in 30 seconds:
+The video walks through a complete WhatsApp conversation between a pet owner and Cami, the AI assistant. It demonstrates the full booking lifecycle in 30 seconds:
 
 | Scene | Time | Description |
 |-------|------|-------------|
@@ -19,14 +19,14 @@ The video walks through a complete WhatsApp conversation between a pet owner and
 | Grooming Pics | 19–22s | In-store progress photos |
 | Thank You | 22–25s | Thanks + rebook/rate prompt |
 | Repeat Invite | 25–27.5s | 1-month recurring invite |
-| Outro | 27.5–30s | Petverse CTA |
+| Outro | 27.5–30s | Cami CTA |
 
 ## Output Formats
 
 Two compositions are defined:
 
-- **Portrait** (`PetverseWhatsAppAd`) — 1080x1920 @ 30fps, optimized for WhatsApp/Instagram Stories
-- **Landscape** (`PetverseWhatsAppAd-Landscape`) — 1920x1080 @ 30fps, optimized for YouTube/web
+- **Portrait** (`CamiWhatsAppAd`) — 1080x1920 @ 30fps, optimized for WhatsApp/Instagram Stories
+- **Landscape** (`CamiWhatsAppAd-Landscape`) — 1920x1080 @ 30fps, optimized for YouTube/web
 
 Both are 30 seconds (900 frames).
 
@@ -37,7 +37,7 @@ src/
 ├── index.ts              # Remotion entry point (registerRoot)
 ├── Root.tsx              # Composition definitions (ids, dimensions, fps, duration)
 ├── Video.tsx             # Re-exports RemotionRoot
-├── PetverseAd.tsx        # Main composition — sequences all scenes together
+├── CamiAd.tsx        # Main composition — sequences all scenes together
 ├── components/           # Reusable UI primitives
 │   ├── ChatBubble.tsx    # WhatsApp-style message bubble
 │   ├── GlowBackground.tsx# Animated gradient background
@@ -57,7 +57,7 @@ src/
     └── SceneOutro.tsx
 ```
 
-Each scene in `sequences/` is a self-contained React component that handles its own animations and layout. The main `PetverseAd.tsx` composes them using Remotion's `<Series>` component to play them back-to-back.
+Each scene in `sequences/` is a self-contained React component that handles its own animations and layout. The main `CamiAd.tsx` composes them using Remotion's `<Series>` component to play them back-to-back.
 
 Shared components in `components/` provide the visual building blocks — chat bubbles, phone frames, glowing backgrounds, and animated text.
 
@@ -79,10 +79,10 @@ Remotion Studio opens in the browser where you can scrub through the timeline, p
 
 ```bash
 # Render portrait video (1080x1920)
-npx remotion render PetverseWhatsAppAd out/video.mp4
+npx remotion render CamiWhatsAppAd out/video.mp4
 
 # Render landscape video (1920x1080)
-npx remotion render PetverseWhatsAppAd-Landscape out/video-landscape.mp4
+npx remotion render CamiWhatsAppAd-Landscape out/video-landscape.mp4
 ```
 
 Output files go to `out/` (gitignored).

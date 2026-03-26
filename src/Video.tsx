@@ -1,20 +1,20 @@
 import { Composition } from "remotion";
-import { PetverseAd } from "./PetverseAd";
+import { CamiAd } from "./CamiAd";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="PetverseWhatsAppAd"
-        component={PetverseAd}
+        id="CamiWhatsAppAd"
+        component={CamiAd}
         durationInFrames={900} // 30 seconds at 30fps
         fps={30}
         width={1080}
         height={1920} // 9:16 vertical for Reels/TikTok/Stories
       />
       <Composition
-        id="PetverseWhatsAppAd-Landscape"
-        component={PetverseAd}
+        id="CamiWhatsAppAd-Landscape"
+        component={CamiAd}
         durationInFrames={900}
         fps={30}
         width={1920}

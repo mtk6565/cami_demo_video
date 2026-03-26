@@ -21,7 +21,7 @@ export const SceneThankYou: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#fdcb6e" />
+      <GlowBackground color="#F8F96C" />
 
       <div
         style={{
@@ -38,7 +38,7 @@ export const SceneThankYou: React.FC = () => {
       >
         <StepBadge step={7} label="Thank & Rebook" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
             message="Thanks for visiting! 🎉 Max looks amazing. Hope you both loved the experience!"
@@ -48,10 +48,10 @@ export const SceneThankYou: React.FC = () => {
           {/* Rating prompt */}
           <div
             style={{
-              background: "linear-gradient(135deg, #1a2a35, #162430)",
+              background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
               borderRadius: 16,
               padding: 16,
-              border: "1px solid rgba(253,203,110,0.2)",
+              border: "1px solid rgba(54,42,130,0.15)",
               textAlign: "center" as const,
               opacity: interpolate(
                 spring({ frame: Math.max(0, frame - 30), fps, config: { damping: 14 } }),
@@ -60,7 +60,7 @@ export const SceneThankYou: React.FC = () => {
               ),
             }}
           >
-            <div style={{ color: "white", fontSize: 14, fontWeight: 600, marginBottom: 10 }}>
+            <div style={{ color: "#1a1a2e", fontSize: 14, fontWeight: 600, marginBottom: 10 }}>
               How was your experience?
             </div>
             <div style={{ display: "flex", justifyContent: "center", gap: 6 }}>
@@ -104,7 +104,7 @@ export const SceneThankYou: React.FC = () => {
             <div
               style={{
                 flex: 1,
-                background: "linear-gradient(135deg, #25D366, #128C7E)",
+                background: "linear-gradient(135deg, #362A82, #4a3a9e)",
                 borderRadius: 10,
                 padding: "10px 12px",
                 textAlign: "center" as const,
@@ -118,14 +118,14 @@ export const SceneThankYou: React.FC = () => {
             <div
               style={{
                 flex: 1,
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(54,42,130,0.06)",
                 borderRadius: 10,
                 padding: "10px 12px",
                 textAlign: "center" as const,
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(54,42,130,0.7)",
                 fontWeight: 600,
                 fontSize: 13,
-                border: "1px solid rgba(255,255,255,0.1)",
+                border: "1px solid rgba(54,42,130,0.15)",
               }}
             >
               ⭐ Leave Review

@@ -27,7 +27,7 @@ export const SceneHook: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#25D366" intensity={1.5} />
+      <GlowBackground color="#362A82" intensity={1.5} />
 
       <div
         style={{
@@ -47,7 +47,7 @@ export const SceneHook: React.FC = () => {
           style={{
             fontSize: 80,
             transform: `scale(${iconEntrance * pulse})`,
-            filter: `drop-shadow(0 0 40px rgba(37,211,102,0.5))`,
+            filter: `drop-shadow(0 0 40px rgba(54,42,130,0.4))`,
           }}
         >
           💬
@@ -58,7 +58,7 @@ export const SceneHook: React.FC = () => {
           text="Still chasing bookings manually?"
           fontSize={44}
           accentWords={["manually?"]}
-          accentColor="#ff4757"
+          accentColor="#362A82"
           delay={10}
         />
 
@@ -67,7 +67,7 @@ export const SceneHook: React.FC = () => {
           text="Your clients want WhatsApp."
           fontSize={28}
           accentWords={["WhatsApp."]}
-          accentColor="#25D366"
+          accentColor="#362A82"
           delay={30}
           style={{ marginTop: -20 }}
         />

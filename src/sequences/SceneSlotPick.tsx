@@ -40,7 +40,7 @@ export const SceneSlotPick: React.FC = () => {
       >
         <StepBadge step={3} label="Pick & Profile" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
             message="Wednesday 2:00 PM works! 🙌"
@@ -56,10 +56,10 @@ export const SceneSlotPick: React.FC = () => {
           {frame >= cardDelay && (
             <div
               style={{
-                background: "linear-gradient(135deg, #1a2a35, #162430)",
+                background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
                 borderRadius: 16,
                 padding: 16,
-                border: "1px solid rgba(37,211,102,0.2)",
+                border: "1px solid rgba(54,42,130,0.15)",
                 transform: `scale(${interpolate(cardSpring, [0, 1], [0.5, 1])})`,
                 opacity: interpolate(cardSpring, [0, 1], [0, 1]),
               }}
@@ -74,10 +74,10 @@ export const SceneSlotPick: React.FC = () => {
               >
                 <span style={{ fontSize: 32 }}>🐕</span>
                 <div>
-                  <div style={{ color: "white", fontWeight: 700, fontSize: 16 }}>
+                  <div style={{ color: "#1a1a2e", fontWeight: 700, fontSize: 16 }}>
                     Max
                   </div>
-                  <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>
+                  <div style={{ color: "rgba(54,42,130,0.5)", fontSize: 12 }}>
                     Golden Retriever • 3 yrs
                   </div>
                 </div>
@@ -87,8 +87,8 @@ export const SceneSlotPick: React.FC = () => {
                   <span
                     key={i}
                     style={{
-                      background: "rgba(37,211,102,0.15)",
-                      color: "#25D366",
+                      background: "rgba(54,42,130,0.1)",
+                      color: "#362A82",
                       fontSize: 11,
                       padding: "4px 10px",
                       borderRadius: 20,

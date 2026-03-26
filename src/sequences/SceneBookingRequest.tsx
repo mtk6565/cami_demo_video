@@ -35,7 +35,7 @@ export const SceneBookingRequest: React.FC = () => {
       >
         <StepBadge step={1} label="Client Messages" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
             message="Hi! I'd like to book a grooming session for my golden retriever, Max 🐕"

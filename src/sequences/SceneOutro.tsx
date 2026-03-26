@@ -21,7 +21,7 @@ export const SceneOutro: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <GlowBackground color="#25D366" intensity={2} />
+      <GlowBackground color="#362A82" intensity={2} />
 
       <div
         style={{
@@ -49,7 +49,7 @@ export const SceneOutro: React.FC = () => {
           <div
             style={{
               fontSize: 64,
-              filter: "drop-shadow(0 0 40px rgba(37,211,102,0.5))",
+              filter: "drop-shadow(0 0 40px rgba(54,42,130,0.4))",
             }}
           >
             🐾
@@ -58,12 +58,12 @@ export const SceneOutro: React.FC = () => {
             style={{
               fontSize: 52,
               fontWeight: 900,
-              color: "white",
+              color: "#362A82",
               letterSpacing: "-0.03em",
-              textShadow: "0 0 60px rgba(37,211,102,0.3)",
+              textShadow: "0 0 60px rgba(54,42,130,0.3)",
             }}
           >
-            Petverse
+            Cami
           </div>
         </div>
 
@@ -72,7 +72,7 @@ export const SceneOutro: React.FC = () => {
           text="Your entire pet business. On WhatsApp."
           fontSize={24}
           accentWords={["WhatsApp."]}
-          accentColor="#25D366"
+          accentColor="#362A82"
           delay={15}
         />
 
@@ -101,14 +101,14 @@ export const SceneOutro: React.FC = () => {
         >
           <div
             style={{
-              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
               borderRadius: 16,
               padding: "16px 40px",
               color: "white",
               fontWeight: 800,
               fontSize: 18,
               textAlign: "center" as const,
-              boxShadow: "0 8px 40px rgba(37,211,102,0.4)",
+              boxShadow: "0 8px 40px rgba(54,42,130,0.4)",
               letterSpacing: "0.02em",
             }}
           >
@@ -118,12 +118,12 @@ export const SceneOutro: React.FC = () => {
             style={{
               textAlign: "center" as const,
               marginTop: 14,
-              color: "rgba(255,255,255,0.4)",
+              color: "rgba(54,42,130,0.5)",
               fontSize: 14,
               fontWeight: 500,
             }}
           >
-            petverse.app
+            cami.app
           </div>
         </div>
 
@@ -155,11 +155,11 @@ export const SceneOutro: React.FC = () => {
             <span
               key={i}
               style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(54,42,130,0.06)",
+                border: "1px solid rgba(54,42,130,0.12)",
                 borderRadius: 20,
                 padding: "6px 14px",
-                color: "rgba(255,255,255,0.6)",
+                color: "rgba(54,42,130,0.7)",
                 fontSize: 12,
                 fontWeight: 600,
               }}

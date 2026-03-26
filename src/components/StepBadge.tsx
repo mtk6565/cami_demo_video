@@ -41,21 +41,21 @@ export const StepBadge: React.FC<StepBadgeProps> = ({
           width: 32,
           height: 32,
           borderRadius: "50%",
-          background: "linear-gradient(135deg, #25D366, #128C7E)",
+          background: "linear-gradient(135deg, #362A82, #4a3a9e)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white",
           fontWeight: 800,
           fontSize: 14,
-          boxShadow: "0 0 20px rgba(37,211,102,0.3)",
+          boxShadow: "0 0 20px rgba(54,42,130,0.3)",
         }}
       >
         {step}
       </div>
       <span
         style={{
-          color: "rgba(255,255,255,0.6)",
+          color: "rgba(54,42,130,0.7)",
           fontSize: 14,
           fontWeight: 600,
           textTransform: "uppercase",

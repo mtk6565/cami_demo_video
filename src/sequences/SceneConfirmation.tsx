@@ -40,14 +40,14 @@ export const SceneConfirmation: React.FC = () => {
       >
         <StepBadge step={5} label="Auto Confirm + Remind" />
 
-        <PhoneMockup contactName="Petverse 🐾">
+        <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
             message="✅ Booking Confirmed!
 
 🐕 Max — Full Groom
 📅 Wednesday, 2:00 PM
-📍 Petverse Grooming Studio
+📍 Cami Grooming Studio
 💰 Deposit paid ✓
 
 See you soon! 🎉"
@@ -70,12 +70,12 @@ See you soon! 🎉"
                 style={{
                   flex: 1,
                   height: 1,
-                  background: "rgba(255,255,255,0.1)",
+                  background: "rgba(54,42,130,0.12)",
                 }}
               />
               <span
                 style={{
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(54,42,130,0.5)",
                   fontSize: 12,
                   fontWeight: 600,
                   whiteSpace: "nowrap",
@@ -87,7 +87,7 @@ See you soon! 🎉"
                 style={{
                   flex: 1,
                   height: 1,
-                  background: "rgba(255,255,255,0.1)",
+                  background: "rgba(54,42,130,0.12)",
                 }}
               />
             </div>

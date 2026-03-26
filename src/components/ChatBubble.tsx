@@ -49,14 +49,14 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
         style={{
           maxWidth: "80%",
           background: isBot
-            ? "linear-gradient(135deg, #1F2C34, #1a2630)"
-            : "#005C4B",
+            ? "linear-gradient(135deg, #ffffff, #f0f4ff)"
+            : "#362A82",
           borderRadius: isBot ? "4px 16px 16px 16px" : "16px 4px 16px 16px",
           padding: "10px 14px",
-          color: "white",
+          color: isBot ? "#1a1a2e" : "white",
           fontSize: 14,
           lineHeight: 1.5,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+          boxShadow: "0 2px 8px rgba(54,42,130,0.12)",
           position: "relative" as const,
         }}
       >
@@ -67,7 +67,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
         <div
           style={{
             fontSize: 11,
-            color: "rgba(255,255,255,0.4)",
+            color: isBot ? "rgba(54,42,130,0.4)" : "rgba(255,255,255,0.4)",
             textAlign: "right" as const,
             marginTop: 4,
           }}
@@ -91,7 +91,7 @@ const TypingIndicator: React.FC<{ frame: number }> = ({ frame }) => {
               width: 8,
               height: 8,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.5)",
+              background: "rgba(54,42,130,0.4)",
               transform: `translateY(${bounce * 4}px)`,
             }}
           />
