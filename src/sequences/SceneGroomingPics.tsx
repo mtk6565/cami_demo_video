@@ -68,15 +68,15 @@ export const SceneGroomingPics: React.FC = () => {
                     width: 85,
                     height: 85,
                     borderRadius: 12,
-                    background: `linear-gradient(135deg, #ffffff, #f0f4ff)`,
-                    border: "1px solid rgba(54,42,130,0.15)",
+                    background: "#FFFFFF",
+                    border: "1px solid #E0E0E0",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: 36,
                     transform: `scale(${interpolate(cardSpring, [0, 1], [0, 1])}) rotate(${interpolate(cardSpring, [0, 1], [15, 0])}deg)`,
                     opacity: interpolate(cardSpring, [0, 1], [0, 1]),
-                    boxShadow: "0 4px 15px rgba(54,42,130,0.12)",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
                   }}
                 >
                   {emoji}

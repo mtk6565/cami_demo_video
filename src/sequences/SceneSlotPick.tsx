@@ -54,10 +54,11 @@ export const SceneSlotPick: React.FC = () => {
           {frame >= cardDelay && (
             <div
               style={{
-                background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
+                background: "#FFFFFF",
                 borderRadius: 16,
                 padding: 16,
-                border: "1px solid rgba(54,42,130,0.15)",
+                border: "1px solid #E0E0E0",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
                 transform: `scale(${interpolate(cardSpring, [0, 1], [0.5, 1])})`,
                 opacity: interpolate(cardSpring, [0, 1], [0, 1]),
               }}
@@ -85,8 +86,8 @@ export const SceneSlotPick: React.FC = () => {
                   <span
                     key={i}
                     style={{
-                      background: "rgba(54,42,130,0.1)",
-                      color: "#362A82",
+                      background: "#E7F5E3",
+                      color: "#111B21",
                       fontSize: 11,
                       padding: "4px 10px",
                       borderRadius: 20,

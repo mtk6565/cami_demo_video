@@ -4,9 +4,12 @@ import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 interface ChatBubbleProps {
   message: string;
   sender: "user" | "bot";
-  delay?: number; // frames before appearing
+  delay?: number;
   typing?: boolean;
   emoji?: string;
+  showTail?: boolean;
+  timestamp?: string;
+  status?: "sent" | "delivered" | "read";
 }
 
 export const ChatBubble: React.FC<ChatBubbleProps> = ({
@@ -15,6 +18,9 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
   delay = 0,
   typing = false,
   emoji,
+  showTail = true,
+  timestamp = "9:41 AM",
+  status = "read",
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -48,35 +54,109 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
       <div
         style={{
           maxWidth: "80%",
-          background: isBot
-            ? "linear-gradient(135deg, #ffffff, #f0f4ff)"
-            : "#362A82",
-          borderRadius: isBot ? "4px 16px 16px 16px" : "16px 4px 16px 16px",
-          padding: "10px 14px",
-          color: isBot ? "#1a1a2e" : "white",
+          background: isBot ? "#FFFFFF" : "#D9FDD3",
+          borderRadius: showTail
+            ? isBot
+              ? "0 8px 8px 8px"
+              : "8px 0 8px 8px"
+            : 8,
+          padding: "6px 12px",
+          color: "#111B21",
           fontSize: 21,
-          lineHeight: 1.5,
+          lineHeight: 1.35,
           whiteSpace: "pre-wrap" as const,
-          boxShadow: "0 2px 8px rgba(54,42,130,0.12)",
+          boxShadow: "0 1px 1px rgba(0,0,0,0.08)",
           position: "relative" as const,
         }}
       >
+        {/* Bubble tail */}
+        {showTail && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              ...(isBot
+                ? {
+                    left: -8,
+                    width: 0,
+                    height: 0,
+                    borderTop: "0 solid transparent",
+                    borderBottom: "10px solid transparent",
+                    borderRight: "8px solid #FFFFFF",
+                  }
+                : {
+                    right: -8,
+                    width: 0,
+                    height: 0,
+                    borderTop: "0 solid transparent",
+                    borderBottom: "10px solid transparent",
+                    borderLeft: "8px solid #D9FDD3",
+                  }),
+            }}
+          />
+        )}
+
         {emoji && (
           <span style={{ fontSize: 28, marginRight: 6 }}>{emoji}</span>
         )}
-        {typing ? <TypingIndicator frame={adjustedFrame} /> : message}
-        <div
-          style={{
-            fontSize: 14,
-            color: isBot ? "rgba(54,42,130,0.4)" : "rgba(255,255,255,0.4)",
-            textAlign: "right" as const,
-            marginTop: 4,
-          }}
-        >
-          {isBot ? "Cami AI" : ""} ✓✓
-        </div>
+        {typing ? (
+          <TypingIndicator frame={adjustedFrame} />
+        ) : (
+          <>
+            {message}
+            <span
+              style={{
+                float: "right" as const,
+                marginLeft: 8,
+                marginTop: 4,
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                fontSize: 11,
+                color: "#667781",
+                lineHeight: 1,
+              }}
+            >
+              {timestamp}
+              {!isBot && <CheckMark status={status} />}
+            </span>
+          </>
+        )}
       </div>
     </div>
+  );
+};
+
+const CheckMark: React.FC<{ status: "sent" | "delivered" | "read" }> = ({
+  status,
+}) => {
+  const color = status === "read" ? "#53BDEB" : "#667781";
+  const isDouble = status === "delivered" || status === "read";
+
+  return (
+    <svg
+      width={isDouble ? 20 : 14}
+      height={14}
+      viewBox={isDouble ? "0 0 20 14" : "0 0 14 14"}
+      fill="none"
+    >
+      <path
+        d={isDouble ? "M4 7l3 3 7-7" : "M3 7l3 3 5-5"}
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {isDouble && (
+        <path
+          d="M8 7l3 3 7-7"
+          stroke={color}
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      )}
+    </svg>
   );
 };
 
@@ -92,7 +172,7 @@ const TypingIndicator: React.FC<{ frame: number }> = ({ frame }) => {
               width: 8,
               height: 8,
               borderRadius: "50%",
-              background: "rgba(54,42,130,0.4)",
+              background: "#667781",
               transform: `translateY(${bounce * 4}px)`,
             }}
           />

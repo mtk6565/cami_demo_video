@@ -51,17 +51,18 @@ export const SceneRepeatInvite: React.FC = () => {
             delay={30}
           />
 
-          {/* CTA */}
+          {/* CTA — WhatsApp business style */}
           <div
             style={{
-              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
-              borderRadius: 12,
+              background: "#FFFFFF",
+              borderRadius: 8,
               padding: "14px 20px",
               textAlign: "center" as const,
-              color: "white",
+              color: "#362A82",
               fontWeight: 700,
               fontSize: 15,
-              boxShadow: "0 4px 20px rgba(54,42,130,0.3)",
+              border: "1px solid #E0E0E0",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
               opacity: interpolate(
                 spring({ frame: Math.max(0, frame - 45), fps, config: { damping: 14 } }),
                 [0, 1],

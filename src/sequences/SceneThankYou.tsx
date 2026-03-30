@@ -43,13 +43,14 @@ export const SceneThankYou: React.FC = () => {
             delay={5}
           />
 
-          {/* Rating prompt */}
+          {/* Rating card — WhatsApp style */}
           <div
             style={{
-              background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
+              background: "#FFFFFF",
               borderRadius: 16,
               padding: 16,
-              border: "1px solid rgba(54,42,130,0.15)",
+              border: "1px solid #E0E0E0",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
               textAlign: "center" as const,
               opacity: interpolate(
                 spring({ frame: Math.max(0, frame - 30), fps, config: { damping: 14 } }),
@@ -102,13 +103,15 @@ export const SceneThankYou: React.FC = () => {
             <div
               style={{
                 flex: 1,
-                background: "linear-gradient(135deg, #362A82, #4a3a9e)",
-                borderRadius: 10,
+                background: "#FFFFFF",
+                borderRadius: 8,
                 padding: "10px 12px",
                 textAlign: "center" as const,
-                color: "white",
+                color: "#362A82",
                 fontWeight: 700,
                 fontSize: 13,
+                border: "1px solid #E0E0E0",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
               }}
             >
               📅{" "}Rebook Now
@@ -116,14 +119,15 @@ export const SceneThankYou: React.FC = () => {
             <div
               style={{
                 flex: 1,
-                background: "rgba(54,42,130,0.06)",
-                borderRadius: 10,
+                background: "#FFFFFF",
+                borderRadius: 8,
                 padding: "10px 12px",
                 textAlign: "center" as const,
-                color: "rgba(54,42,130,0.7)",
+                color: "#362A82",
                 fontWeight: 600,
                 fontSize: 13,
-                border: "1px solid rgba(54,42,130,0.15)",
+                border: "1px solid #E0E0E0",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
               }}
             >
               ⭐{" "}Leave Review
