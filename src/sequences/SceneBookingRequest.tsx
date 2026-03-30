@@ -3,7 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remo
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
-import { StepBadge } from "../components/StepBadge";
+import { StepProgress } from "../components/StepProgress";
 
 export const SceneBookingRequest: React.FC = () => {
   const frame = useCurrentFrame();
@@ -25,16 +25,14 @@ export const SceneBookingRequest: React.FC = () => {
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          gap: 24,
-          padding: "40px 20px",
+          gap: 60,
+          padding: "40px 60px",
         }}
       >
-        <StepBadge step={1} label="Client Messages" />
-
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
@@ -48,6 +46,8 @@ export const SceneBookingRequest: React.FC = () => {
             delay={40}
           />
         </PhoneMockup>
+
+        <StepProgress currentStep={1} />
       </div>
     </AbsoluteFill>
   );

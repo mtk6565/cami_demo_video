@@ -3,7 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } fr
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
-import { StepBadge } from "../components/StepBadge";
+import { StepProgress } from "../components/StepProgress";
 
 export const SceneConfirmation: React.FC = () => {
   const frame = useCurrentFrame();
@@ -30,16 +30,14 @@ export const SceneConfirmation: React.FC = () => {
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          gap: 24,
-          padding: "40px 20px",
+          gap: 60,
+          padding: "40px 60px",
         }}
       >
-        <StepBadge step={5} label="Auto Confirm + Remind" />
-
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
@@ -100,6 +98,8 @@ See you soon! 🎉"
             emoji="🔔"
           />
         </PhoneMockup>
+
+        <StepProgress currentStep={5} />
       </div>
     </AbsoluteFill>
   );

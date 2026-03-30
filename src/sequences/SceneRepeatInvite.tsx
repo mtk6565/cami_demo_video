@@ -3,7 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } fr
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
-import { StepBadge } from "../components/StepBadge";
+import { StepProgress } from "../components/StepProgress";
 
 export const SceneRepeatInvite: React.FC = () => {
   const frame = useCurrentFrame();
@@ -30,50 +30,14 @@ export const SceneRepeatInvite: React.FC = () => {
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          gap: 24,
-          padding: "40px 20px",
+          gap: 60,
+          padding: "40px 60px",
         }}
       >
-        <StepBadge step={8} label="Auto Re-engage" />
-
-        {/* Time skip badge */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            opacity: interpolate(
-              spring({ frame, fps, config: { damping: 14 } }),
-              [0, 1],
-              [0, 1]
-            ),
-          }}
-        >
-          <div
-            style={{
-              fontSize: 24,
-              transform: `rotate(${rotation}deg)`,
-            }}
-          >
-            🔄
-          </div>
-          <span
-            style={{
-              color: "rgba(54,42,130,0.6)",
-              fontSize: 14,
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            1 Month Later
-          </span>
-        </div>
-
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
@@ -110,6 +74,44 @@ Tap below to grab your slot 👇"
             🐕 Rebook Max — 15% Off
           </div>
         </PhoneMockup>
+
+        <StepProgress
+          currentStep={8}
+          extraContent={
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                opacity: interpolate(
+                  spring({ frame, fps, config: { damping: 14 } }),
+                  [0, 1],
+                  [0, 1]
+                ),
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 24,
+                  transform: `rotate(${rotation}deg)`,
+                }}
+              >
+                🔄
+              </div>
+              <span
+                style={{
+                  color: "rgba(54,42,130,0.6)",
+                  fontSize: 16,
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase" as const,
+                }}
+              >
+                1 Month Later
+              </span>
+            </div>
+          }
+        />
       </div>
     </AbsoluteFill>
   );

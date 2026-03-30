@@ -54,19 +54,19 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
           borderRadius: isBot ? "4px 16px 16px 16px" : "16px 4px 16px 16px",
           padding: "10px 14px",
           color: isBot ? "#1a1a2e" : "white",
-          fontSize: 14,
+          fontSize: 21,
           lineHeight: 1.5,
           boxShadow: "0 2px 8px rgba(54,42,130,0.12)",
           position: "relative" as const,
         }}
       >
         {emoji && (
-          <span style={{ fontSize: 20, marginRight: 6 }}>{emoji}</span>
+          <span style={{ fontSize: 28, marginRight: 6 }}>{emoji}</span>
         )}
         {typing ? <TypingIndicator frame={adjustedFrame} /> : message}
         <div
           style={{
-            fontSize: 11,
+            fontSize: 14,
             color: isBot ? "rgba(54,42,130,0.4)" : "rgba(255,255,255,0.4)",
             textAlign: "right" as const,
             marginTop: 4,

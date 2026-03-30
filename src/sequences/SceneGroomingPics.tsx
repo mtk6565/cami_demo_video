@@ -3,7 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } fr
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
-import { StepBadge } from "../components/StepBadge";
+import { StepProgress } from "../components/StepProgress";
 
 export const SceneGroomingPics: React.FC = () => {
   const frame = useCurrentFrame();
@@ -28,16 +28,14 @@ export const SceneGroomingPics: React.FC = () => {
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          gap: 24,
-          padding: "40px 20px",
+          gap: 60,
+          padding: "40px 60px",
         }}
       >
-        <StepBadge step={6} label="Live Updates" />
-
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
@@ -93,6 +91,8 @@ export const SceneGroomingPics: React.FC = () => {
             delay={60}
           />
         </PhoneMockup>
+
+        <StepProgress currentStep={6} />
       </div>
     </AbsoluteFill>
   );

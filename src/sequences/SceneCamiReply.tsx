@@ -3,7 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } fr
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
-import { StepBadge } from "../components/StepBadge";
+import { StepProgress } from "../components/StepProgress";
 
 export const SceneCamiReply: React.FC = () => {
   const frame = useCurrentFrame();
@@ -31,16 +31,14 @@ export const SceneCamiReply: React.FC = () => {
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          gap: 24,
-          padding: "40px 20px",
+          gap: 60,
+          padding: "40px 60px",
         }}
       >
-        <StepBadge step={2} label="Cami Replies Instantly" />
-
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
@@ -65,27 +63,28 @@ Just tap the one that works!"
           />
         </PhoneMockup>
 
-        {/* Floating "instant" badge */}
-        {frame >= badgeDelay && (
-          <div
-            style={{
-              position: "absolute",
-              top: "18%",
-              right: "8%",
-              transform: `scale(${badgeScale}) rotate(-8deg)`,
-              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
-              borderRadius: 16,
-              padding: "8px 18px",
-              color: "white",
-              fontWeight: 800,
-              fontSize: 16,
-              boxShadow: "0 8px 30px rgba(54,42,130,0.4)",
-              letterSpacing: "0.05em",
-            }}
-          >
-            ⚡ INSTANT
-          </div>
-        )}
+        <StepProgress
+          currentStep={2}
+          extraContent={
+            frame >= badgeDelay ? (
+              <div
+                style={{
+                  transform: `scale(${badgeScale}) rotate(-8deg)`,
+                  background: "linear-gradient(135deg, #362A82, #4a3a9e)",
+                  borderRadius: 16,
+                  padding: "8px 18px",
+                  color: "white",
+                  fontWeight: 800,
+                  fontSize: 16,
+                  boxShadow: "0 8px 30px rgba(54,42,130,0.4)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                ⚡ INSTANT
+              </div>
+            ) : undefined
+          }
+        />
       </div>
     </AbsoluteFill>
   );
