@@ -6,7 +6,7 @@ const STEPS = [
   { step: 2, label: "Cami Replies" },
   { step: 3, label: "Pick & Profile" },
   { step: 4, label: "Pay via WhatsApp" },
-  { step: 5, label: "Confirm + Remind" },
+  { step: 5, label: "Reminders" },
   { step: 6, label: "Live Updates" },
   { step: 7, label: "Thank & Rebook" },
   { step: 8, label: "Auto Re-engage" },
