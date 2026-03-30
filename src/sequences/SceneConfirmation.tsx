@@ -41,14 +41,14 @@ export const SceneConfirmation: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="✅ Booking Confirmed!
+            message="✅ You're booked!
 
-🐕 Max — Full Groom
-📅 Wednesday, 2:00 PM
-📍 Cami Grooming Studio
-💰 Deposit paid ✓
+🐕 Max, Full Groom
+📅 Wed, 2 PM
+📍 Cami Studio
+💰 Paid ✓
 
-See you soon! 🎉"
+See you then!"
             delay={5}
           />
 
@@ -93,7 +93,7 @@ See you soon! 🎉"
 
           <ChatBubble
             sender="bot"
-            message="Hey! 👋 Just a friendly reminder — Max's grooming is tomorrow at 2:00 PM. Can't wait to see him!"
+            message="Quick heads up, Max is in tomorrow at 2 PM! Can't wait to see him 🐶"
             delay={55}
             emoji="🔔"
           />

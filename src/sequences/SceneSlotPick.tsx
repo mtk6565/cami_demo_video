@@ -41,12 +41,12 @@ export const SceneSlotPick: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
-            message="Wednesday 2:00 PM works! 🙌"
+            message="Wed 2 PM pls! 🙌"
             delay={8}
           />
           <ChatBubble
             sender="bot"
-            message="Great choice! Let me set up Max's profile real quick 🐾"
+            message="Done! Setting up Max's profile now 🐾"
             delay={20}
           />
 

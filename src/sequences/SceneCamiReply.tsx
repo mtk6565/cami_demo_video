@@ -42,23 +42,23 @@ export const SceneCamiReply: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
-            message="Hi! I'd like to book a grooming for Max 🐕"
+            message="Hey, can I book Max in for a groom? 🐕"
             delay={0}
           />
           <ChatBubble
             sender="bot"
-            message="Hey there! 👋 I'd love to help book Max in! Here are the available slots this week:"
+            message="Of course! 👋 Here's what's open this week:"
             delay={10}
             emoji="🤖"
           />
           <ChatBubble
             sender="bot"
-            message="📅 Tue 10:00 AM
-📅 Wed 2:00 PM
+            message="📅 Tue 10 AM
+📅 Wed 2 PM
 📅 Thu 11:30 AM
-📅 Sat 9:00 AM
+📅 Sat 9 AM
 
-Just tap the one that works!"
+Just pick one 👆"
             delay={30}
           />
         </PhoneMockup>

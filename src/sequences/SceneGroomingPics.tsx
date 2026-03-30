@@ -39,7 +39,7 @@ export const SceneGroomingPics: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="Max is having a blast! Here's a sneak peek 📸"
+            message="Max is loving it! Sneak peek 📸"
             delay={5}
           />
 
@@ -87,7 +87,7 @@ export const SceneGroomingPics: React.FC = () => {
 
           <ChatBubble
             sender="bot"
-            message="Almost done! He's looking fabulous ✨"
+            message="Nearly done, looking fresh ✨"
             delay={60}
           />
         </PhoneMockup>

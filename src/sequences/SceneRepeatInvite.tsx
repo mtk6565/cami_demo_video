@@ -41,15 +41,15 @@ export const SceneRepeatInvite: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="Hey! 🐾 It's been a month since Max's last groom. He's probably due for some pampering!"
+            message="Hey! It's been a month, Max is probably ready for a fresh cut 🐾"
             delay={10}
             emoji="💈"
           />
           <ChatBubble
             sender="bot"
-            message="🎁 As a returning client, enjoy 15% off your next booking!
+            message="🎁 15% off your next one, just for coming back!
 
-Tap below to grab your slot 👇"
+Grab a slot 👇"
             delay={30}
           />
 
@@ -71,7 +71,7 @@ Tap below to grab your slot 👇"
               ),
             }}
           >
-            🐕 Rebook Max — 15% Off
+            🐕 Rebook Max, 15% Off
           </div>
         </PhoneMockup>
 
