@@ -41,14 +41,7 @@ export const SceneConfirmation: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="✅ You're booked!
-
-🐕 Max, Full Groom
-📅 Wed, 2 PM
-📍 Cami Studio
-💰 Paid ✓
-
-See you then!"
+            message={"✅ You're booked!\n\n🐕 Max, Full Groom\n📅 Wed, 2 PM\n📍 Cami Studio\n💰 Paid ✓\n\nSee you then!"}
             delay={5}
           />
 

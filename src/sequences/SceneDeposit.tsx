@@ -41,13 +41,7 @@ export const SceneDeposit: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="All set! Quick summary:
-
-🐕 Max, Full Groom
-📅 Wed, 2 PM
-💰 AED 50 deposit
-
-Pay right here 👇"
+            message={"All set! Quick summary:\n\n🐕 Max, Full Groom\n📅 Wed, 2 PM\n💰 AED 50 deposit\n\nPay right here 👇"}
             delay={5}
           />
 

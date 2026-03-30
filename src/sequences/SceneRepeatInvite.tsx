@@ -47,9 +47,7 @@ export const SceneRepeatInvite: React.FC = () => {
           />
           <ChatBubble
             sender="bot"
-            message="🎁 15% off your next one, just for coming back!
-
-Grab a slot 👇"
+            message={"🎁 15% off your next one, just for coming back!\n\nGrab a slot 👇"}
             delay={30}
           />
 

@@ -49,16 +49,10 @@ export const SceneCamiReply: React.FC = () => {
             sender="bot"
             message="Of course! 👋 Here's what's open this week:"
             delay={10}
-            emoji="🤖"
           />
           <ChatBubble
             sender="bot"
-            message="📅 Tue 10 AM
-📅 Wed 2 PM
-📅 Thu 11:30 AM
-📅 Sat 9 AM
-
-Just pick one 👆"
+            message={"📅 Tue 10 AM\n📅 Wed 2 PM\n📅 Thu 11:30 AM\n📅 Sat 9 AM\n\nJust pick one 👆"}
             delay={30}
           />
         </PhoneMockup>

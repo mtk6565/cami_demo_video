@@ -56,6 +56,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
           color: isBot ? "#1a1a2e" : "white",
           fontSize: 21,
           lineHeight: 1.5,
+          whiteSpace: "pre-wrap" as const,
           boxShadow: "0 2px 8px rgba(54,42,130,0.12)",
           position: "relative" as const,
         }}
