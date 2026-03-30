@@ -16,6 +16,7 @@ import { SceneGroomingPics } from "./sequences/SceneGroomingPics";
 import { SceneThankYou } from "./sequences/SceneThankYou";
 import { SceneRepeatInvite } from "./sequences/SceneRepeatInvite";
 import { SceneOutro } from "./sequences/SceneOutro";
+import { FONT_BODY } from "./fonts";
 
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
@@ -29,7 +30,7 @@ import { SceneOutro } from "./sequences/SceneOutro";
  * Scene 5: DEPOSIT        (19–24s)   Payment inside WhatsApp
  * Scene 6: CONFIRMATION   (24–29s)   Auto-confirm + 24h reminder
  * Scene 7: GROOMING PICS  (29–34s)   In-store pics updated
- * Scene 8: THANK YOU      (34–39s)   Thanks + rebook/rate prompt
+ * Scene 8: THANK YOU      (34–39s)   Thank You & Reviews
  * Scene 9: REPEAT INVITE  (39–44s)   1-month recurring invite
  * Scene 10: OUTRO         (44–48s)   Cami CTA
  */
@@ -41,7 +42,7 @@ export const CamiAd: React.FC = () => {
     <AbsoluteFill
       style={{
         backgroundColor: "#E8F5FC",
-        fontFamily: "'Plus Jakarta Sans', 'SF Pro Display', sans-serif",
+        fontFamily: FONT_BODY,
       }}
     >
       {/* Optional: background music track — drop a file in public/ */}

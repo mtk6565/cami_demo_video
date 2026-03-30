@@ -8,7 +8,7 @@ const STEPS = [
   { step: 4, label: "Pay via WhatsApp" },
   { step: 5, label: "Reminders" },
   { step: 6, label: "Live Updates" },
-  { step: 7, label: "Thank & Rebook" },
+  { step: 7, label: "Thank You & Reviews" },
   { step: 8, label: "Auto Re-engage" },
 ];
 

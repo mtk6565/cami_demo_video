@@ -1,5 +1,6 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { FONT_HEADLINE } from "../fonts";
 
 interface HeadlineProps {
   text: string;
@@ -57,6 +58,7 @@ export const Headline: React.FC<HeadlineProps> = ({
           <span
             key={i}
             style={{
+              fontFamily: FONT_HEADLINE,
               fontSize,
               fontWeight: 800,
               color: isAccent ? accentColor : color,

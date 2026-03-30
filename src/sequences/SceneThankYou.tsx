@@ -111,7 +111,7 @@ export const SceneThankYou: React.FC = () => {
                 fontSize: 13,
               }}
             >
-              📅 Rebook Now
+              📅{" "}Rebook Now
             </div>
             <div
               style={{
@@ -126,7 +126,7 @@ export const SceneThankYou: React.FC = () => {
                 border: "1px solid rgba(54,42,130,0.15)",
               }}
             >
-              ⭐ Leave Review
+              ⭐{" "}Leave Review
             </div>
           </div>
         </PhoneMockup>

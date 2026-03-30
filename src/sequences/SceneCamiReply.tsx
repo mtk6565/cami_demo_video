@@ -74,7 +74,7 @@ export const SceneCamiReply: React.FC = () => {
                   letterSpacing: "0.05em",
                 }}
               >
-                ⚡ INSTANT
+                ⚡{" "}INSTANT
               </div>
             ) : undefined
           }

@@ -64,7 +64,7 @@ export const SceneDeposit: React.FC = () => {
               ),
             }}
           >
-            💳 Pay AED 50 Deposit
+            💳{" "}Pay AED 50 Deposit
           </div>
 
           {/* Payment confirmed */}

@@ -69,7 +69,7 @@ export const SceneRepeatInvite: React.FC = () => {
               ),
             }}
           >
-            🐕 Rebook Max, 15% Off
+            🐕{" "}Rebook Max, 15% Off
           </div>
         </PhoneMockup>
 
