@@ -20,12 +20,13 @@ src/
 ├── index.ts              # Remotion entry point (registerRoot)
 ├── Root.tsx              # Composition definitions (ids, dimensions, fps, duration)
 ├── Video.tsx             # Re-exports RemotionRoot (referenced by index.ts)
-├── CamiAd.tsx        # Main composition — sequences scenes together
-├── components/           # Reusable UI primitives (GlowBackground, ChatBubble, PhoneMockup, etc.)
-└── sequences/            # Individual scenes (SceneHook, SceneBookingRequest, SceneConfirmation, etc.)
+├── CamiAd.tsx            # Main composition — sequences scenes together
+├── fonts.ts              # Font loading configuration
+├── components/           # Reusable UI primitives (GlowBackground, ChatBubble, PhoneMockup, Headline, StepBadge, StepProgress)
+└── sequences/            # Individual scenes (SceneHook, SceneBookingRequest, SceneCamiReply, SceneSlotPick, SceneConfirmation, SceneDeposit, SceneGroomingPics, SceneThankYou, SceneRepeatInvite, SceneOutro)
 ```
 
-- **Compositions** are defined in `Root.tsx` — portrait (1080×1920) and landscape (1920×1080), both 900 frames at 30fps (30 seconds).
+- **Compositions** are defined in `Root.tsx` — portrait (1080×1920) and landscape (1920×1080), both 1380 frames at 30fps (46 seconds).
 - **Scenes** in `src/sequences/` are self-contained and composed together in `CamiAd.tsx`.
 - **Shared components** in `src/components/` are reusable across scenes.
 
