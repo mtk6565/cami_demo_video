@@ -26,7 +26,7 @@ import { FONT_BODY } from "./fonts";
  * Scene 1: HOOK           (0–4s)     "Still chasing bookings manually?"
  * Scene 2: BOOKING REQ    (4–8s)     Client sends WhatsApp message
  * Scene 3: CAMI REPLY     (8–13s)    AI replies instantly with slots
- * Scene 4: SLOT PICK      (14–19s)   Client picks + pet profile
+ * Scene 4: SLOT PICK      (14–19s)   Client picks + booking confirmed
  * Scene 5: DEPOSIT        (19–24s)   Payment inside WhatsApp
  * Scene 6: CONFIRMATION   (24–29s)   Auto-confirm + 24h reminder
  * Scene 7: GROOMING PICS  (29–34s)   In-store pics updated

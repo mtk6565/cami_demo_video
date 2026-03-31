@@ -16,14 +16,14 @@ export const SceneSlotPick: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Pet profile card animation
-  const cardDelay = 50;
-  const cardFrame = Math.max(0, frame - cardDelay);
-  const cardSpring = spring({ frame: cardFrame, fps, config: { damping: 14 } });
+  // Confirmation checkmark animation
+  const checkDelay = 50;
+  const checkFrame = Math.max(0, frame - checkDelay);
+  const checkSpring = spring({ frame: checkFrame, fps, config: { damping: 8, mass: 0.5 } });
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground />
+      <GlowBackground color="#C2F6BA" />
 
       <div
         style={{
@@ -46,58 +46,46 @@ export const SceneSlotPick: React.FC = () => {
           />
           <ChatBubble
             sender="bot"
-            message="Done! Setting up Max's profile now 🐾"
+            message={"Booked! ✅\n\n🐕 Max — Full Groom\n📅 Wed, 2 PM\n\nAnd don't worry, we'll use his special shampoo 🧴🐾"}
             delay={20}
           />
 
-          {/* Pet Profile Card */}
-          {frame >= cardDelay && (
+          {/* Booking confirmed checkmark */}
+          {frame >= checkDelay && (
             <div
               style={{
-                background: "#FFFFFF",
-                borderRadius: 16,
-                padding: 16,
-                border: "1px solid #E0E0E0",
-                boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-                transform: `scale(${interpolate(cardSpring, [0, 1], [0.5, 1])})`,
-                opacity: interpolate(cardSpring, [0, 1], [0, 1]),
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                transform: `scale(${interpolate(checkSpring, [0, 1], [0, 1])})`,
+                opacity: interpolate(checkSpring, [0, 1], [0, 1]),
               }}
             >
               <div
                 style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "#C2F6BA",
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
-                  marginBottom: 12,
+                  justifyContent: "center",
+                  fontSize: 20,
+                  boxShadow: "0 0 30px rgba(194,246,186,0.5)",
                 }}
               >
-                <span style={{ fontSize: 32 }}>🐕</span>
-                <div>
-                  <div style={{ color: "#1a1a2e", fontWeight: 700, fontSize: 16 }}>
-                    Max
-                  </div>
-                  <div style={{ color: "rgba(54,42,130,0.5)", fontSize: 12 }}>
-                    Golden Retriever • 3 yrs
-                  </div>
-                </div>
+                ✓
               </div>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                {["Full Groom", "Nail Trim", "Ear Clean"].map((tag, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      background: "#E7F5E3",
-                      color: "#111B21",
-                      fontSize: 11,
-                      padding: "4px 10px",
-                      borderRadius: 20,
-                      fontWeight: 600,
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <span
+                style={{
+                  color: "#362A82",
+                  fontWeight: 700,
+                  fontSize: 15,
+                }}
+              >
+                Booking confirmed!
+              </span>
             </div>
           )}
         </PhoneMockup>
