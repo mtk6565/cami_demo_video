@@ -51,26 +51,26 @@ public/audio/             # MP3 clips copied here by generate.ts for Remotion's 
 ```
 
 - **IMPORTANT**: `index.ts` imports from `Video.tsx`, NOT `Root.tsx`. When changing composition config (duration, fps, dimensions), update `Video.tsx`. `Root.tsx` exists but is not wired up.
-- **Compositions** are defined in `Video.tsx` — portrait (1080x1920) and landscape (1920x1080), both 1140 frames at 30fps (38 seconds).
-- `CamiAd.tsx` sequences 3 scenes: Hook (4s) → WhatsAppFlow (30s) → Outro (4s).
+- **Compositions** are defined in `Video.tsx` — portrait (1080x1920) and landscape (1920x1080), both 1095 frames at 30fps (36.5 seconds).
+- `CamiAd.tsx` sequences 3 scenes: Hook (5s) → WhatsAppFlow (27.5s) → Outro (4s).
 - `SceneWhatsAppFlow.tsx` is a single unified component with 8 phases — the phone frame, background, and step progress render once and persist across all phases. Only chat content crossfades between phases.
 
 ## Scene Timeline
 
 ```
-Total: 38 seconds (1140 frames @ 30fps)
+Total: 36.5 seconds (1095 frames @ 30fps)
 
-Scene 1: HOOK               (0–4s)        "Introducing Cami"
-Scene 2: WHATSAPP FLOW      (4–34s)       Unified persistent WhatsApp conversation
-  Phase 1: Booking Request    (4–8s)      Client sends WhatsApp message
-  Phase 2: Cami Reply         (8–12.5s)   AI replies instantly with slots
-  Phase 3: Slot Pick          (12.5–16s)  Client picks a time
-  Phase 4: Deposit            (16–19.5s)  Payment confirmed, slot locked
-  Phase 5: Confirmation       (19.5–23.5s) Auto-confirm + 24h reminder (badge)
-  Phase 6: Grooming Pics      (23.5–26.5s) In-store photos
-  Phase 7: Thank You          (26.5–30s)  Thank You & Reviews
-  Phase 8: Repeat Invite      (30–34s)    1-month recurring invite (badge)
-Scene 3: OUTRO               (34–38s)     Cami CTA
+Scene 1: HOOK               (0–5s)        "Introducing Cami"
+Scene 2: WHATSAPP FLOW      (5–32.5s)     Unified persistent WhatsApp conversation
+  Phase 1: Booking Request    (5–8.5s)    Client sends WhatsApp message
+  Phase 2: Cami Reply         (8.5–12.5s) AI replies instantly with slots
+  Phase 3: Slot Pick          (12.5–15.5s) Client picks a time
+  Phase 4: Deposit            (15.5–19s)  Payment confirmed, slot locked
+  Phase 5: Confirmation       (19–23s)    Auto-confirm + 24h reminder (badge)
+  Phase 6: Grooming Pics      (23–25.5s)  In-store photos
+  Phase 7: Thank You          (25.5–28.5s) Thank You & Reviews
+  Phase 8: Repeat Invite      (28.5–32.5s) 1-month recurring invite (badge)
+Scene 3: OUTRO               (32.5–36.5s) Cami CTA
 ```
 
 ## Transition Design (Critical)

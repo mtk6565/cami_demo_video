@@ -15,19 +15,19 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 38 seconds (1140 frames @ 30fps)
+ * Total: 36.5 seconds (1095 frames @ 30fps)
  *
- * Scene 1: HOOK             (0–4s)       "Introducing Cami"
- * Scene 2: WHATSAPP FLOW    (4–34s)      Unified persistent WhatsApp conversation
- *   Phase 1: Booking Request  (4–8s)     Client sends WhatsApp message
- *   Phase 2: Cami Reply       (8–12.5s)  AI replies instantly with slots
- *   Phase 3: Slot Pick        (12.5–16s) Client picks a time
- *   Phase 4: Deposit          (16–19.5s) Payment confirmed, slot locked
- *   Phase 5: Confirmation     (19.5–23.5s) Auto-confirm + 24h reminder
- *   Phase 6: Grooming Pics    (23.5–26.5s) In-store pics
- *   Phase 7: Thank You        (26.5–30s) Thank You & Reviews
- *   Phase 8: Repeat Invite    (30–34s)   1-month recurring invite
- * Scene 3: OUTRO             (34–38s)    Cami CTA
+ * Scene 1: HOOK             (0–5s)       "Introducing Cami"
+ * Scene 2: WHATSAPP FLOW    (5–32.5s)    Unified persistent WhatsApp conversation
+ *   Phase 1: Booking Request  (5–8.5s)   Client sends WhatsApp message
+ *   Phase 2: Cami Reply       (8.5–12.5s) AI replies instantly with slots
+ *   Phase 3: Slot Pick        (12.5–15.5s) Client picks a time
+ *   Phase 4: Deposit          (15.5–19s) Payment confirmed, slot locked
+ *   Phase 5: Confirmation     (19–23s)   Auto-confirm + 24h reminder
+ *   Phase 6: Grooming Pics    (23–25.5s) In-store pics
+ *   Phase 7: Thank You        (25.5–28.5s) Thank You & Reviews
+ *   Phase 8: Repeat Invite    (28.5–32.5s) 1-month recurring invite
+ * Scene 3: OUTRO             (32.5–36.5s) Cami CTA
  */
 
 export const CamiAd: React.FC = () => {
@@ -41,24 +41,24 @@ export const CamiAd: React.FC = () => {
       }}
     >
       {/* Voiceover clips — 6 frame (0.2s) delay lets visual transitions land first */}
-      {/* Hook starts at absolute frame 0, WhatsApp flow starts at frame 120 */}
+      {/* Hook starts at absolute frame 0, WhatsApp flow starts at frame 150 */}
       <Sequence from={0} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
-      <Sequence from={120 + 0 + 6} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
-      <Sequence from={120 + 120 + 6} layout="none"><Audio src={staticFile("audio/phase2.mp3")} /></Sequence>
-      <Sequence from={120 + 255 + 6} layout="none"><Audio src={staticFile("audio/phase3.mp3")} /></Sequence>
-      <Sequence from={120 + 360 + 6} layout="none"><Audio src={staticFile("audio/phase4.mp3")} /></Sequence>
-      <Sequence from={120 + 465 + 6} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
-      <Sequence from={120 + 585 + 6} layout="none"><Audio src={staticFile("audio/phase6.mp3")} /></Sequence>
-      <Sequence from={120 + 675 + 6} layout="none"><Audio src={staticFile("audio/phase7.mp3")} /></Sequence>
-      <Sequence from={120 + 780 + 6} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
-      <Sequence from={1020 + 6} layout="none"><Audio src={staticFile("audio/outro.mp3")} /></Sequence>
+      <Sequence from={150 + 0 + 6} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
+      <Sequence from={150 + 105 + 6} layout="none"><Audio src={staticFile("audio/phase2.mp3")} /></Sequence>
+      <Sequence from={150 + 225 + 6} layout="none"><Audio src={staticFile("audio/phase3.mp3")} /></Sequence>
+      <Sequence from={150 + 315 + 6} layout="none"><Audio src={staticFile("audio/phase4.mp3")} /></Sequence>
+      <Sequence from={150 + 420 + 6} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
+      <Sequence from={150 + 540 + 6} layout="none"><Audio src={staticFile("audio/phase6.mp3")} /></Sequence>
+      <Sequence from={150 + 615 + 6} layout="none"><Audio src={staticFile("audio/phase7.mp3")} /></Sequence>
+      <Sequence from={150 + 705 + 6} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
+      <Sequence from={975 + 6} layout="none"><Audio src={staticFile("audio/outro.mp3")} /></Sequence>
 
       <Series>
-        <Series.Sequence durationInFrames={fps * 4}>
+        <Series.Sequence durationInFrames={fps * 5}>
           <SceneHook />
         </Series.Sequence>
 
-        <Series.Sequence durationInFrames={900}>
+        <Series.Sequence durationInFrames={825}>
           <SceneWhatsAppFlow />
         </Series.Sequence>
 

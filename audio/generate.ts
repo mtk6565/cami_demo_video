@@ -5,60 +5,60 @@ const SECTIONS = [
   {
     id: "hook",
     startSeconds: 0,
-    maxSeconds: 4,
+    maxSeconds: 5,
     text: "Introducing Cami. Bookings, payments, reminders — automated.",
   },
   {
     id: "phase1",
-    startSeconds: 4,
-    maxSeconds: 4,
+    startSeconds: 5,
+    maxSeconds: 3.5,
     text: "A client messages. Cami picks it up instantly.",
   },
   {
     id: "phase2",
-    startSeconds: 8,
-    maxSeconds: 4.5,
+    startSeconds: 8.5,
+    maxSeconds: 4,
     text: "Greets them by name, offers open slots — in seconds.",
   },
   {
     id: "phase3",
     startSeconds: 12.5,
-    maxSeconds: 3.5,
+    maxSeconds: 3,
     text: "They pick a time. No back and forth.",
   },
   {
     id: "phase4",
-    startSeconds: 16,
+    startSeconds: 15.5,
     maxSeconds: 3.5,
-    text: "Deposit collected. Slot locked. Done.",
+    text: "Deposit collected. Slot locked. No chasing payments.",
   },
   {
     id: "phase5",
-    startSeconds: 19.5,
+    startSeconds: 19,
     maxSeconds: 4,
     text: "Cami sends reminders automatically. No more no-shows.",
   },
   {
     id: "phase6",
-    startSeconds: 23.5,
-    maxSeconds: 3,
+    startSeconds: 23,
+    maxSeconds: 2.5,
     text: "Sneak peeks sent right to the client.",
   },
   {
     id: "phase7",
-    startSeconds: 26.5,
-    maxSeconds: 3.5,
-    text: "Ratings and reviews — collected automatically.",
+    startSeconds: 25.5,
+    maxSeconds: 3,
+    text: "Ratings and reviews — hands-free.",
   },
   {
     id: "phase8",
-    startSeconds: 30,
+    startSeconds: 28.5,
     maxSeconds: 4,
-    text: "A month later? Cami brings them back automatically.",
+    text: "A month later? Cami brings them back. Effortlessly.",
   },
   {
     id: "outro",
-    startSeconds: 34,
+    startSeconds: 32.5,
     maxSeconds: 4,
     text: "Cami. More time with the furry friends — less time on the phone.",
   },
@@ -107,7 +107,9 @@ async function generateClip(section: (typeof SECTIONS)[number]) {
 
   if (!res.ok) {
     const errText = await res.text();
-    throw new Error(`ElevenLabs API error for "${section.id}" (${res.status}): ${errText}`);
+    throw new Error(
+      `ElevenLabs API error for "${section.id}" (${res.status}): ${errText}`,
+    );
   }
 
   const data = (await res.json()) as {
