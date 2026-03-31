@@ -2,24 +2,27 @@ import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 const STEPS = [
-  { step: 1, label: "Client Messages" },
+  { step: 1, label: "Client Messages 💬" },
   { step: 2, label: "Replies Instantly ⚡" },
   { step: 3, label: "Pick & Pay 💳" },
   { step: 4, label: "Slot Locked ✅" },
-  { step: 5, label: "Reminders" },
-  { step: 6, label: "Live Session Updates" },
-  { step: 7, label: "Thank You & Reviews" },
-  { step: 8, label: "Auto Re-engage" },
+  { step: 5, label: "Reminders 🔔" },
+  { step: 6, label: "Live Session Updates 📸" },
+  { step: 7, label: "Thank You & Reviews ⭐" },
+  { step: 8, label: "Auto Re-engage 🔄" },
 ];
 
 interface StepProgressProps {
   currentStep: number;
   extraContent?: React.ReactNode;
+  /** Frame at which the current step became active (for persistent mode) */
+  stepStartFrame?: number;
 }
 
 export const StepProgress: React.FC<StepProgressProps> = ({
   currentStep,
   extraContent,
+  stepStartFrame,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -37,16 +40,34 @@ export const StepProgress: React.FC<StepProgressProps> = ({
       {visibleSteps.map((s, i) => {
         const isActive = s.step === currentStep;
         const isCompleted = s.step < currentStep;
-        const staggerDelay = i * 4;
-        const activeDelay = (currentStep - 1) * 4 + 8;
-        const delay = isActive ? activeDelay : staggerDelay;
 
-        const adjustedFrame = Math.max(0, frame - delay);
-        const entrance = spring({
-          frame: adjustedFrame,
-          fps,
-          config: { damping: 14, mass: 0.5 },
-        });
+        // In persistent mode (stepStartFrame provided), completed steps appear instantly
+        // and only the active step animates from when it became active
+        let entrance: number;
+        if (stepStartFrame !== undefined) {
+          if (isCompleted) {
+            entrance = 1; // Already visible, no animation
+          } else {
+            // Active step: animate from when this step became active
+            const adjustedFrame = Math.max(0, frame - stepStartFrame - 8);
+            entrance = spring({
+              frame: adjustedFrame,
+              fps,
+              config: { damping: 14, mass: 0.5 },
+            });
+          }
+        } else {
+          // Legacy mode: all steps animate with stagger
+          const staggerDelay = i * 4;
+          const activeDelay = (currentStep - 1) * 4 + 8;
+          const delay = isActive ? activeDelay : staggerDelay;
+          const adjustedFrame = Math.max(0, frame - delay);
+          entrance = spring({
+            frame: adjustedFrame,
+            fps,
+            config: { damping: 14, mass: 0.5 },
+          });
+        }
 
         const scale = isActive
           ? interpolate(entrance, [0, 1], [0, 1.08])
@@ -55,15 +76,28 @@ export const StepProgress: React.FC<StepProgressProps> = ({
 
         // Connector line (between steps)
         const showConnector = i > 0;
-        const connectorDelay = staggerDelay - 2;
-        const connectorFrame = Math.max(0, frame - connectorDelay);
-        const connectorEntrance = spring({
-          frame: connectorFrame,
-          fps,
-          config: { damping: 18, mass: 0.4 },
-        });
+        let connectorEntrance: number;
+        if (stepStartFrame !== undefined && isCompleted) {
+          connectorEntrance = 1;
+        } else if (stepStartFrame !== undefined && isActive) {
+          const connectorFrame = Math.max(0, frame - stepStartFrame - 4);
+          connectorEntrance = spring({
+            frame: connectorFrame,
+            fps,
+            config: { damping: 18, mass: 0.4 },
+          });
+        } else {
+          const staggerDelay = i * 4;
+          const connectorDelay = staggerDelay - 2;
+          const connectorFrame = Math.max(0, frame - connectorDelay);
+          connectorEntrance = spring({
+            frame: connectorFrame,
+            fps,
+            config: { damping: 18, mass: 0.4 },
+          });
+        }
 
-        const circleSize = isActive ? 44 : 32;
+        const circleSize = 44;
 
         return (
           <React.Fragment key={s.step}>
@@ -75,7 +109,7 @@ export const StepProgress: React.FC<StepProgressProps> = ({
                   background: isActive
                     ? "rgba(124,58,237,0.3)"
                     : "rgba(124,58,237,0.12)",
-                  marginLeft: isActive ? 21 : (currentStep > s.step ? 15 : 21),
+                  marginLeft: 21,
                   opacity: interpolate(connectorEntrance, [0, 1], [0, 1]),
                 }}
               />

@@ -7,7 +7,7 @@ import { StepProgress } from "../components/StepProgress";
 
 export const SceneCamiReply: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { durationInFrames } = useVideoConfig();
 
   const exitOpacity = interpolate(
     frame,

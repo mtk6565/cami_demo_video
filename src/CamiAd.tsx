@@ -3,18 +3,9 @@ import {
   AbsoluteFill,
   Series,
   useVideoConfig,
-  Audio,
-  staticFile,
 } from "remotion";
 import { SceneHook } from "./sequences/SceneHook";
-import { SceneBookingRequest } from "./sequences/SceneBookingRequest";
-import { SceneCamiReply } from "./sequences/SceneCamiReply";
-import { SceneSlotPick } from "./sequences/SceneSlotPick";
-import { SceneDeposit } from "./sequences/SceneDeposit";
-import { SceneConfirmation } from "./sequences/SceneConfirmation";
-import { SceneGroomingPics } from "./sequences/SceneGroomingPics";
-import { SceneThankYou } from "./sequences/SceneThankYou";
-import { SceneRepeatInvite } from "./sequences/SceneRepeatInvite";
+import { SceneWhatsAppFlow } from "./sequences/SceneWhatsAppFlow";
 import { SceneOutro } from "./sequences/SceneOutro";
 import { FONT_BODY } from "./fonts";
 
@@ -23,16 +14,17 @@ import { FONT_BODY } from "./fonts";
  * ==========================================
  * Total: 47 seconds (1410 frames @ 30fps)
  *
- * Scene 1: HOOK           (0–4s)     "Still chasing bookings manually?"
- * Scene 2: BOOKING REQ    (4–8s)     Client sends WhatsApp message
- * Scene 3: CAMI REPLY     (8–13s)    AI replies instantly with slots
- * Scene 4: SLOT PICK      (14–19s)   Client picks + pays deposit
- * Scene 5: DEPOSIT        (19–24s)   Payment confirmed, slot locked
- * Scene 6: CONFIRMATION   (24–29s)   Auto-confirm + 24h reminder
- * Scene 7: GROOMING PICS  (29–34s)   In-store pics updated
- * Scene 8: THANK YOU      (34–39s)   Thank You & Reviews
- * Scene 9: REPEAT INVITE  (39–44s)   1-month recurring invite
- * Scene 10: OUTRO         (44–48s)   Cami CTA
+ * Scene 1: HOOK             (0–4s)      "Still chasing bookings manually?"
+ * Scene 2: WHATSAPP FLOW    (4–43s)     Unified persistent WhatsApp conversation
+ *   Phase 1: Booking Request  (4–8s)    Client sends WhatsApp message
+ *   Phase 2: Cami Reply       (8–13s)   AI replies instantly with slots
+ *   Phase 3: Slot Pick        (13–18s)  Client picks + pays deposit
+ *   Phase 4: Deposit          (18–23s)  Payment confirmed, slot locked
+ *   Phase 5: Confirmation     (23–28s)  Auto-confirm + 24h reminder
+ *   Phase 6: Grooming Pics    (28–33s)  In-store pics updated
+ *   Phase 7: Thank You        (33–38s)  Thank You & Reviews
+ *   Phase 8: Repeat Invite    (38–43s)  1-month recurring invite
+ * Scene 3: OUTRO             (43–47s)   Cami CTA
  */
 
 export const CamiAd: React.FC = () => {
@@ -53,36 +45,8 @@ export const CamiAd: React.FC = () => {
           <SceneHook />
         </Series.Sequence>
 
-        <Series.Sequence durationInFrames={fps * 4}>
-          <SceneBookingRequest />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneCamiReply />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneSlotPick />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneDeposit />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneConfirmation />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneGroomingPics />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneThankYou />
-        </Series.Sequence>
-
-        <Series.Sequence durationInFrames={fps * 5}>
-          <SceneRepeatInvite />
+        <Series.Sequence durationInFrames={fps * 39}>
+          <SceneWhatsAppFlow />
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={fps * 4}>

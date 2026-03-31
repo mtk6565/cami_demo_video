@@ -1,16 +1,19 @@
 import React from "react";
-import { useCurrentFrame, interpolate } from "remotion";
+import { useCurrentFrame } from "remotion";
 
 interface GlowBackgroundProps {
   color?: string;
   intensity?: number;
+  globalFrame?: number;
 }
 
 export const GlowBackground: React.FC<GlowBackgroundProps> = ({
   color = "#7C3AED",
   intensity = 1,
+  globalFrame,
 }) => {
-  const frame = useCurrentFrame();
+  const localFrame = useCurrentFrame();
+  const frame = globalFrame ?? localFrame;
 
   // Slow-moving gradient orbs
   const x1 = 30 + Math.sin(frame * 0.02) * 20;

@@ -11,12 +11,14 @@ interface PhoneMockupProps {
   contactName?: string;
   contactAvatar?: string;
   enterFrom?: "bottom" | "right" | "none";
+  chatMinHeight?: number;
 }
 
 export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   children,
   contactName = "Pet Business 🐾",
   enterFrom = "bottom",
+  chatMinHeight = 420,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -188,11 +190,12 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
             backgroundImage:
               "radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px)",
             backgroundSize: "12px 12px",
-            minHeight: 320,
+            minHeight: chatMinHeight,
             padding: "16px 12px",
             display: "flex",
             flexDirection: "column",
             gap: 6,
+            position: "relative",
           }}
         >
           {children}
