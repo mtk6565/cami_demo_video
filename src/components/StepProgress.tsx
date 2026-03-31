@@ -35,6 +35,8 @@ export const StepProgress: React.FC<StepProgressProps> = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        width: 280,
+        flexShrink: 0,
       }}
     >
       {visibleSteps.map((s, i) => {
