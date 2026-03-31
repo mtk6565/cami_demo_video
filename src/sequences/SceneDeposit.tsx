@@ -38,7 +38,7 @@ export const SceneDeposit: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
+        <PhoneMockup contactName="Pet Business 🐾">
           {/* Deposit paid — booking locked (appears first) */}
           {frame >= checkDelay && (
             <div

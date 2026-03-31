@@ -34,7 +34,7 @@ export const SceneSlotPick: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
+        <PhoneMockup contactName="Pet Business 🐾">
           <ChatBubble
             sender="user"
             message="Wed 2 PM pls! 🙌"

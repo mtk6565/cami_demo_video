@@ -71,7 +71,7 @@ export const SceneConfirmation: React.FC = () => {
             </span>
           </div>
 
-          <PhoneMockup contactName="Cami 🐾">
+          <PhoneMockup contactName="Pet Business 🐾">
             <ChatBubble
               sender="bot"
               message="Hey! Bella is in tomorrow at 2 PM, can't wait to see her 🐶"

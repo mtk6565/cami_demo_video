@@ -70,7 +70,7 @@ export const SceneRepeatInvite: React.FC = () => {
             </span>
           </div>
 
-          <PhoneMockup contactName="Cami 🐾">
+          <PhoneMockup contactName="Pet Business 🐾">
             <ChatBubble
               sender="bot"
               message="Hey Alex! 🎊 It's been a month — Bella must be ready for her next fresh cut 🐾"

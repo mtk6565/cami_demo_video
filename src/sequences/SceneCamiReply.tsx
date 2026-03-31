@@ -34,7 +34,7 @@ export const SceneCamiReply: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
+        <PhoneMockup contactName="Pet Business 🐾">
           <ChatBubble
             sender="bot"
             message={"Hey Alex, hope you and Bella are doing well!\nOf course! 👋 Here's what's open this week:"}

@@ -2,7 +2,16 @@
 
 ## Project
 
-Remotion video project for generating animated promotional ads (currently a "Cami" WhatsApp ad). Built with Remotion 4, React 19, TypeScript, and Tailwind CSS v4.
+Remotion video project for generating animated promotional ads for **Cami AI**. Built with Remotion 4, React 19, TypeScript, and Tailwind CSS v4.
+
+## Product Context
+
+- **Cami AI** is a product that plugs into a pet business's WhatsApp to automate bookings, payments, reminders, and client retention.
+- The video ad shows the experience from a **pet business client's perspective** — they message the business on WhatsApp and Cami AI handles the conversation automatically.
+- In the WhatsApp UI, the contact name is the **pet business** (e.g. "Pet Business"), not "Cami". Cami is the underlying AI product powering the chat.
+- The WhatsApp header shows **"Powered by Cami AI"** under the contact name to indicate the AI layer.
+- Product-level messaging (e.g. "Let Cami handle it", the outro branding, CTA) should reference **Cami** directly — this is the product being sold to pet businesses.
+- Scene-level WhatsApp chat content (contact name, typing indicator) should reference the **pet business**, since that's what the end customer sees.
 
 ## Commands
 

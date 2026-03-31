@@ -42,7 +42,7 @@ export const SceneGroomingPics: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
+        <PhoneMockup contactName="Pet Business 🐾">
           <ChatBubble
             sender="bot"
             message="Bella is loving it! Sneak peek 📸"

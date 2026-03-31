@@ -45,7 +45,7 @@ export const SceneThankYou: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
+        <PhoneMockup contactName="Pet Business 🐾">
           <ChatBubble
             sender="bot"
             message="Bella is ALL DONE! 🎉 She looks incredible — we're obsessed 🥰"

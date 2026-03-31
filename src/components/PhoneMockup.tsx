@@ -15,7 +15,7 @@ interface PhoneMockupProps {
 
 export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   children,
-  contactName = "Cami 🐾",
+  contactName = "Pet Business 🐾",
   enterFrom = "bottom",
 }) => {
   const frame = useCurrentFrame();
@@ -90,7 +90,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
           </span>
         </div>
 
-        {/* WhatsApp header — Cami purple */}
+        {/* WhatsApp header — purple */}
         <div
           style={{
             background: "#362A82",
@@ -138,8 +138,8 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
             <div style={{ color: "white", fontWeight: 700, fontSize: 16 }}>
               {contactName}
             </div>
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>
-              online
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 11 }}>
+              Powered by Cami AI
             </div>
           </div>
 
