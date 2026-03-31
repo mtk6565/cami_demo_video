@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } from "remotion";
+import { AbsoluteFill, Img, interpolate, useCurrentFrame, useVideoConfig, spring, staticFile } from "remotion";
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
@@ -15,6 +15,15 @@ export const SceneThankYou: React.FC = () => {
     [1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
+
+  // After-grooming photo animation
+  const imgDelay = 20;
+  const imgFrame = Math.max(0, frame - imgDelay);
+  const imgSpring = spring({
+    frame: imgFrame,
+    fps,
+    config: { damping: 12, mass: 0.6 },
+  });
 
   // Star rating animation
   const stars = [0, 1, 2, 3, 4];
@@ -39,9 +48,31 @@ export const SceneThankYou: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="Max is all done! 🎉 He looks incredible. Hope you love it!"
+            message="Max is ALL DONE! 🎉 He looks incredible — we're obsessed 🥰"
             delay={5}
           />
+
+          {/* After-grooming photo */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "4px 0",
+              transform: `scale(${interpolate(imgSpring, [0, 1], [0, 1])})`,
+              opacity: interpolate(imgSpring, [0, 1], [0, 1]),
+            }}
+          >
+            <Img
+              src={staticFile("images/bella_after.jpg")}
+              style={{
+                width: 260,
+                height: 260,
+                borderRadius: 12,
+                objectFit: "cover",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+              }}
+            />
+          </div>
 
           {/* Rating card — WhatsApp style */}
           <div
