@@ -60,7 +60,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
               ? "0 8px 8px 8px"
               : "8px 0 8px 8px"
             : 8,
-          padding: "6px 12px",
+          padding: "6px 12px 8px",
           color: "#111B21",
           fontSize: 21,
           lineHeight: 1.35,
@@ -104,11 +104,16 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
         ) : (
           <>
             {message}
+            <span style={{
+              display: "inline-block",
+              width: !isBot ? 75 : 55,
+              height: 1,
+            }} />
             <span
               style={{
-                float: "right" as const,
-                marginLeft: 8,
-                marginTop: 4,
+                position: "absolute" as const,
+                bottom: 4,
+                right: 8,
                 display: "flex",
                 alignItems: "center",
                 gap: 4,
