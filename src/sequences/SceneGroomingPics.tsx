@@ -45,7 +45,7 @@ export const SceneGroomingPics: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="Max is loving it! Sneak peek 📸"
+            message="Bella is loving it! Sneak peek 📸"
             delay={5}
           />
 

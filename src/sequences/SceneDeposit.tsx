@@ -80,7 +80,7 @@ export const SceneDeposit: React.FC = () => {
 
           <ChatBubble
             sender="bot"
-            message={"💳 Paid! Slot locked ✅\n\nSee you on Wednesday at 2 PM — Max is going to look amazing 🐶✨"}
+            message={"💳 Paid! Slot locked ✅\n\nSee you on Wednesday at 2 PM — Bella is going to look amazing 🐶✨"}
             delay={30}
           />
         </PhoneMockup>

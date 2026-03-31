@@ -42,7 +42,7 @@ export const SceneSlotPick: React.FC = () => {
           />
           <ChatBubble
             sender="bot"
-            message={"Great pick! 🙌\n\n🐕 Max — Full Groom\n📅 Wed, 2 PM\n\nWe'll use his special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"}
+            message={"Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"}
             delay={20}
           />
 

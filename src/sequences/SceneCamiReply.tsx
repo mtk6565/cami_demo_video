@@ -37,7 +37,7 @@ export const SceneCamiReply: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message={"Hey Alex, hope you and Max are doing well!\nOf course! 👋 Here's what's open this week:"}
+            message={"Hey Alex, hope you and Bella are doing well!\nOf course! 👋 Here's what's open this week:"}
             delay={0}
           />
           <ChatBubble

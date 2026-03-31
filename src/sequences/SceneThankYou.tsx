@@ -48,7 +48,7 @@ export const SceneThankYou: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="bot"
-            message="Max is ALL DONE! 🎉 He looks incredible — we're obsessed 🥰"
+            message="Bella is ALL DONE! 🎉 She looks incredible — we're obsessed 🥰"
             delay={5}
           />
 

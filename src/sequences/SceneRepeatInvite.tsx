@@ -73,7 +73,7 @@ export const SceneRepeatInvite: React.FC = () => {
           <PhoneMockup contactName="Cami 🐾">
             <ChatBubble
               sender="bot"
-              message="Hey Alex! 🎊 It's been a month — Max must be ready for his next fresh cut 🐾"
+              message="Hey Alex! 🎊 It's been a month — Bella must be ready for her next fresh cut 🐾"
               delay={10}
               emoji="💈"
             />
@@ -102,7 +102,7 @@ export const SceneRepeatInvite: React.FC = () => {
                 ),
               }}
             >
-              🐕 Rebook Max — 15% Off
+              🐕 Rebook Bella — 15% Off
             </div>
           </PhoneMockup>
         </div>
