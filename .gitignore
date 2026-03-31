@@ -8,3 +8,4 @@ dist
 out
 audio/output
 .worktrees
+.gstack/

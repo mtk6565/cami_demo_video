@@ -1,7 +1,10 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
+  Sequence,
   Series,
+  staticFile,
   useVideoConfig,
 } from "remotion";
 import { SceneHook } from "./sequences/SceneHook";
@@ -37,8 +40,17 @@ export const CamiAd: React.FC = () => {
         fontFamily: FONT_BODY,
       }}
     >
-      {/* Optional: background music track — drop a file in public/ */}
-      {/* <Audio src={staticFile("bgm.mp3")} volume={0.3} /> */}
+      {/* Voiceover clips — one per section, timed to phase starts */}
+      <Sequence from={0 * fps} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
+      <Sequence from={4 * fps} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
+      <Sequence from={8 * fps} layout="none"><Audio src={staticFile("audio/phase2.mp3")} /></Sequence>
+      {/* Phase 3 (13–18s): silence — slot pick visual */}
+      <Sequence from={18 * fps} layout="none"><Audio src={staticFile("audio/phase4.mp3")} /></Sequence>
+      <Sequence from={23 * fps} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
+      {/* Phase 6 (28–33s): silence — grooming pics */}
+      {/* Phase 7 (33–38s): silence — thank you + review */}
+      <Sequence from={38 * fps} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
+      <Sequence from={43 * fps} layout="none"><Audio src={staticFile("audio/outro.mp3")} /></Sequence>
 
       <Series>
         <Series.Sequence durationInFrames={fps * 4}>
