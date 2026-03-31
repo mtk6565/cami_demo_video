@@ -16,8 +16,8 @@ export const SceneDeposit: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Checkmark animation
-  const checkDelay = 55;
+  // Checkmark animation — appears first
+  const checkDelay = 5;
   const checkFrame = Math.max(0, frame - checkDelay);
   const checkSpring = spring({ frame: checkFrame, fps, config: { damping: 8, mass: 0.5 } });
 
@@ -39,35 +39,7 @@ export const SceneDeposit: React.FC = () => {
         }}
       >
         <PhoneMockup contactName="Cami 🐾">
-          <ChatBubble
-            sender="bot"
-            message={"All set! Quick summary:\n\n🐕 Max, Full Groom\n📅 Wed, 2 PM\n💰 AED 50 deposit\n\nPay right here 👇"}
-            delay={5}
-          />
-
-          {/* Payment button — WhatsApp business style */}
-          <div
-            style={{
-              background: "#FFFFFF",
-              borderRadius: 8,
-              padding: "14px 20px",
-              textAlign: "center" as const,
-              color: "#362A82",
-              fontWeight: 700,
-              fontSize: 15,
-              border: "1px solid #E0E0E0",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-              opacity: interpolate(
-                spring({ frame: Math.max(0, frame - 30), fps, config: { damping: 14 } }),
-                [0, 1],
-                [0, 1]
-              ),
-            }}
-          >
-            💳{" "}Pay AED 50 Deposit
-          </div>
-
-          {/* Payment confirmed */}
+          {/* Deposit paid — booking locked (appears first) */}
           {frame >= checkDelay && (
             <div
               style={{
@@ -101,10 +73,16 @@ export const SceneDeposit: React.FC = () => {
                   fontSize: 15,
                 }}
               >
-                Payment received!
+                Deposit paid — Booking locked!
               </span>
             </div>
           )}
+
+          <ChatBubble
+            sender="bot"
+            message={"💳 Paid! Slot locked ✅\n\nSee you on Wednesday at 2 PM — Max is going to look amazing 🐶✨"}
+            delay={30}
+          />
         </PhoneMockup>
 
         <StepProgress currentStep={4} />

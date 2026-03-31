@@ -16,10 +16,6 @@ export const SceneSlotPick: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Confirmation checkmark animation
-  const checkDelay = 50;
-  const checkFrame = Math.max(0, frame - checkDelay);
-  const checkSpring = spring({ frame: checkFrame, fps, config: { damping: 8, mass: 0.5 } });
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
@@ -46,48 +42,31 @@ export const SceneSlotPick: React.FC = () => {
           />
           <ChatBubble
             sender="bot"
-            message={"Booked! ✅\n\n🐕 Max — Full Groom\n📅 Wed, 2 PM\n\nAnd don't worry, we'll use his special shampoo 🧴🐾"}
+            message={"Great pick! 🙌\n\n🐕 Max — Full Groom\n📅 Wed, 2 PM\n\nWe'll use his special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"}
             delay={20}
           />
 
-          {/* Booking confirmed checkmark */}
-          {frame >= checkDelay && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8,
-                transform: `scale(${interpolate(checkSpring, [0, 1], [0, 1])})`,
-                opacity: interpolate(checkSpring, [0, 1], [0, 1]),
-              }}
-            >
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "#C2F6BA",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 20,
-                  boxShadow: "0 0 30px rgba(194,246,186,0.5)",
-                }}
-              >
-                ✓
-              </div>
-              <span
-                style={{
-                  color: "#362A82",
-                  fontWeight: 700,
-                  fontSize: 15,
-                }}
-              >
-                Booking confirmed!
-              </span>
-            </div>
-          )}
+          {/* Payment button — WhatsApp business style */}
+          <div
+            style={{
+              background: "#FFFFFF",
+              borderRadius: 8,
+              padding: "14px 20px",
+              textAlign: "center" as const,
+              color: "#362A82",
+              fontWeight: 700,
+              fontSize: 15,
+              border: "1px solid #E0E0E0",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
+              opacity: interpolate(
+                spring({ frame: Math.max(0, frame - 35), fps, config: { damping: 14 } }),
+                [0, 1],
+                [0, 1]
+              ),
+            }}
+          >
+            💳{" "}Pay AED 50 Deposit
+          </div>
         </PhoneMockup>
 
         <StepProgress currentStep={3} />
