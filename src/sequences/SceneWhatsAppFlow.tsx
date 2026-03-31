@@ -189,8 +189,8 @@ export const SceneWhatsAppFlow: React.FC = () => {
           )}
 
           <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={560}>
-            {/* Persistent user bubble — spans Phases 1 & 2 without flickering */}
-            <PersistentBubble frame={frame} startPhase={PHASES[0]} endPhase={PHASES[1]} durationInFrames={durationInFrames}>
+            {/* Persistent user bubble — spans Phases 1 & 2, no exit fade (Phase3Scroll takes over) */}
+            <PersistentBubble frame={frame} startPhase={PHASES[0]} endPhase={PHASES[1]} durationInFrames={durationInFrames} skipExitFade>
               <ChatBubble
                 sender="user"
                 message="Hey, can I book Bella in for a groom? 🐕"
@@ -204,8 +204,8 @@ export const SceneWhatsAppFlow: React.FC = () => {
               <ChatBubble sender="bot" message="" typing={true} delay={40} />
             </PhaseWrapper>
 
-            {/* Phase 2: Cami Reply (bot replies below persistent bubble) */}
-            <PhaseWrapper frame={frame} phase={PHASES[1]} durationInFrames={durationInFrames} topOffset={78}>
+            {/* Phase 2: Cami Reply — no exit fade (Phase3Scroll takes over seamlessly) */}
+            <PhaseWrapper frame={frame} phase={PHASES[1]} durationInFrames={durationInFrames} topOffset={78} skipExitFade>
               <ChatBubble
                 sender="bot"
                 message={
@@ -223,22 +223,8 @@ export const SceneWhatsAppFlow: React.FC = () => {
               />
             </PhaseWrapper>
 
-            {/* Phase 3: Slot Pick */}
-            <PhaseWrapper frame={frame} phase={PHASES[2]} durationInFrames={durationInFrames}>
-              <ChatBubble sender="user" message="Wed 2 PM pls! 🙌" delay={8} />
-              <ChatBubble
-                sender="bot"
-                message={
-                  "Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"
-                }
-                delay={20}
-              />
-              <QuickReplyButtons
-                layout="full"
-                buttons={[{ label: "Pay AED 50 Deposit", emoji: "💳" }]}
-                delay={35}
-              />
-            </PhaseWrapper>
+            {/* Phase 3: Slot Pick — scroll transition */}
+            <Phase3Scroll frame={frame} fps={fps} phase={PHASES[2]} durationInFrames={durationInFrames} />
 
             {/* Phase 4: Deposit */}
             <PhaseWrapper frame={frame} phase={PHASES[3]} durationInFrames={durationInFrames}>
@@ -338,9 +324,25 @@ const PhaseWrapper: React.FC<{
   phase: Phase;
   durationInFrames: number;
   topOffset?: number;
+  skipExitFade?: boolean;
   children: React.ReactNode;
-}> = ({ frame, phase, durationInFrames, topOffset = 0, children }) => {
-  const opacity = getPhaseOpacity(frame, phase);
+}> = ({ frame, phase, durationInFrames, topOffset = 0, skipExitFade = false, children }) => {
+  if (frame < phase.start || frame > phase.end) return null;
+  const entry = interpolate(
+    frame,
+    [phase.start, phase.start + FADE_FRAMES],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  const exit = skipExitFade
+    ? 1
+    : interpolate(
+        frame,
+        [phase.end - FADE_FRAMES, phase.end],
+        [1, 0],
+        { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+      );
+  const opacity = entry * exit;
   if (opacity <= 0) return null;
 
   // Sequence offsets useCurrentFrame() for children so ChatBubble/QuickReplyButtons
@@ -377,20 +379,24 @@ const PersistentBubble: React.FC<{
   startPhase: Phase;
   endPhase: Phase;
   durationInFrames: number;
+  skipExitFade?: boolean;
   children: React.ReactNode;
-}> = ({ frame, startPhase, endPhase, durationInFrames, children }) => {
+}> = ({ frame, startPhase, endPhase, durationInFrames, skipExitFade = false, children }) => {
+  if (frame < startPhase.start || frame > endPhase.end) return null;
   const entry = interpolate(
     frame,
     [startPhase.start, startPhase.start + FADE_FRAMES],
     [0, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
-  const exit = interpolate(
-    frame,
-    [endPhase.end - FADE_FRAMES, endPhase.end],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
+  const exit = skipExitFade
+    ? 1
+    : interpolate(
+        frame,
+        [endPhase.end - FADE_FRAMES, endPhase.end],
+        [1, 0],
+        { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+      );
   const opacity = entry * exit;
   if (opacity <= 0) return null;
 
@@ -417,6 +423,105 @@ const PersistentBubble: React.FC<{
         {children}
       </div>
     </Sequence>
+  );
+};
+
+/* ─── Phase 3 scroll transition: accumulates conversation, scrolls up, then shows new content ─── */
+
+const SCROLL_START = 23; // local frames after Phase 3 start (global ~293)
+const SCROLL_AMOUNT = 240; // pixels to scroll up — tune so "Wed 2 PM pls!" lands at top
+
+const Phase3Scroll: React.FC<{
+  frame: number;
+  fps: number;
+  phase: Phase;
+  durationInFrames: number;
+}> = ({ frame, fps, phase, durationInFrames }) => {
+  const localFrame = frame - phase.start;
+
+  // Exit fade at end of phase
+  const exitOpacity = interpolate(
+    frame,
+    [phase.end - FADE_FRAMES, phase.end],
+    [1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  if (frame < phase.start || exitOpacity <= 0) return null;
+
+  // Scroll animation (spring-based for smooth easing)
+  const scrollT = spring({
+    frame: Math.max(0, localFrame - SCROLL_START),
+    fps,
+    config: { damping: 18, mass: 0.8 },
+  });
+  const scrollY = interpolate(scrollT, [0, 1], [0, -SCROLL_AMOUNT]);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: "hidden",
+        opacity: exitOpacity,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 6,
+          padding: "16px 12px",
+          transform: `translateY(${scrollY}px)`,
+        }}
+      >
+        {/* Previous messages — NOT inside a Sequence so useCurrentFrame() returns
+            the global frame (270+). With delay=0, the spring is long settled → no re-animation. */}
+        <ChatBubble
+          sender="user"
+          message="Hey, can I book Bella in for a groom? 🐕"
+          delay={0}
+        />
+        <ChatBubble
+          sender="bot"
+          message={
+            "Hey Alex, hope you and Bella are doing well!\nOf course! 👋 Here's what's open this week:"
+          }
+          delay={0}
+        />
+        <ChatBubble
+          sender="bot"
+          message={
+            "📅 Tue 10 AM  |  Wed 2 PM  |  Thu 11:30 AM  |  Sat 9 AM\n\nJust pick one 👆"
+          }
+          delay={0}
+          showTail={false}
+        />
+        {/* New user message + bot reply + deposit — inside Sequence so delays
+            work relative to Phase 3 start */}
+        <Sequence
+          from={phase.start}
+          durationInFrames={durationInFrames - phase.start}
+          layout="none"
+        >
+          <ChatBubble sender="user" message="Wed 2 PM pls! 🙌" delay={8} />
+          <ChatBubble
+            sender="bot"
+            message={
+              "Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"
+            }
+            delay={45}
+          />
+          <QuickReplyButtons
+            layout="full"
+            buttons={[{ label: "Pay AED 50 Deposit", emoji: "💳" }]}
+            delay={60}
+          />
+        </Sequence>
+      </div>
+    </div>
   );
 };
 
