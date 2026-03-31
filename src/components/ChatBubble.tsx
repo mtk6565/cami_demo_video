@@ -97,7 +97,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
         )}
 
         {emoji && (
-          <span style={{ fontSize: 28, marginRight: 6 }}>{emoji}</span>
+          <span style={{ fontSize: 21, marginRight: 6 }}>{emoji}</span>
         )}
         {typing ? (
           <TypingIndicator frame={adjustedFrame} />
