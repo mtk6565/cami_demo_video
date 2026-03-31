@@ -7,7 +7,7 @@ const STEPS = [
   { step: 3, label: "Pick & Pay 💳" },
   { step: 4, label: "Slot Locked ✅" },
   { step: 5, label: "Reminders" },
-  { step: 6, label: "Live Updates" },
+  { step: 6, label: "Live Session Updates" },
   { step: 7, label: "Thank You & Reviews" },
   { step: 8, label: "Auto Re-engage" },
 ];

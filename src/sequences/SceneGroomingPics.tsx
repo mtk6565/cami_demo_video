@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } from "remotion";
+import { AbsoluteFill, Img, interpolate, useCurrentFrame, useVideoConfig, spring, staticFile } from "remotion";
 import { GlowBackground } from "../components/GlowBackground";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { ChatBubble } from "../components/ChatBubble";
@@ -16,8 +16,14 @@ export const SceneGroomingPics: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Photo cards stagger animation
-  const photoCards = ["🛁", "✂️", "🐕‍🦺"];
+  // Image entrance animation
+  const imgDelay = 20;
+  const imgFrame = Math.max(0, frame - imgDelay);
+  const imgSpring = spring({
+    frame: imgFrame,
+    fps,
+    config: { damping: 12, mass: 0.6 },
+  });
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
@@ -43,53 +49,26 @@ export const SceneGroomingPics: React.FC = () => {
             delay={5}
           />
 
-          {/* Photo grid */}
           <div
             style={{
               display: "flex",
-              gap: 8,
               justifyContent: "center",
               padding: "4px 0",
+              transform: `scale(${interpolate(imgSpring, [0, 1], [0, 1])})`,
+              opacity: interpolate(imgSpring, [0, 1], [0, 1]),
             }}
           >
-            {photoCards.map((emoji, i) => {
-              const cardDelay = 20 + i * 12;
-              const cardFrame = Math.max(0, frame - cardDelay);
-              const cardSpring = spring({
-                frame: cardFrame,
-                fps,
-                config: { damping: 12, mass: 0.6 },
-              });
-
-              return (
-                <div
-                  key={i}
-                  style={{
-                    width: 85,
-                    height: 85,
-                    borderRadius: 12,
-                    background: "#FFFFFF",
-                    border: "1px solid #E0E0E0",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 36,
-                    transform: `scale(${interpolate(cardSpring, [0, 1], [0, 1])}) rotate(${interpolate(cardSpring, [0, 1], [15, 0])}deg)`,
-                    opacity: interpolate(cardSpring, [0, 1], [0, 1]),
-                    boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-                  }}
-                >
-                  {emoji}
-                </div>
-              );
-            })}
+            <Img
+              src={staticFile("images/bella.jpg")}
+              style={{
+                width: 260,
+                height: 260,
+                borderRadius: 12,
+                objectFit: "cover",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+              }}
+            />
           </div>
-
-          <ChatBubble
-            sender="bot"
-            message="Nearly done, looking fresh ✨"
-            delay={60}
-          />
         </PhoneMockup>
 
         <StepProgress currentStep={6} />
