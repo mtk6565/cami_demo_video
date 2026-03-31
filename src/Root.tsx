@@ -7,7 +7,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="CamiWhatsAppAd"
         component={CamiAd}
-        durationInFrames={1380}
+        durationInFrames={1410}
         fps={30}
         width={1080}
         height={1920}
@@ -15,7 +15,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="CamiWhatsAppAd-Landscape"
         component={CamiAd}
-        durationInFrames={1380}
+        durationInFrames={1410}
         fps={30}
         width={1920}
         height={1080}

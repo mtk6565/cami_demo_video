@@ -165,6 +165,7 @@ const TypingIndicator: React.FC<{ frame: number }> = ({ frame }) => {
     <div style={{ display: "flex", gap: 5, padding: "4px 8px" }}>
       {[0, 1, 2].map((i) => {
         const bounce = Math.sin((frame * 0.3 + i * 1.2) % (Math.PI * 2));
+        const dotOpacity = 0.5 + 0.5 * Math.sin((frame * 0.15 + i * 0.8) % (Math.PI * 2));
         return (
           <div
             key={i}
@@ -172,7 +173,8 @@ const TypingIndicator: React.FC<{ frame: number }> = ({ frame }) => {
               width: 8,
               height: 8,
               borderRadius: "50%",
-              background: "#667781",
+              background: "#362A82",
+              opacity: dotOpacity,
               transform: `translateY(${bounce * 4}px)`,
             }}
           />

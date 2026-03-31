@@ -21,11 +21,11 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 48 seconds (1440 frames @ 30fps)
+ * Total: 47 seconds (1410 frames @ 30fps)
  *
  * Scene 1: HOOK           (0–4s)     "Still chasing bookings manually?"
- * Scene 2: BOOKING REQ    (4–9s)     Client sends WhatsApp message
- * Scene 3: CAMI REPLY     (9–14s)    AI replies instantly with slots
+ * Scene 2: BOOKING REQ    (4–8s)     Client sends WhatsApp message
+ * Scene 3: CAMI REPLY     (8–13s)    AI replies instantly with slots
  * Scene 4: SLOT PICK      (14–19s)   Client picks + pet profile
  * Scene 5: DEPOSIT        (19–24s)   Payment inside WhatsApp
  * Scene 6: CONFIRMATION   (24–29s)   Auto-confirm + 24h reminder
@@ -53,7 +53,7 @@ export const CamiAd: React.FC = () => {
           <SceneHook />
         </Series.Sequence>
 
-        <Series.Sequence durationInFrames={fps * 3}>
+        <Series.Sequence durationInFrames={fps * 4}>
           <SceneBookingRequest />
         </Series.Sequence>
 
