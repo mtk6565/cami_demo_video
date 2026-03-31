@@ -171,13 +171,13 @@ export const SceneOutro: React.FC = () => {
             <span
               key={i}
               style={{
-                background: "rgba(54,42,130,0.06)",
-                border: "1px solid rgba(54,42,130,0.12)",
+                background: "rgba(54,42,130,0.15)",
+                border: "1.5px solid rgba(54,42,130,0.3)",
                 borderRadius: 20,
-                padding: "6px 14px",
-                color: "rgba(54,42,130,0.7)",
-                fontSize: 12,
-                fontWeight: 600,
+                padding: "8px 18px",
+                color: "#362A82",
+                fontSize: 15,
+                fontWeight: 700,
               }}
             >
               {feat}
