@@ -188,7 +188,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
             </div>
           )}
 
-          <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={520}>
+          <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={560}>
             {/* Phase 1: Booking Request */}
             <PhaseWrapper frame={frame} phase={PHASES[0]} durationInFrames={durationInFrames}>
               <ChatBubble
