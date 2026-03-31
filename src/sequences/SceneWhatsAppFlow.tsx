@@ -189,19 +189,23 @@ export const SceneWhatsAppFlow: React.FC = () => {
           )}
 
           <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={560}>
-            {/* Phase 1: Booking Request */}
-            <PhaseWrapper frame={frame} phase={PHASES[0]} durationInFrames={durationInFrames}>
+            {/* Persistent user bubble — spans Phases 1 & 2 without flickering */}
+            <PersistentBubble frame={frame} startPhase={PHASES[0]} endPhase={PHASES[1]} durationInFrames={durationInFrames}>
               <ChatBubble
                 sender="user"
                 message="Hey, can I book Bella in for a groom? 🐕"
                 delay={15}
               />
+            </PersistentBubble>
+
+            {/* Phase 1: Booking Request (typing indicator below persistent bubble) */}
+            <PhaseWrapper frame={frame} phase={PHASES[0]} durationInFrames={durationInFrames} topOffset={78}>
               <CamiTypingLabel frame={frame} showAfter={PHASES[0].start + 38} fps={fps} />
               <ChatBubble sender="bot" message="" typing={true} delay={40} />
             </PhaseWrapper>
 
-            {/* Phase 2: Cami Reply */}
-            <PhaseWrapper frame={frame} phase={PHASES[1]} durationInFrames={durationInFrames}>
+            {/* Phase 2: Cami Reply (bot replies below persistent bubble) */}
+            <PhaseWrapper frame={frame} phase={PHASES[1]} durationInFrames={durationInFrames} topOffset={78}>
               <ChatBubble
                 sender="bot"
                 message={
@@ -333,8 +337,9 @@ const PhaseWrapper: React.FC<{
   frame: number;
   phase: Phase;
   durationInFrames: number;
+  topOffset?: number;
   children: React.ReactNode;
-}> = ({ frame, phase, durationInFrames, children }) => {
+}> = ({ frame, phase, durationInFrames, topOffset = 0, children }) => {
   const opacity = getPhaseOpacity(frame, phase);
   if (opacity <= 0) return null;
 
@@ -349,6 +354,55 @@ const PhaseWrapper: React.FC<{
       <div
         style={{
           position: "absolute",
+          top: topOffset,
+          left: 0,
+          right: 0,
+          opacity,
+          display: "flex",
+          flexDirection: "column",
+          gap: 6,
+          padding: "16px 12px",
+        }}
+      >
+        {children}
+      </div>
+    </Sequence>
+  );
+};
+
+/* ─── Persistent bubble: stays visible across multiple phases without flickering ─── */
+
+const PersistentBubble: React.FC<{
+  frame: number;
+  startPhase: Phase;
+  endPhase: Phase;
+  durationInFrames: number;
+  children: React.ReactNode;
+}> = ({ frame, startPhase, endPhase, durationInFrames, children }) => {
+  const entry = interpolate(
+    frame,
+    [startPhase.start, startPhase.start + FADE_FRAMES],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  const exit = interpolate(
+    frame,
+    [endPhase.end - FADE_FRAMES, endPhase.end],
+    [1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  const opacity = entry * exit;
+  if (opacity <= 0) return null;
+
+  return (
+    <Sequence
+      from={startPhase.start}
+      durationInFrames={durationInFrames - startPhase.start}
+      layout="none"
+    >
+      <div
+        style={{
+          position: "absolute",
           top: 0,
           left: 0,
           right: 0,
@@ -357,6 +411,7 @@ const PhaseWrapper: React.FC<{
           flexDirection: "column",
           gap: 6,
           padding: "16px 12px",
+          zIndex: 2,
         }}
       >
         {children}
