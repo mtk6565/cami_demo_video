@@ -229,7 +229,11 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 }
                 delay={20}
               />
-              <PaymentButton frame={frame} fps={fps} phaseStart={PHASES[2].start} />
+              <QuickReplyButtons
+                layout="full"
+                buttons={[{ label: "Pay AED 50 Deposit", emoji: "💳" }]}
+                delay={35}
+              />
             </PhaseWrapper>
 
             {/* Phase 4: Deposit */}
@@ -280,7 +284,14 @@ export const SceneWhatsAppFlow: React.FC = () => {
               />
               <AfterGroomImage frame={frame} fps={fps} phaseStart={PHASES[6].start} />
               <RatingCard frame={frame} fps={fps} phaseStart={PHASES[6].start} />
-              <RebookButtons frame={frame} fps={fps} phaseStart={PHASES[6].start} />
+              <QuickReplyButtons
+                layout="row"
+                buttons={[
+                  { label: "Rebook Now", emoji: "📅" },
+                  { label: "Leave Review", emoji: "⭐" },
+                ]}
+                delay={60}
+              />
             </PhaseWrapper>
 
             {/* Phase 8: Repeat Invite */}
@@ -298,7 +309,11 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 }
                 delay={30}
               />
-              <RebookCTA frame={frame} fps={fps} phaseStart={PHASES[7].start} />
+              <QuickReplyButtons
+                layout="full"
+                buttons={[{ label: "Rebook Bella — 15% Off", emoji: "🐕" }]}
+                delay={45}
+              />
             </PhaseWrapper>
           </PhoneMockup>
         </div>
@@ -408,39 +423,6 @@ const CamiTypingLabel: React.FC<{
   );
 };
 
-const PaymentButton: React.FC<{
-  frame: number;
-  fps: number;
-  phaseStart: number;
-}> = ({ frame, fps, phaseStart }) => {
-  const localFrame = frame - phaseStart;
-  return (
-    <div
-      style={{
-        background: "#FFFFFF",
-        borderRadius: 8,
-        padding: "14px 20px",
-        textAlign: "center" as const,
-        color: "#7C3AED",
-        fontWeight: 700,
-        fontSize: 15,
-        border: "1px solid #E0E0E0",
-        boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-        opacity: interpolate(
-          spring({
-            frame: Math.max(0, localFrame - 35),
-            fps,
-            config: { damping: 14 },
-          }),
-          [0, 1],
-          [0, 1],
-        ),
-      }}
-    >
-      💳 Pay AED 50 Deposit
-    </div>
-  );
-};
 
 const DepositCheckmark: React.FC<{
   frame: number;
@@ -629,96 +611,3 @@ const RatingCard: React.FC<{
   );
 };
 
-const RebookButtons: React.FC<{
-  frame: number;
-  fps: number;
-  phaseStart: number;
-}> = ({ frame, fps, phaseStart }) => {
-  const localFrame = frame - phaseStart;
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        gap: 8,
-        opacity: interpolate(
-          spring({
-            frame: Math.max(0, localFrame - 60),
-            fps,
-            config: { damping: 14 },
-          }),
-          [0, 1],
-          [0, 1],
-        ),
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-          background: "#FFFFFF",
-          borderRadius: 8,
-          padding: "10px 12px",
-          textAlign: "center" as const,
-          color: "#7C3AED",
-          fontWeight: 700,
-          fontSize: 13,
-          border: "1px solid #E0E0E0",
-          boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-        }}
-      >
-        📅 Rebook Now
-      </div>
-      <div
-        style={{
-          flex: 1,
-          background: "#FFFFFF",
-          borderRadius: 8,
-          padding: "10px 12px",
-          textAlign: "center" as const,
-          color: "#7C3AED",
-          fontWeight: 600,
-          fontSize: 13,
-          border: "1px solid #E0E0E0",
-          boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-        }}
-      >
-        ⭐ Leave Review
-      </div>
-    </div>
-  );
-};
-
-const RebookCTA: React.FC<{
-  frame: number;
-  fps: number;
-  phaseStart: number;
-}> = ({ frame, fps, phaseStart }) => {
-  const localFrame = frame - phaseStart;
-
-  return (
-    <div
-      style={{
-        background: "#FFFFFF",
-        borderRadius: 8,
-        padding: "14px 20px",
-        textAlign: "center" as const,
-        color: "#7C3AED",
-        fontWeight: 700,
-        fontSize: 15,
-        border: "1px solid #E0E0E0",
-        boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-        opacity: interpolate(
-          spring({
-            frame: Math.max(0, localFrame - 45),
-            fps,
-            config: { damping: 14 },
-          }),
-          [0, 1],
-          [0, 1],
-        ),
-      }}
-    >
-      🐕 Rebook Bella — 15% Off
-    </div>
-  );
-};

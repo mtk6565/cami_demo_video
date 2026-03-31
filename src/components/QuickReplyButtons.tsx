@@ -4,11 +4,13 @@ import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 interface QuickReplyButtonsProps {
   buttons: { label: string; emoji?: string }[];
   delay?: number;
+  layout?: "inline" | "row" | "full";
 }
 
 export const QuickReplyButtons: React.FC<QuickReplyButtonsProps> = ({
   buttons,
   delay = 0,
+  layout = "inline",
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -17,10 +19,10 @@ export const QuickReplyButtons: React.FC<QuickReplyButtonsProps> = ({
     <div
       style={{
         display: "flex",
-        justifyContent: "flex-start",
+        justifyContent: layout === "inline" ? "flex-start" : undefined,
         gap: 8,
-        paddingLeft: 4,
-        flexWrap: "wrap",
+        paddingLeft: layout === "inline" ? 4 : undefined,
+        flexWrap: layout === "inline" ? "wrap" : undefined,
       }}
     >
       {buttons.map((btn, i) => {
@@ -42,22 +44,26 @@ export const QuickReplyButtons: React.FC<QuickReplyButtonsProps> = ({
           <div
             key={i}
             style={{
+              flex: layout === "row" ? 1 : undefined,
               background: "#FFFFFF",
-              border: "1.5px solid #7C3AED",
-              borderRadius: 20,
-              padding: "6px 16px",
-              fontSize: 16,
-              fontWeight: 600,
+              border: "1px solid #E0E0E0",
+              borderRadius: 8,
+              padding: layout === "full" ? "14px 20px" : "10px 16px",
+              fontSize: 15,
+              fontWeight: 700,
               color: "#7C3AED",
+              textAlign: layout !== "inline" ? ("center" as const) : undefined,
               transform: `scale(${scale})`,
               opacity,
               display: "flex",
               alignItems: "center",
+              justifyContent: layout !== "inline" ? "center" : undefined,
               gap: 6,
               whiteSpace: "nowrap",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
             }}
           >
-            {btn.emoji && <span style={{ fontSize: 16 }}>{btn.emoji}</span>}
+            {btn.emoji && <span style={{ fontSize: 15 }}>{btn.emoji}</span>}
             {btn.label}
           </div>
         );
