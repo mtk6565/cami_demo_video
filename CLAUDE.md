@@ -23,6 +23,7 @@ Remotion video project for generating animated promotional ads for **Cami AI**. 
 - `source .env.local && npm run generate-audio` — Generate voiceover clips via ElevenLabs API
 - `npx remotion render CamiWhatsAppAd out/video.mp4` — Render the portrait (1080×1920) video
 - `npx remotion render CamiWhatsAppAd-Landscape out/video-landscape.mp4` — Render landscape (1920×1080)
+- `npx remotion render CamiWhatsAppAd-WhatsApp out/video-whatsapp.mp4` — Render WhatsApp-optimized (720×1280, smaller file)
 
 ## Architecture
 

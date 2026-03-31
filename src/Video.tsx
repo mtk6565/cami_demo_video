@@ -20,6 +20,14 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080} // 16:9 for YouTube/web
       />
+      <Composition
+        id="CamiWhatsAppAd-WhatsApp"
+        component={CamiAd}
+        durationInFrames={1095}
+        fps={30}
+        width={960}
+        height={1080} // ~9:10 optimized for WhatsApp sending (compact, less bottom gap)
+      />
     </>
   );
 };
