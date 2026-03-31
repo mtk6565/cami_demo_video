@@ -69,12 +69,39 @@ export const SceneOutro: React.FC = () => {
 
         {/* Tagline */}
         <Headline
-          text="Your entire pet business. On WhatsApp."
+          text="Your entire pet business."
           fontSize={24}
-          accentWords={["WhatsApp."]}
           accentColor="#362A82"
           delay={15}
         />
+        <Headline
+          text="Automated. On WhatsApp."
+          fontSize={24}
+          accentWords={["Automated.", "WhatsApp."]}
+          accentColor="#362A82"
+          delay={20}
+        />
+
+        {/* Start today */}
+        <div
+          style={{
+            opacity: interpolate(
+              spring({
+                frame: Math.max(0, frame - 25),
+                fps,
+                config: { damping: 14 },
+              }),
+              [0, 1],
+              [0, 1],
+            ),
+            fontSize: 20,
+            fontWeight: 700,
+            color: "#362A82",
+            textAlign: "center" as const,
+          }}
+        >
+          Start today.
+        </div>
 
         {/* CTA */}
         <div
@@ -112,18 +139,7 @@ export const SceneOutro: React.FC = () => {
               letterSpacing: "0.02em",
             }}
           >
-            Get Started Free →
-          </div>
-          <div
-            style={{
-              textAlign: "center" as const,
-              marginTop: 14,
-              color: "rgba(54,42,130,0.5)",
-              fontSize: 14,
-              fontWeight: 500,
-            }}
-          >
-            cami.app
+            Get Started today at cami.io
           </div>
         </div>
 
@@ -147,10 +163,10 @@ export const SceneOutro: React.FC = () => {
           }}
         >
           {[
-            "AI Booking",
-            "Auto Payments",
-            "Smart Reminders",
-            "Client Retention",
+            "📅 AI Bookings",
+            "💳 Auto Payments",
+            "🔔 Smart Reminders",
+            "🔄 Client Retention",
           ].map((feat, i) => (
             <span
               key={i}
