@@ -8,9 +8,10 @@ Remotion video project for generating animated promotional ads for **Cami AI**. 
 
 - **Cami AI** is a product that plugs into a pet business's WhatsApp to automate bookings, payments, reminders, and client retention.
 - The video ad shows the experience from a **pet business client's perspective** — they message the business on WhatsApp and Cami AI handles the conversation automatically.
+- **Target audience**: Receptionists at pet businesses (distributed via WhatsApp). Do NOT use language that implies replacing them (e.g. "AI receptionist"). Position Cami as an "AI assistant" that helps them, not replaces them.
 - In the WhatsApp UI, the contact name is always **"Pet Business 🐾"**, not "Cami". Cami is the underlying AI product powering the chat.
 - The WhatsApp header shows **"Powered by Cami AI"** under the contact name to indicate the AI layer.
-- Product-level messaging (e.g. "Let Cami handle it", the outro branding, CTA) should reference **Cami** directly — this is the product being sold to pet businesses.
+- Product-level messaging (e.g. "Introducing Cami", the outro branding, CTA) should reference **Cami** directly — this is the product being sold to pet businesses.
 - Scene-level WhatsApp chat content (contact name, typing indicator) should reference the **pet business**, since that's what the end customer sees.
 
 ## Commands
@@ -19,6 +20,7 @@ Remotion video project for generating animated promotional ads for **Cami AI**. 
 - `npm run build` — Bundle the video for rendering
 - `npm run lint` — Run ESLint + TypeScript type checking (`eslint src && tsc`)
 - `npm run upgrade` — Upgrade Remotion to latest version
+- `source .env.local && npm run generate-audio` — Generate voiceover clips via ElevenLabs API
 - `npx remotion render CamiWhatsAppAd out/video.mp4` — Render the portrait (1080×1920) video
 - `npx remotion render CamiWhatsAppAd-Landscape out/video-landscape.mp4` — Render landscape (1920×1080)
 
@@ -27,9 +29,9 @@ Remotion video project for generating animated promotional ads for **Cami AI**. 
 ```
 src/
 ├── index.ts              # Remotion entry point (registerRoot)
-├── Root.tsx              # Composition definitions (ids, dimensions, fps, duration)
-├── Video.tsx             # Re-exports RemotionRoot (referenced by index.ts)
-├── CamiAd.tsx            # Main composition — sequences 3 scenes: Hook, WhatsAppFlow, Outro
+├── Root.tsx              # Composition definitions (ids, dimensions, fps, duration) — NOT used by index.ts
+├── Video.tsx             # Active RemotionRoot (referenced by index.ts) — THIS is the source of truth for composition config
+├── CamiAd.tsx            # Main composition — sequences 3 scenes: Hook, WhatsAppFlow, Outro + audio clips
 ├── fonts.ts              # Font loading configuration
 ├── components/           # Reusable UI primitives (GlowBackground, ChatBubble, PhoneMockup, Headline, StepBadge, StepProgress, QuickReplyButtons)
 └── sequences/
@@ -37,26 +39,38 @@ src/
     ├── SceneWhatsAppFlow.tsx # Unified WhatsApp conversation (8 phases, persistent phone frame)
     ├── SceneOutro.tsx        # Closing CTA and branding
     └── Scene*.tsx            # Legacy individual scenes (no longer used in CamiAd.tsx)
+
+audio/
+├── generate.ts           # ElevenLabs TTS generation script — produces per-section MP3 clips
+├── output/               # Generated MP3 clips (gitignored)
+├── artifacts/            # Old/superseded audio files
+└── script/
+    └── voiceover.md      # Full annotated voiceover script with delivery notes
+
+public/audio/             # MP3 clips copied here by generate.ts for Remotion's staticFile()
 ```
 
-- **Compositions** are defined in `Root.tsx` — portrait (1080×1920) and landscape (1920×1080), both 1410 frames at 30fps (47 seconds).
-- `CamiAd.tsx` sequences 3 scenes: Hook (4s) → WhatsAppFlow (39s) → Outro (4s).
+- **IMPORTANT**: `index.ts` imports from `Video.tsx`, NOT `Root.tsx`. When changing composition config (duration, fps, dimensions), update `Video.tsx`. `Root.tsx` exists but is not wired up.
+- **Compositions** are defined in `Video.tsx` — portrait (1080x1920) and landscape (1920x1080), both 1140 frames at 30fps (38 seconds).
+- `CamiAd.tsx` sequences 3 scenes: Hook (4s) → WhatsAppFlow (30s) → Outro (4s).
 - `SceneWhatsAppFlow.tsx` is a single unified component with 8 phases — the phone frame, background, and step progress render once and persist across all phases. Only chat content crossfades between phases.
 
 ## Scene Timeline
 
 ```
-Scene 1: HOOK             (0–4s)      "Tired of juggling bookings?"
-Scene 2: WHATSAPP FLOW    (4–43s)     Unified persistent WhatsApp conversation
-  Phase 1: Booking Request  (4–8s)    Client sends WhatsApp message
-  Phase 2: Cami Reply       (8–13s)   AI replies instantly with slots
-  Phase 3: Slot Pick        (13–18s)  Client picks + pays deposit
-  Phase 4: Deposit          (18–23s)  Payment confirmed, slot locked
-  Phase 5: Confirmation     (23–28s)  Auto-confirm + 24h reminder (badge)
-  Phase 6: Grooming Pics    (28–33s)  In-store photos
-  Phase 7: Thank You        (33–38s)  Thank You & Reviews
-  Phase 8: Repeat Invite    (38–43s)  1-month recurring invite (badge)
-Scene 3: OUTRO             (43–47s)   Cami CTA
+Total: 38 seconds (1140 frames @ 30fps)
+
+Scene 1: HOOK               (0–4s)        "Introducing Cami"
+Scene 2: WHATSAPP FLOW      (4–34s)       Unified persistent WhatsApp conversation
+  Phase 1: Booking Request    (4–8s)      Client sends WhatsApp message
+  Phase 2: Cami Reply         (8–12.5s)   AI replies instantly with slots
+  Phase 3: Slot Pick          (12.5–16s)  Client picks a time
+  Phase 4: Deposit            (16–19.5s)  Payment confirmed, slot locked
+  Phase 5: Confirmation       (19.5–23.5s) Auto-confirm + 24h reminder (badge)
+  Phase 6: Grooming Pics      (23.5–26.5s) In-store photos
+  Phase 7: Thank You          (26.5–30s)  Thank You & Reviews
+  Phase 8: Repeat Invite      (30–34s)    1-month recurring invite (badge)
+Scene 3: OUTRO               (34–38s)     Cami CTA
 ```
 
 ## Transition Design (Critical)
@@ -105,7 +119,18 @@ To prevent the phone/steps from shifting position between phases:
 - Strict TypeScript (`noUnusedLocals`, `strict: true`)
 - Remotion ESLint flat config
 
+## Audio / Voiceover
+
+- Voiceover is generated via **ElevenLabs API** (`audio/generate.ts`), producing one MP3 per section.
+- Each section is a separate API call — no stitching. Clips are placed at exact frame offsets in `CamiAd.tsx` using `<Sequence from={frame}><Audio /></Sequence>`.
+- All audio clips have a **6-frame (0.2s) delay** after the visual phase starts, so animations land before the voice kicks in.
+- Phase durations are sized to **audio duration + ~1s buffer** — keep phases tight to avoid dead air.
+- Env vars required: `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID` (in `.env.local` with `export` prefix so `source` works).
+- Optional: `ELEVENLABS_SPEED` (default 1.0), `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`).
+- Voice settings in `generate.ts`: `stability: 0.45`, `similarity_boost: 0.75`, `style: 0.65` (expressive/upbeat).
+
 ## Key Config
 
 - `remotion.config.ts` — Video format (jpeg), overwrite output enabled, Tailwind webpack override
 - Output directory `out/` is gitignored
+- `.env.local` — ElevenLabs credentials (gitignored, must have `export` prefix for `source` to work)

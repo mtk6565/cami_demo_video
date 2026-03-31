@@ -19,14 +19,14 @@ import { StepProgress } from "../components/StepProgress";
 /*
  * Phase timeline (all frames relative to this component's start):
  *
- * Phase 1: Booking Request   (0–119)     step=1
- * Phase 2: Cami Reply        (120–269)   step=2
- * Phase 3: Slot Pick         (270–419)   step=3
- * Phase 4: Deposit           (420–569)   step=4
- * Phase 5: Confirmation      (570–719)   step=5  badge="24 hours before"
- * Phase 6: Grooming Pics     (720–869)   step=6
- * Phase 7: Thank You         (870–1019)  step=7
- * Phase 8: Repeat Invite     (1020–1169) step=8  badge="1 month later"
+ * Phase 1: Booking Request   (0–119)     4s     step=1
+ * Phase 2: Cami Reply        (120–254)   4.5s   step=2
+ * Phase 3: Slot Pick         (255–359)   3.5s   step=3
+ * Phase 4: Deposit           (360–464)   3.5s   step=4
+ * Phase 5: Confirmation      (465–584)   4s     step=5  badge="24 hours before"
+ * Phase 6: Grooming Pics     (585–674)   3s     step=6
+ * Phase 7: Thank You         (675–779)   3.5s   step=7
+ * Phase 8: Repeat Invite     (780–899)   4s     step=8  badge="1 month later"
  */
 
 interface Phase {
@@ -39,21 +39,21 @@ interface Phase {
 
 const PHASES: Phase[] = [
   { start: 0, end: 119, step: 1, color: "#7C3AED" },
-  { start: 120, end: 269, step: 2, color: "#7C3AED" },
-  { start: 270, end: 419, step: 3, color: "#C2F6BA" },
-  { start: 420, end: 569, step: 4, color: "#C2F6BA" },
+  { start: 120, end: 254, step: 2, color: "#7C3AED" },
+  { start: 255, end: 359, step: 3, color: "#C2F6BA" },
+  { start: 360, end: 464, step: 4, color: "#C2F6BA" },
   {
-    start: 570,
-    end: 719,
+    start: 465,
+    end: 584,
     step: 5,
     color: "#7C3AED",
     badge: { emoji: "⏰", text: "24 hours before appointment" },
   },
-  { start: 720, end: 869, step: 6, color: "#EDE9FE" },
-  { start: 870, end: 1019, step: 7, color: "#F8F96C" },
+  { start: 585, end: 674, step: 6, color: "#EDE9FE" },
+  { start: 675, end: 779, step: 7, color: "#F8F96C" },
   {
-    start: 1020,
-    end: 1169,
+    start: 780,
+    end: 899,
     step: 8,
     color: "#EDE9FE",
     badge: { emoji: "🔄", text: "1 month later" },
