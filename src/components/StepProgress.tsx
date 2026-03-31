@@ -3,7 +3,7 @@ import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 const STEPS = [
   { step: 1, label: "Client Messages" },
-  { step: 2, label: "Cami Replies" },
+  { step: 2, label: "Cami Replies Instantly ⚡" },
   { step: 3, label: "Pick & Profile" },
   { step: 4, label: "Pay via WhatsApp" },
   { step: 5, label: "Reminders" },
