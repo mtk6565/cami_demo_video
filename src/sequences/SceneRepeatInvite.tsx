@@ -16,10 +16,14 @@ export const SceneRepeatInvite: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Calendar loop icon rotation
-  const rotation = interpolate(frame, [0, 60], [0, 360], {
-    extrapolateRight: "clamp",
+  // "1 month later" badge animation
+  const badgeEntrance = spring({
+    frame: Math.max(0, frame - 15),
+    fps,
+    config: { damping: 14, mass: 0.6 },
   });
+  const badgeScale = interpolate(badgeEntrance, [0, 1], [0.6, 1]);
+  const badgeOpacity = interpolate(badgeEntrance, [0, 1], [0, 1]);
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
@@ -38,79 +42,72 @@ export const SceneRepeatInvite: React.FC = () => {
           padding: "40px 60px",
         }}
       >
-        <PhoneMockup contactName="Cami 🐾">
-          <ChatBubble
-            sender="bot"
-            message="Hey! It's been a month, Max is probably ready for a fresh cut 🐾"
-            delay={10}
-            emoji="💈"
-          />
-          <ChatBubble
-            sender="bot"
-            message={"🎁 15% off your next one, just for coming back!\n\nGrab a slot 👇"}
-            delay={30}
-          />
-
-          {/* CTA — WhatsApp business style */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
+          {/* "1 month later" context badge */}
           <div
             style={{
-              background: "#FFFFFF",
-              borderRadius: 8,
-              padding: "14px 20px",
-              textAlign: "center" as const,
-              color: "#362A82",
-              fontWeight: 700,
-              fontSize: 15,
-              border: "1px solid #E0E0E0",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-              opacity: interpolate(
-                spring({ frame: Math.max(0, frame - 45), fps, config: { damping: 14 } }),
-                [0, 1],
-                [0, 1]
-              ),
+              background: "rgba(54, 42, 130, 0.1)",
+              border: "1.5px solid rgba(54, 42, 130, 0.25)",
+              borderRadius: 24,
+              padding: "8px 20px",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              transform: `scale(${badgeScale})`,
+              opacity: badgeOpacity,
             }}
           >
-            🐕{" "}Rebook Max, 15% Off
+            <span style={{ fontSize: 20 }}>🔄</span>
+            <span
+              style={{
+                fontSize: 18,
+                fontWeight: 700,
+                color: "#362A82",
+                letterSpacing: "0.02em",
+              }}
+            >
+              1 month later
+            </span>
           </div>
-        </PhoneMockup>
 
-        <StepProgress
-          currentStep={8}
-          extraContent={
+          <PhoneMockup contactName="Cami 🐾">
+            <ChatBubble
+              sender="bot"
+              message="Hey Alex! 🎊 It's been a month — Max must be ready for his next fresh cut 🐾"
+              delay={10}
+              emoji="💈"
+            />
+            <ChatBubble
+              sender="bot"
+              message={"⚡ Book THIS Mon or Tue → save 15%\n⏰ Offer expires Sunday midnight"}
+              delay={30}
+            />
+
+            {/* CTA — WhatsApp business style */}
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
+                background: "#FFFFFF",
+                borderRadius: 8,
+                padding: "14px 20px",
+                textAlign: "center" as const,
+                color: "#362A82",
+                fontWeight: 700,
+                fontSize: 15,
+                border: "1px solid #E0E0E0",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
                 opacity: interpolate(
-                  spring({ frame, fps, config: { damping: 14 } }),
+                  spring({ frame: Math.max(0, frame - 45), fps, config: { damping: 14 } }),
                   [0, 1],
                   [0, 1]
                 ),
               }}
             >
-              <div
-                style={{
-                  fontSize: 24,
-                  transform: `rotate(${rotation}deg)`,
-                }}
-              >
-                🔄
-              </div>
-              <span
-                style={{
-                  color: "rgba(54,42,130,0.6)",
-                  fontSize: 16,
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase" as const,
-                }}
-              >
-                1 Month Later
-              </span>
+              🐕 Rebook Max — 15% Off
             </div>
-          }
-        />
+          </PhoneMockup>
+        </div>
+
+        <StepProgress currentStep={8} />
       </div>
     </AbsoluteFill>
   );
