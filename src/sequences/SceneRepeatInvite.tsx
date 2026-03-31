@@ -27,7 +27,7 @@ export const SceneRepeatInvite: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#E7D3FC" />
+      <GlowBackground color="#EDE9FE" />
 
       <div
         style={{
@@ -46,8 +46,8 @@ export const SceneRepeatInvite: React.FC = () => {
           {/* "1 month later" context badge */}
           <div
             style={{
-              background: "rgba(54, 42, 130, 0.1)",
-              border: "1.5px solid rgba(54, 42, 130, 0.25)",
+              background: "rgba(124, 58, 237, 0.1)",
+              border: "1.5px solid rgba(124, 58, 237, 0.25)",
               borderRadius: 24,
               padding: "8px 20px",
               display: "flex",
@@ -62,7 +62,7 @@ export const SceneRepeatInvite: React.FC = () => {
               style={{
                 fontSize: 18,
                 fontWeight: 700,
-                color: "#362A82",
+                color: "#7C3AED",
                 letterSpacing: "0.02em",
               }}
             >
@@ -90,7 +90,7 @@ export const SceneRepeatInvite: React.FC = () => {
                 borderRadius: 8,
                 padding: "14px 20px",
                 textAlign: "center" as const,
-                color: "#362A82",
+                color: "#7C3AED",
                 fontWeight: 700,
                 fontSize: 15,
                 border: "1px solid #E0E0E0",

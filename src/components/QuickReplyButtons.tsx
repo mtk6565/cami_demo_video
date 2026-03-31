@@ -43,12 +43,12 @@ export const QuickReplyButtons: React.FC<QuickReplyButtonsProps> = ({
             key={i}
             style={{
               background: "#FFFFFF",
-              border: "1.5px solid #362A82",
+              border: "1.5px solid #7C3AED",
               borderRadius: 20,
               padding: "6px 16px",
               fontSize: 16,
               fontWeight: 600,
-              color: "#362A82",
+              color: "#7C3AED",
               transform: `scale(${scale})`,
               opacity,
               display: "flex",

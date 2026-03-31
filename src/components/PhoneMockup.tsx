@@ -44,10 +44,10 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
         style={{
           background: "linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%)",
           borderRadius: 40,
-          border: "3px solid rgba(54,42,130,0.12)",
+          border: "3px solid rgba(124,58,237,0.12)",
           padding: "12px 8px",
           boxShadow:
-            "0 25px 80px rgba(54,42,130,0.15), 0 0 40px rgba(54,42,130,0.06)",
+            "0 25px 80px rgba(124,58,237,0.15), 0 0 40px rgba(124,58,237,0.06)",
         }}
       >
         {/* Status bar */}
@@ -93,7 +93,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
         {/* WhatsApp header — purple */}
         <div
           style={{
-            background: "#362A82",
+            background: "#7C3AED",
             borderRadius: "20px 20px 0 0",
             padding: "10px 12px",
             display: "flex",
@@ -271,7 +271,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
               width: 40,
               height: 40,
               borderRadius: "50%",
-              background: "#362A82",
+              background: "#7C3AED",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

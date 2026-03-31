@@ -173,7 +173,7 @@ const TypingIndicator: React.FC<{ frame: number }> = ({ frame }) => {
               width: 8,
               height: 8,
               borderRadius: "50%",
-              background: "#362A82",
+              background: "#7C3AED",
               opacity: dotOpacity,
               transform: `translateY(${bounce * 4}px)`,
             }}

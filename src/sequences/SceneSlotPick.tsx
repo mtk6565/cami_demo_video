@@ -53,7 +53,7 @@ export const SceneSlotPick: React.FC = () => {
               borderRadius: 8,
               padding: "14px 20px",
               textAlign: "center" as const,
-              color: "#362A82",
+              color: "#7C3AED",
               fontWeight: 700,
               fontSize: 15,
               border: "1px solid #E0E0E0",

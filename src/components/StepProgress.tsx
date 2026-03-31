@@ -73,8 +73,8 @@ export const StepProgress: React.FC<StepProgressProps> = ({
                   width: 2,
                   height: interpolate(connectorEntrance, [0, 1], [0, 24]),
                   background: isActive
-                    ? "rgba(54,42,130,0.3)"
-                    : "rgba(54,42,130,0.12)",
+                    ? "rgba(124,58,237,0.3)"
+                    : "rgba(124,58,237,0.12)",
                   marginLeft: isActive ? 21 : (currentStep > s.step ? 15 : 21),
                   opacity: interpolate(connectorEntrance, [0, 1], [0, 1]),
                 }}
@@ -96,7 +96,7 @@ export const StepProgress: React.FC<StepProgressProps> = ({
                   height: circleSize,
                   borderRadius: "50%",
                   background: isActive
-                    ? "linear-gradient(135deg, #362A82, #4a3a9e)"
+                    ? "linear-gradient(135deg, #7C3AED, #9333EA)"
                     : "#C2F6BA",
                   display: "flex",
                   alignItems: "center",
@@ -106,7 +106,7 @@ export const StepProgress: React.FC<StepProgressProps> = ({
                   fontSize: isActive ? 20 : 15,
                   flexShrink: 0,
                   boxShadow: isActive
-                    ? "0 0 24px rgba(54,42,130,0.4)"
+                    ? "0 0 24px rgba(124,58,237,0.4)"
                     : "none",
                 }}
               >
@@ -114,7 +114,7 @@ export const StepProgress: React.FC<StepProgressProps> = ({
               </div>
               <span
                 style={{
-                  color: isActive ? "#362A82" : "rgba(54,42,130,0.45)",
+                  color: isActive ? "#7C3AED" : "rgba(124,58,237,0.45)",
                   fontSize: isActive ? 18 : 14,
                   fontWeight: isActive ? 800 : 600,
                   textTransform: "uppercase" as const,

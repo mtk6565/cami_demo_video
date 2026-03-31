@@ -70,7 +70,7 @@ export const SceneHook: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#362A82" intensity={1.5} />
+      <GlowBackground color="#7C3AED" intensity={1.5} />
 
       <div
         style={{
@@ -100,7 +100,7 @@ export const SceneHook: React.FC = () => {
                 style={{
                   transform: `scale(${entrance * pulse})`,
                   opacity: entrance,
-                  filter: "drop-shadow(0 0 40px rgba(54,42,130,0.4))",
+                  filter: "drop-shadow(0 0 40px rgba(124,58,237,0.4))",
                 }}
               >
                 <Icon size={60} />
@@ -114,7 +114,7 @@ export const SceneHook: React.FC = () => {
           text="Tired of juggling bookings across WhatsApp, Instagram & phone?"
           fontSize={38}
           accentWords={["WhatsApp,", "Instagram", "phone?"]}
-          accentColor="#362A82"
+          accentColor="#7C3AED"
           delay={10}
         />
 
@@ -123,7 +123,7 @@ export const SceneHook: React.FC = () => {
           text="Let Cami handle it."
           fontSize={30}
           accentWords={["Cami"]}
-          accentColor="#362A82"
+          accentColor="#7C3AED"
           delay={30}
           style={{ marginTop: -20 }}
         />

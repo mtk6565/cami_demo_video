@@ -73,7 +73,7 @@ export const SceneBookingRequest: React.FC = () => {
                   width: 18,
                   height: 18,
                   borderRadius: "50%",
-                  background: "linear-gradient(135deg, #362A82 0%, #5B4CBF 100%)",
+                  background: "linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

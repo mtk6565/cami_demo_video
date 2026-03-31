@@ -7,7 +7,7 @@ interface GlowBackgroundProps {
 }
 
 export const GlowBackground: React.FC<GlowBackgroundProps> = ({
-  color = "#362A82",
+  color = "#7C3AED",
   intensity = 1,
 }) => {
   const frame = useCurrentFrame();
@@ -60,7 +60,7 @@ export const GlowBackground: React.FC<GlowBackgroundProps> = ({
           width: 300,
           height: 300,
           borderRadius: "50%",
-          background: `radial-gradient(circle, #E7D3FC${Math.round(intensity * 12).toString(16).padStart(2, "0")} 0%, transparent 70%)`,
+          background: `radial-gradient(circle, #EDE9FE${Math.round(intensity * 12).toString(16).padStart(2, "0")} 0%, transparent 70%)`,
           filter: "blur(50px)",
           transform: "translate(-50%, -50%)",
         }}
@@ -72,8 +72,8 @@ export const GlowBackground: React.FC<GlowBackgroundProps> = ({
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            linear-gradient(rgba(54,42,130,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(54,42,130,0.06) 1px, transparent 1px)
+            linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
           opacity: 0.5,

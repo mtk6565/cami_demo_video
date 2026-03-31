@@ -27,7 +27,7 @@ export const SceneGroomingPics: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#E7D3FC" />
+      <GlowBackground color="#EDE9FE" />
 
       <div
         style={{

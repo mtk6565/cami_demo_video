@@ -68,7 +68,7 @@ export const SceneDeposit: React.FC = () => {
               </div>
               <span
                 style={{
-                  color: "#362A82",
+                  color: "#7C3AED",
                   fontWeight: 700,
                   fontSize: 15,
                 }}

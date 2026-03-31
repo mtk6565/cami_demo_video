@@ -19,7 +19,7 @@ export const SceneCamiReply: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      <GlowBackground color="#362A82" intensity={1.2} />
+      <GlowBackground color="#7C3AED" intensity={1.2} />
 
       <div
         style={{

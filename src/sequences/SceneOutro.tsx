@@ -21,7 +21,7 @@ export const SceneOutro: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <GlowBackground color="#362A82" intensity={2} />
+      <GlowBackground color="#7C3AED" intensity={2} />
 
       <div
         style={{
@@ -49,7 +49,7 @@ export const SceneOutro: React.FC = () => {
           <div
             style={{
               fontSize: 64,
-              filter: "drop-shadow(0 0 40px rgba(54,42,130,0.4))",
+              filter: "drop-shadow(0 0 40px rgba(124,58,237,0.4))",
             }}
           >
             🐾
@@ -58,9 +58,9 @@ export const SceneOutro: React.FC = () => {
             style={{
               fontSize: 52,
               fontWeight: 900,
-              color: "#362A82",
+              color: "#7C3AED",
               letterSpacing: "-0.03em",
-              textShadow: "0 0 60px rgba(54,42,130,0.3)",
+              textShadow: "0 0 60px rgba(124,58,237,0.3)",
             }}
           >
             Cami
@@ -71,14 +71,14 @@ export const SceneOutro: React.FC = () => {
         <Headline
           text="Your entire pet business."
           fontSize={24}
-          accentColor="#362A82"
+          accentColor="#7C3AED"
           delay={15}
         />
         <Headline
           text="Automated. On WhatsApp."
           fontSize={24}
           accentWords={["Automated.", "WhatsApp."]}
-          accentColor="#362A82"
+          accentColor="#7C3AED"
           delay={20}
         />
 
@@ -96,7 +96,7 @@ export const SceneOutro: React.FC = () => {
             ),
             fontSize: 20,
             fontWeight: 700,
-            color: "#362A82",
+            color: "#7C3AED",
             textAlign: "center" as const,
           }}
         >
@@ -128,14 +128,14 @@ export const SceneOutro: React.FC = () => {
         >
           <div
             style={{
-              background: "linear-gradient(135deg, #362A82, #4a3a9e)",
+              background: "linear-gradient(135deg, #7C3AED, #9333EA)",
               borderRadius: 16,
               padding: "16px 40px",
               color: "white",
               fontWeight: 800,
               fontSize: 18,
               textAlign: "center" as const,
-              boxShadow: "0 8px 40px rgba(54,42,130,0.4)",
+              boxShadow: "0 8px 40px rgba(124,58,237,0.4)",
               letterSpacing: "0.02em",
             }}
           >
@@ -171,11 +171,11 @@ export const SceneOutro: React.FC = () => {
             <span
               key={i}
               style={{
-                background: "rgba(54,42,130,0.15)",
-                border: "1.5px solid rgba(54,42,130,0.3)",
+                background: "rgba(124,58,237,0.15)",
+                border: "1.5px solid rgba(124,58,237,0.3)",
                 borderRadius: 20,
                 padding: "8px 18px",
-                color: "#362A82",
+                color: "#7C3AED",
                 fontSize: 15,
                 fontWeight: 700,
               }}
