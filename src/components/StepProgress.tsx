@@ -7,8 +7,8 @@ const STEPS = [
   { step: 3, label: "Pick & Pay 💳" },
   { step: 4, label: "Slot Locked ✅" },
   { step: 5, label: "Reminders 🔔" },
-  { step: 6, label: "Live Session Updates 📸" },
-  { step: 7, label: "Thank You & Reviews ⭐" },
+  { step: 6, label: "Live Updates 📸" },
+  { step: 7, label: "Thank You ⭐" },
   { step: 8, label: "Auto Re-engage 🔄" },
 ];
 
@@ -27,30 +27,30 @@ export const StepProgress: React.FC<StepProgressProps> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const visibleSteps = STEPS.filter((s) => s.step <= currentStep);
-
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        width: 280,
+        width: 240,
         flexShrink: 0,
       }}
     >
-      {visibleSteps.map((s, i) => {
+      {STEPS.map((s, i) => {
         const isActive = s.step === currentStep;
         const isCompleted = s.step < currentStep;
+        const isFuture = s.step > currentStep;
 
-        // In persistent mode (stepStartFrame provided), completed steps appear instantly
-        // and only the active step animates from when it became active
+        // --- Entrance animation ---
         let entrance: number;
-        if (stepStartFrame !== undefined) {
+        if (isFuture) {
+          // Future steps: visible immediately, no animation
+          entrance = 1;
+        } else if (stepStartFrame !== undefined) {
           if (isCompleted) {
-            entrance = 1; // Already visible, no animation
+            entrance = 1;
           } else {
-            // Active step: animate from when this step became active
             const adjustedFrame = Math.max(0, frame - stepStartFrame - 8);
             entrance = spring({
               frame: adjustedFrame,
@@ -59,7 +59,6 @@ export const StepProgress: React.FC<StepProgressProps> = ({
             });
           }
         } else {
-          // Legacy mode: all steps animate with stagger
           const staggerDelay = i * 4;
           const activeDelay = (currentStep - 1) * 4 + 8;
           const delay = isActive ? activeDelay : staggerDelay;
@@ -71,35 +70,115 @@ export const StepProgress: React.FC<StepProgressProps> = ({
           });
         }
 
+        // --- Scale with pulse for active ---
+        const pulse = isActive ? Math.sin(frame * 0.12) * 0.03 : 0;
         const scale = isActive
-          ? interpolate(entrance, [0, 1], [0, 1.08])
-          : interpolate(entrance, [0, 1], [0, 1]);
-        const opacity = interpolate(entrance, [0, 1], [0, 1]);
+          ? interpolate(entrance, [0, 1], [0, 1.08]) + pulse
+          : isFuture
+            ? 1
+            : interpolate(entrance, [0, 1], [0, 1]);
 
-        // Connector line (between steps)
+        const opacity = isFuture ? 1 : interpolate(entrance, [0, 1], [0, 1]);
+
+        // --- Connector line ---
         const showConnector = i > 0;
-        let connectorEntrance: number;
-        if (stepStartFrame !== undefined && isCompleted) {
-          connectorEntrance = 1;
-        } else if (stepStartFrame !== undefined && isActive) {
-          const connectorFrame = Math.max(0, frame - stepStartFrame - 4);
-          connectorEntrance = spring({
-            frame: connectorFrame,
-            fps,
-            config: { damping: 18, mass: 0.4 },
-          });
+        const prevCompleted = s.step - 1 < currentStep;
+        const prevActive = s.step - 1 === currentStep;
+
+        let connectorHeight: number;
+        let connectorColor: string;
+
+        if (isFuture && !prevActive) {
+          // Between two future steps: dim, full height
+          connectorHeight = 20;
+          connectorColor = "rgba(124,58,237,0.08)";
+        } else if (isCompleted && prevCompleted) {
+          // Between two completed steps: bright, full height
+          connectorHeight = 20;
+          connectorColor = "rgba(124,58,237,0.4)";
+        } else if (isActive || (isFuture && prevActive)) {
+          // Connector leading into or out of active step: animated
+          let connectorEntrance: number;
+          if (stepStartFrame !== undefined) {
+            const connectorFrame = Math.max(0, frame - stepStartFrame - 4);
+            connectorEntrance = spring({
+              frame: connectorFrame,
+              fps,
+              config: { damping: 18, mass: 0.4 },
+            });
+          } else {
+            const staggerDelay = i * 4;
+            const connectorDelay = staggerDelay - 2;
+            const connectorFrame = Math.max(0, frame - connectorDelay);
+            connectorEntrance = spring({
+              frame: connectorFrame,
+              fps,
+              config: { damping: 18, mass: 0.4 },
+            });
+          }
+
+          if (isActive) {
+            // Connector from completed to active: animated fill
+            connectorHeight = interpolate(connectorEntrance, [0, 1], [0, 20]);
+            connectorColor = "rgba(124,58,237,0.4)";
+          } else {
+            // Connector from active to first future: dim
+            connectorHeight = 20;
+            connectorColor = "rgba(124,58,237,0.12)";
+          }
         } else {
-          const staggerDelay = i * 4;
-          const connectorDelay = staggerDelay - 2;
-          const connectorFrame = Math.max(0, frame - connectorDelay);
-          connectorEntrance = spring({
-            frame: connectorFrame,
-            fps,
-            config: { damping: 18, mass: 0.4 },
-          });
+          connectorHeight = 20;
+          connectorColor = "rgba(124,58,237,0.12)";
         }
 
-        const circleSize = 44;
+        // --- Circle styles ---
+        const circleSize = 40;
+        let circleBackground: string;
+        let circleColor: string;
+        let circleBorder: string | undefined;
+        let circleShadow: string;
+        let circleFontSize: number;
+
+        if (isActive) {
+          circleBackground = "linear-gradient(135deg, #7C3AED, #9333EA)";
+          circleColor = "white";
+          circleBorder = undefined;
+          const shadowSpread = 20 + Math.sin(frame * 0.12) * 6;
+          circleShadow = `0 0 ${shadowSpread}px rgba(124,58,237,0.4)`;
+          circleFontSize = 18;
+        } else if (isCompleted) {
+          circleBackground = "#C2F6BA";
+          circleColor = "#2d6a2e";
+          circleBorder = undefined;
+          circleShadow = "none";
+          circleFontSize = 14;
+        } else {
+          // Future
+          circleBackground = "transparent";
+          circleColor = "rgba(124,58,237,0.25)";
+          circleBorder = "2px dashed rgba(124,58,237,0.2)";
+          circleShadow = "none";
+          circleFontSize = 14;
+        }
+
+        // --- Label styles ---
+        let labelColor: string;
+        let labelFontSize: number;
+        let labelFontWeight: number;
+
+        if (isActive) {
+          labelColor = "#7C3AED";
+          labelFontSize = 15;
+          labelFontWeight = 800;
+        } else if (isCompleted) {
+          labelColor = "rgba(124,58,237,0.45)";
+          labelFontSize = 13;
+          labelFontWeight = 600;
+        } else {
+          labelColor = "rgba(124,58,237,0.2)";
+          labelFontSize = 13;
+          labelFontWeight = 500;
+        }
 
         return (
           <React.Fragment key={s.step}>
@@ -107,12 +186,9 @@ export const StepProgress: React.FC<StepProgressProps> = ({
               <div
                 style={{
                   width: 2,
-                  height: interpolate(connectorEntrance, [0, 1], [0, 24]),
-                  background: isActive
-                    ? "rgba(124,58,237,0.3)"
-                    : "rgba(124,58,237,0.12)",
-                  marginLeft: 21,
-                  opacity: interpolate(connectorEntrance, [0, 1], [0, 1]),
+                  height: connectorHeight,
+                  background: connectorColor,
+                  marginLeft: circleSize / 2 - 1,
                 }}
               />
             )}
@@ -120,7 +196,7 @@ export const StepProgress: React.FC<StepProgressProps> = ({
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
+                gap: 10,
                 transform: `scale(${scale})`,
                 opacity,
                 transformOrigin: "left center",
@@ -131,28 +207,25 @@ export const StepProgress: React.FC<StepProgressProps> = ({
                   width: circleSize,
                   height: circleSize,
                   borderRadius: "50%",
-                  background: isActive
-                    ? "linear-gradient(135deg, #7C3AED, #9333EA)"
-                    : "#C2F6BA",
+                  background: circleBackground,
+                  border: circleBorder,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: isActive ? "white" : "#2d6a2e",
+                  color: circleColor,
                   fontWeight: 800,
-                  fontSize: isActive ? 20 : 15,
+                  fontSize: circleFontSize,
                   flexShrink: 0,
-                  boxShadow: isActive
-                    ? "0 0 24px rgba(124,58,237,0.4)"
-                    : "none",
+                  boxShadow: circleShadow,
                 }}
               >
                 {isCompleted ? "✓" : s.step}
               </div>
               <span
                 style={{
-                  color: isActive ? "#7C3AED" : "rgba(124,58,237,0.45)",
-                  fontSize: isActive ? 18 : 14,
-                  fontWeight: isActive ? 800 : 600,
+                  color: labelColor,
+                  fontSize: labelFontSize,
+                  fontWeight: labelFontWeight,
                   textTransform: "uppercase" as const,
                   letterSpacing: "0.08em",
                   whiteSpace: "nowrap" as const,

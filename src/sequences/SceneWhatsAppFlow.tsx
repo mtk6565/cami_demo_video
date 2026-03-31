@@ -145,7 +145,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
           alignItems: "flex-start",
           justifyContent: "center",
           height: "100%",
-          gap: 60,
+          gap: 48,
           padding: "120px 60px 40px",
         }}
       >
@@ -188,7 +188,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
             </div>
           )}
 
-          <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={560}>
+          <PhoneMockup contactName="Pet Business 🐾" chatMinHeight={560} width={500}>
             {/* Persistent user bubble — spans Phases 1 & 2, no exit fade (Phase3Scroll takes over) */}
             <PersistentBubble frame={frame} startPhase={PHASES[0]} endPhase={PHASES[1]} durationInFrames={durationInFrames} skipExitFade>
               <ChatBubble
@@ -308,10 +308,12 @@ export const SceneWhatsAppFlow: React.FC = () => {
           </PhoneMockup>
         </div>
 
-        <StepProgress
-          currentStep={currentStep}
-          stepStartFrame={currentPhase.start}
-        />
+        <div style={{ marginTop: 80 }}>
+          <StepProgress
+            currentStep={currentStep}
+            stepStartFrame={currentPhase.start}
+          />
+        </div>
       </div>
     </AbsoluteFill>
   );

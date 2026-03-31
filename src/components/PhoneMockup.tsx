@@ -12,6 +12,7 @@ interface PhoneMockupProps {
   contactAvatar?: string;
   enterFrom?: "bottom" | "right" | "none";
   chatMinHeight?: number;
+  width?: number;
 }
 
 export const PhoneMockup: React.FC<PhoneMockupProps> = ({
@@ -19,6 +20,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   contactName = "Pet Business 🐾",
   enterFrom = "bottom",
   chatMinHeight = 420,
+  width = 480,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -35,7 +37,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
     <div
       style={{
         position: "relative",
-        width: 480,
+        width,
         flexShrink: 0,
         transform: `translateY(${translateY}px) translateX(${translateX}px)`,
         opacity,

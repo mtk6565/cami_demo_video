@@ -71,6 +71,22 @@ The WhatsApp flow uses a **persistent shell** pattern to avoid jarring jumps bet
 - `GlowBackground` accepts a `globalFrame` prop to maintain continuous orb motion across phases.
 - `GlowBackground` color transitions use `interpolateColors` to smoothly blend between phase colors.
 
+### Conversation Continuity Pattern
+
+Some phase transitions accumulate messages rather than crossfading (to feel like a real WhatsApp thread):
+
+- **PersistentBubble**: Renders a chat bubble across multiple phases without flickering. Uses its own opacity (fade in with start phase, fade out with end phase). Other phase content uses `topOffset` to render below it.
+- **skipExitFade**: PhaseWrapper and PersistentBubble accept `skipExitFade` to stay at full opacity until their end frame — used when the next phase takes over seamlessly with identical content.
+- **Phase3Scroll (scroll transition)**: Instead of crossfading, Phase 3 shows the full conversation from Phases 1-2, adds a new user message, then scrolls up via `translateY` + `overflow: hidden`. After the scroll, bot reply and deposit button appear in the same flex column.
+
+### Avoiding Re-animation on Phase Transitions
+
+When a phase duplicates messages from a previous phase (e.g., Phase3Scroll showing Phase 2's messages):
+
+- **DO NOT** wrap static/already-visible messages in a `<Sequence>` — this resets `useCurrentFrame()` to 0, causing ChatBubble's spring animation to replay.
+- **DO** leave already-visible messages outside any Sequence. At frame 270+ with `delay={0}`, the global frame is high enough that the spring is fully settled — no animation.
+- **DO** wrap only NEW messages (that need animated entry) in `<Sequence from={phase.start}>` so their `delay` props work relative to the phase start.
+
 ## Layout Stability Rules
 
 To prevent the phone/steps from shifting position between phases:
