@@ -195,6 +195,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 sender="user"
                 message="Hey, can I book Bella in for a groom? 🐕"
                 delay={15}
+                timestamp="9:41 AM"
               />
             </PersistentBubble>
 
@@ -212,6 +213,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                   "Hey Alex, hope you and Bella are doing well!\nOf course! 👋 Here's what's open this week:"
                 }
                 delay={0}
+                timestamp="9:41 AM"
               />
               <ChatBubble
                 sender="bot"
@@ -220,6 +222,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 }
                 delay={20}
                 showTail={false}
+                timestamp="9:41 AM"
               />
             </PhaseWrapper>
 
@@ -235,6 +238,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                   "💳 Paid! Slot locked ✅\n\nSee you on Wednesday at 2 PM — Bella is going to look amazing 🐶✨"
                 }
                 delay={30}
+                timestamp="9:43 AM"
               />
             </PhaseWrapper>
 
@@ -245,6 +249,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 message="Hey! Bella is in tomorrow at 2 PM, can't wait to see her 🐶"
                 delay={5}
                 emoji="🔔"
+                timestamp="2:00 PM"
               />
               <QuickReplyButtons
                 delay={30}
@@ -261,6 +266,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 sender="bot"
                 message="Bella is loving it! Sneak peek 📸"
                 delay={5}
+                timestamp="2:34 PM"
               />
               <GroomingImage frame={frame} fps={fps} phaseStart={PHASES[5].start} />
             </PhaseWrapper>
@@ -271,6 +277,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 sender="bot"
                 message="Bella is ALL DONE! 🎉 She looks incredible — we're obsessed 🥰"
                 delay={5}
+                timestamp="3:47 PM"
               />
               <AfterGroomImage frame={frame} fps={fps} phaseStart={PHASES[6].start} />
               <RatingCard frame={frame} fps={fps} phaseStart={PHASES[6].start} />
@@ -291,6 +298,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                 message="Hey Alex! 🎊 It's been a month — Bella must be ready for her next fresh cut 🐾"
                 delay={10}
                 emoji="💈"
+                timestamp="10:15 AM"
               />
               <ChatBubble
                 sender="bot"
@@ -298,6 +306,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                   "⚡ Book THIS Mon or Tue → save 15%\n⏰ Offer expires Sunday midnight"
                 }
                 delay={30}
+                timestamp="10:15 AM"
               />
               <QuickReplyButtons
                 layout="full"
@@ -485,6 +494,7 @@ const Phase3Scroll: React.FC<{
           sender="user"
           message="Hey, can I book Bella in for a groom? 🐕"
           delay={0}
+          timestamp="9:41 AM"
         />
         <ChatBubble
           sender="bot"
@@ -492,6 +502,7 @@ const Phase3Scroll: React.FC<{
             "Hey Alex, hope you and Bella are doing well!\nOf course! 👋 Here's what's open this week:"
           }
           delay={0}
+          timestamp="9:41 AM"
         />
         <ChatBubble
           sender="bot"
@@ -500,6 +511,7 @@ const Phase3Scroll: React.FC<{
           }
           delay={0}
           showTail={false}
+          timestamp="9:41 AM"
         />
         {/* New user message + bot reply + deposit — inside Sequence so delays
             work relative to Phase 3 start */}
@@ -508,13 +520,14 @@ const Phase3Scroll: React.FC<{
           durationInFrames={durationInFrames - phase.start}
           layout="none"
         >
-          <ChatBubble sender="user" message="Wed 2 PM pls! 🙌" delay={8} />
+          <ChatBubble sender="user" message="Wed 2 PM pls! 🙌" delay={8} timestamp="9:42 AM" />
           <ChatBubble
             sender="bot"
             message={
               "Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"
             }
             delay={45}
+            timestamp="9:42 AM"
           />
           <QuickReplyButtons
             layout="full"

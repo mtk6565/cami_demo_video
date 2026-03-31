@@ -19,7 +19,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
   typing = false,
   emoji,
   showTail = true,
-  timestamp = "9:41 AM",
+  timestamp = "",
   status = "read",
 }) => {
   const frame = useCurrentFrame();
