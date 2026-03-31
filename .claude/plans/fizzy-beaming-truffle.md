@@ -1,4 +1,10 @@
-# Tighten Phase Durations to Match Audio + Fix Hook Audio Delay
+# Tighten Phase Durations to Match Audio + Fix Audio Delay
+
+## Completed
+- [x] Phase durations tightened (1140 → 1095 frames)
+- [x] Audio moved inside Series.Sequence (fixes +6 delay not working)
+
+## Remaining: Extract AUDIO_DELAY constant
 
 ## Context
 
@@ -83,6 +89,10 @@ Update the `PHASES` const and the comment block at the top.
 
 ### 5. `CLAUDE.md` — Update Scene Timeline section
 Update the timeline comment to match new durations.
+
+## Minor cleanup: Extract AUDIO_DELAY constant
+
+In `src/CamiAd.tsx`, add `const AUDIO_DELAY = 6;` and replace all `+ 6` in audio Sequence `from` props with `+ AUDIO_DELAY`. Makes it easy to tune globally and self-documenting.
 
 ## Verification
 

@@ -122,9 +122,10 @@ To prevent the phone/steps from shifting position between phases:
 ## Audio / Voiceover
 
 - Voiceover is generated via **ElevenLabs API** (`audio/generate.ts`), producing one MP3 per section.
-- Each section is a separate API call — no stitching. Clips are placed at exact frame offsets in `CamiAd.tsx` using `<Sequence from={frame}><Audio /></Sequence>`.
-- All audio clips have a **6-frame (0.2s) delay** after the visual phase starts, so animations land before the voice kicks in.
-- Phase durations are sized to **audio duration + ~1s buffer** — keep phases tight to avoid dead air.
+- Each section is a separate API call — no stitching.
+- **Audio placement pattern**: Each `<Audio>` is embedded **inside** its corresponding `<Series.Sequence>` in `CamiAd.tsx`, wrapped in `<Sequence from={phaseStart + AUDIO_DELAY} layout="none">`. This ensures the delay is relative to the scene/phase start. **Do NOT place audio as top-level siblings of the `<Series>`** — Remotion does not reliably apply frame offsets to audio when it's outside the visual timing context.
+- `AUDIO_DELAY` constant (6 frames / 0.2s) is defined at the top of `CamiAd.tsx` — controls the gap between visual appearing and audio starting. Tune this single value to adjust all clips.
+- Phase durations are sized to **audio duration + ~0.5s buffer** — keep phases tight to avoid dead air.
 - Env vars required: `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID` (in `.env.local` with `export` prefix so `source` works).
 - Optional: `ELEVENLABS_SPEED` (default 1.0), `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`).
 - Voice settings in `generate.ts`: `stability: 0.45`, `similarity_boost: 0.75`, `style: 0.65` (expressive/upbeat).

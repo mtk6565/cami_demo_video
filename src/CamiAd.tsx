@@ -30,6 +30,9 @@ import { FONT_BODY } from "./fonts";
  * Scene 3: OUTRO             (32.5–36.5s) Cami CTA
  */
 
+/** Frames to delay audio after its visual phase starts — lets animations land first */
+const AUDIO_DELAY = 6;
+
 export const CamiAd: React.FC = () => {
   const { fps } = useVideoConfig();
 
@@ -40,30 +43,32 @@ export const CamiAd: React.FC = () => {
         fontFamily: FONT_BODY,
       }}
     >
-      {/* Voiceover clips — 6 frame (0.2s) delay lets visual transitions land first */}
-      {/* Hook starts at absolute frame 0, WhatsApp flow starts at frame 150 */}
-      <Sequence from={0} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
-      <Sequence from={150 + 0 + 6} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
-      <Sequence from={150 + 105 + 6} layout="none"><Audio src={staticFile("audio/phase2.mp3")} /></Sequence>
-      <Sequence from={150 + 225 + 6} layout="none"><Audio src={staticFile("audio/phase3.mp3")} /></Sequence>
-      <Sequence from={150 + 315 + 6} layout="none"><Audio src={staticFile("audio/phase4.mp3")} /></Sequence>
-      <Sequence from={150 + 420 + 6} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
-      <Sequence from={150 + 540 + 6} layout="none"><Audio src={staticFile("audio/phase6.mp3")} /></Sequence>
-      <Sequence from={150 + 615 + 6} layout="none"><Audio src={staticFile("audio/phase7.mp3")} /></Sequence>
-      <Sequence from={150 + 705 + 6} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
-      <Sequence from={975 + 6} layout="none"><Audio src={staticFile("audio/outro.mp3")} /></Sequence>
-
+      {/*
+       * Audio is embedded INSIDE each Series.Sequence so AUDIO_DELAY
+       * is relative to the scene/phase start — not a global absolute frame.
+       */}
       <Series>
         <Series.Sequence durationInFrames={fps * 5}>
           <SceneHook />
+          <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={825}>
           <SceneWhatsAppFlow />
+          {/* Phase audio — offset = phase start + AUDIO_DELAY */}
+          <Sequence from={0 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
+          <Sequence from={105 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase2.mp3")} /></Sequence>
+          <Sequence from={225 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase3.mp3")} /></Sequence>
+          <Sequence from={315 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase4.mp3")} /></Sequence>
+          <Sequence from={420 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
+          <Sequence from={540 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase6.mp3")} /></Sequence>
+          <Sequence from={615 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase7.mp3")} /></Sequence>
+          <Sequence from={705 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={fps * 4}>
           <SceneOutro />
+          <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/outro.mp3")} /></Sequence>
         </Series.Sequence>
       </Series>
     </AbsoluteFill>

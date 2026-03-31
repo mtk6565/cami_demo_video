@@ -132,13 +132,29 @@ async function main() {
   mkdirSync(OUTPUT_DIR, { recursive: true });
   mkdirSync(PUBLIC_AUDIO_DIR, { recursive: true });
 
-  console.log(`Generating ${SECTIONS.length} audio clips with ElevenLabs...`);
+  const filterId = process.argv[2];
+  const validIds = SECTIONS.map((s) => s.id);
+
+  if (filterId && !validIds.includes(filterId)) {
+    console.error(`Unknown section "${filterId}".`);
+    console.error(`Valid IDs: ${validIds.join(", ")}`);
+    process.exit(1);
+  }
+
+  const sections = filterId
+    ? SECTIONS.filter((s) => s.id === filterId)
+    : SECTIONS;
+
+  console.log(
+    `Generating ${sections.length} audio clip${sections.length === 1 ? "" : "s"} with ElevenLabs...`,
+  );
   console.log(`  Model: ${MODEL_ID} | Speed: ${SPEED}`);
+  if (filterId) console.log(`  Filter: ${filterId}`);
   console.log();
 
   let allOk = true;
 
-  for (const section of SECTIONS) {
+  for (const section of sections) {
     process.stdout.write(`  ${section.id.padEnd(8)} — generating... `);
 
     const { audioBuffer, duration } = await generateClip(section);
