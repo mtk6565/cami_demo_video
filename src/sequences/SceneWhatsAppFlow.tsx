@@ -23,10 +23,10 @@ import { StepProgress } from "../components/StepProgress";
  * Phase 2: Cami Reply        (105–254)   5s     step=2
  * Phase 3: Slot Pick         (255–434)   6s     step=3
  * Phase 4: Deposit           (435–539)   3.5s   step=4
- * Phase 5: Confirmation      (540–659)   4s     step=5  badge="24 hours before"
- * Phase 6: Grooming Pics     (660–734)   2.5s   step=6
- * Phase 7: Thank You         (735–824)   3s     step=7
- * Phase 8: Repeat Invite     (825–944)   4s     step=8  badge="1 month later"
+ * Phase 5: Confirmation      (540–674)   4.5s   step=5  badge="24 hours before"
+ * Phase 6: Grooming Pics     (675–749)   2.5s   step=6
+ * Phase 7: Thank You         (750–839)   3s     step=7
+ * Phase 8: Repeat Invite     (840–959)   4s     step=8  badge="1 month later"
  */
 
 interface Phase {
@@ -44,16 +44,16 @@ const PHASES: Phase[] = [
   { start: 435, end: 539, step: 4, color: "#C2F6BA" },
   {
     start: 540,
-    end: 659,
+    end: 674,
     step: 5,
     color: "#7C3AED",
     badge: { emoji: "⏰", text: "24 hours before appointment" },
   },
-  { start: 660, end: 734, step: 6, color: "#EDE9FE" },
-  { start: 735, end: 824, step: 7, color: "#F8F96C" },
+  { start: 675, end: 749, step: 6, color: "#EDE9FE" },
+  { start: 750, end: 839, step: 7, color: "#F8F96C" },
   {
-    start: 825,
-    end: 944,
+    start: 840,
+    end: 959,
     step: 8,
     color: "#EDE9FE",
     badge: { emoji: "🔄", text: "1 month later" },
