@@ -20,3 +20,4 @@ Persistent context for Claude across sessions. Two folders, simple rules.
 ### project_context/
 
 - [product.md](project_context/product.md) — What Cami AI is, target audience, messaging guidelines
+- [voiceover-script.md](project_context/voiceover-script.md) — Final voiceover text for all 10 sections

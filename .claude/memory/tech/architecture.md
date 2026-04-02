@@ -28,28 +28,28 @@ public/
 
 ## Compositions
 
-Defined in `Video.tsx` — portrait (1080×1920), landscape (1920×1080), and WhatsApp (960×1080), all 1095 frames at 30fps (36.5 seconds).
+Defined in `Video.tsx` — portrait (1080×1920), landscape (1920×1080), and WhatsApp (960×1080), all 1365 frames at 30fps (45.5 seconds).
 
-`CamiAd.tsx` sequences 3 scenes: Hook (5s) → WhatsAppFlow (27.5s) → Outro (4s).
+`CamiAd.tsx` sequences 3 scenes: Hook (6s) → WhatsAppFlow (35.5s) → Outro (4s).
 
 `SceneWhatsAppFlow.tsx` is a single unified component with 8 phases — the phone frame, background, and step progress render once and persist across all phases. Only chat content crossfades between phases.
 
 ## Scene Timeline
 
 ```
-Total: 36.5s (1095 frames @ 30fps)
+Total: 45.5s (1365 frames @ 30fps)
 
-Hook               0–5s       "Introducing Cami"
-WhatsApp Flow      5–32.5s    8-phase persistent conversation:
-  1. Booking Request   5–8.5s
-  2. Cami Reply        8.5–12.5s
-  3. Slot Pick         12.5–15.5s
-  4. Deposit           15.5–19s
-  5. Confirmation      19–23s      (context badge: "24h before")
-  6. Grooming Pics     23–25.5s
-  7. Thank You         25.5–28.5s
-  8. Repeat Invite     28.5–32.5s  (context badge: "1 month later")
-Outro              32.5–36.5s  Cami CTA
+Hook               0–6s       "Meet Cami"
+WhatsApp Flow      6–41.5s    8-phase persistent conversation:
+  1. Booking Request   6–9.5s
+  2. Cami Reply        9.5–14.5s
+  3. Slot Pick         14.5–20.5s
+  4. Deposit           20.5–24s
+  5. Confirmation      24–28.5s    (context badge: "24h before")
+  6. Grooming Pics     28.5–31s
+  7. Thank You         31–36.5s
+  8. Repeat Invite     36.5–41.5s  (context badge: "1 month later")
+Outro              41.5–45.5s  Cami CTA
 ```
 
 ## Key Config
