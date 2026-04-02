@@ -25,8 +25,8 @@ import { StepProgress } from "../components/StepProgress";
  * Phase 4: Deposit           (435–539)   3.5s   step=4
  * Phase 5: Confirmation      (540–674)   4.5s   step=5  badge="24 hours before"
  * Phase 6: Grooming Pics     (675–749)   2.5s   step=6
- * Phase 7: Thank You         (750–839)   3s     step=7
- * Phase 8: Repeat Invite     (840–959)   4s     step=8  badge="1 month later"
+ * Phase 7: Thank You         (750–914)   5.5s   step=7
+ * Phase 8: Repeat Invite     (915–1064)  5s     step=8  badge="1 month later"
  */
 
 interface Phase {
@@ -50,10 +50,10 @@ const PHASES: Phase[] = [
     badge: { emoji: "⏰", text: "24 hours before appointment" },
   },
   { start: 675, end: 749, step: 6, color: "#EDE9FE" },
-  { start: 750, end: 839, step: 7, color: "#F8F96C" },
+  { start: 750, end: 914, step: 7, color: "#F8F96C" },
   {
-    start: 840,
-    end: 959,
+    start: 915,
+    end: 1064,
     step: 8,
     color: "#EDE9FE",
     badge: { emoji: "🔄", text: "1 month later" },
@@ -287,7 +287,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
                   { label: "Rebook Now", emoji: "📅" },
                   { label: "Leave Review", emoji: "⭐" },
                 ]}
-                delay={60}
+                delay={90}
               />
             </PhaseWrapper>
 
@@ -747,7 +747,7 @@ const RatingCard: React.FC<{
         textAlign: "center" as const,
         opacity: interpolate(
           spring({
-            frame: Math.max(0, localFrame - 30),
+            frame: Math.max(0, localFrame - 60),
             fps,
             config: { damping: 14 },
           }),
@@ -768,7 +768,7 @@ const RatingCard: React.FC<{
       </div>
       <div style={{ display: "flex", justifyContent: "center", gap: 6 }}>
         {stars.map((_, i) => {
-          const starDelay = 40 + i * 5;
+          const starDelay = 70 + i * 5;
           const starSpring = spring({
             frame: Math.max(0, localFrame - starDelay),
             fps,

@@ -47,20 +47,20 @@ const SECTIONS = [
   {
     id: "phase7",
     startSeconds: 31,
-    maxSeconds: 3,
-    text: "Ratings and reviews — hands-free.",
+    maxSeconds: 5.5,
+    text: "After every visit, Cami follows up — collects a review and invites them to rebook. All hands-free.",
   },
   {
     id: "phase8",
-    startSeconds: 34,
-    maxSeconds: 4,
-    text: "A month later? Cami brings them back. Effortlessly.",
+    startSeconds: 36.5,
+    maxSeconds: 5,
+    text: "Cami tracks when every client is due back — and brings them in with a personalised offer.",
   },
   {
     id: "outro",
-    startSeconds: 38,
+    startSeconds: 41.5,
     maxSeconds: 4,
-    text: "Cami. More time with the furry friends — less time on the phone.",
+    text: "Your entire customer journey — powered by Cami. More time with the furry friends, less time on the phone.",
   },
 ];
 

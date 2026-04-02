@@ -1,30 +1,28 @@
-# Plan: Increase Phase 5 to 4.5s
+# Plan: Update Phase 7 VO text + increase to 5s
 
 ## Context
-Phase 5 audio is 4.17s, exceeding the 4s max. Bump to 4.5s (+0.5s / +15 frames).
+Phase 7 getting new VO: "After every visit, Cami follows up — collects a review and invites them to rebook. All hands-free." (~17 words, needs ~4.5s). Bump phase 7 from 3s to 5s (+2s / +60 frames).
 
 ## Changes
 
 ### 1. `audio/generate.ts`
-- Phase 5: `maxSeconds: 4` → `4.5`
-- Shift downstream: phase6 28→28.5, phase7 30.5→31, phase8 33.5→34, outro 37.5→38
+- Phase 7: `maxSeconds: 3` → `5`, update text
+- Shift downstream: phase8 34→36, outro 38→40
 
 ### 2. `src/sequences/SceneWhatsAppFlow.tsx`
-Current phase 5: `start: 540, end: 659`. New end: 674 (+15).
-- Phase 5: end 659→674
-- Phase 6: 660,734 → 675,749
-- Phase 7: 735,824 → 750,839
-- Phase 8: 825,944 → 840,959
+Phase 7 currently: `start: 750, end: 839` (3s). New end: 899 (+60).
+- Phase 7: end 839→899
+- Phase 8: 840,959 → 900,1019
 - Update comment
 
 ### 3. `src/CamiAd.tsx`
-- Flow duration: 945→960
-- Audio offsets: phase6 660→675, phase7 735→750, phase8 825→840
-- Update comment
+- Flow duration: 960→1020
+- Audio offset: phase8 840→900
+- Update comment (total 44s)
 
 ### 4. `src/Video.tsx`
-- All compositions: 1245→1260 (42s)
+- All compositions: 1260→1320 (44s)
 
 ## Verification
-- `source .env.local && npm run generate-audio phase5`
+- `source .env.local && npm run generate-audio phase7`
 - `npm run dev` to preview

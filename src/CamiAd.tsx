@@ -15,19 +15,19 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 42 seconds (1260 frames @ 30fps)
+ * Total: 45.5 seconds (1365 frames @ 30fps)
  *
  * Scene 1: HOOK             (0–6s)       "Meet Cami"
- * Scene 2: WHATSAPP FLOW    (6–38s)      Unified persistent WhatsApp conversation
+ * Scene 2: WHATSAPP FLOW    (6–41.5s)    Unified persistent WhatsApp conversation
  *   Phase 1: Booking Request  (6–9.5s)   Client sends WhatsApp message
  *   Phase 2: Cami Reply       (9.5–14.5s) AI replies instantly with slots
  *   Phase 3: Slot Pick        (14.5–20.5s) Client picks a time + pet preferences
  *   Phase 4: Deposit          (20.5–24s) Payment confirmed, slot locked
  *   Phase 5: Confirmation     (24–28.5s) Auto-confirm + 24h reminder
  *   Phase 6: Grooming Pics    (28.5–31s) In-store pics
- *   Phase 7: Thank You        (31–34s)   Thank You & Reviews
- *   Phase 8: Repeat Invite    (34–38s)   1-month recurring invite
- * Scene 3: OUTRO             (38–42s)    Cami CTA
+ *   Phase 7: Thank You        (31–36.5s) Thank You & Reviews
+ *   Phase 8: Repeat Invite    (36.5–41.5s) 1-month recurring invite
+ * Scene 3: OUTRO             (41.5–45.5s) Cami CTA
  */
 
 /** Frames to delay audio after its visual phase starts — lets animations land first */
@@ -53,7 +53,7 @@ export const CamiAd: React.FC = () => {
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
         </Series.Sequence>
 
-        <Series.Sequence durationInFrames={960}>
+        <Series.Sequence durationInFrames={1065}>
           <SceneWhatsAppFlow />
           {/* Phase audio — offset = phase start + AUDIO_DELAY */}
           <Sequence from={0 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase1.mp3")} /></Sequence>
@@ -63,7 +63,7 @@ export const CamiAd: React.FC = () => {
           <Sequence from={540 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase5.mp3")} /></Sequence>
           <Sequence from={675 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase6.mp3")} /></Sequence>
           <Sequence from={750 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase7.mp3")} /></Sequence>
-          <Sequence from={840 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
+          <Sequence from={915 + AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/phase8.mp3")} /></Sequence>
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={fps * 4}>
