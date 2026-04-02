@@ -69,19 +69,6 @@ export const GlowBackground: React.FC<GlowBackgroundProps> = ({
         }}
       />
 
-      {/* Subtle grid overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-          opacity: 0.5,
-        }}
-      />
     </div>
   );
 };

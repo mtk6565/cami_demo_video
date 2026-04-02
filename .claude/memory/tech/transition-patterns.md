@@ -36,3 +36,7 @@ To prevent the phone/steps from shifting position between phases:
 - Connector line `marginLeft` must be **consistent** across all states — varying margins cause horizontal jitter.
 - Context badges (phases 5 and 8) must be `position: absolute` above the phone — putting them in the flex flow pushes the phone down.
 - `PhoneMockup` `chatMinHeight` should be a fixed value that accommodates the tallest phase content.
+
+## Scale Pulse Pattern
+
+- **2026-04-02:** Established a scale pulse pattern for emphasis moments synced with voiceover cues. Spring config: `{ damping: 6, mass: 0.8, stiffness: 150 }`, scale 1.0→1.12. Low damping creates a visible overshoot-and-settle. Used on SceneStart headline and SceneHook logo. Triggered at specific frames matching voiceover timing.

@@ -26,12 +26,16 @@ export const SceneOutro: React.FC = () => {
   const textSpring = spring({
     frame: textFrame,
     fps,
-    config: { damping: 12, mass: 0.7 },
+    config: { damping: 12, mass: 1.2 },
   });
   const textOpacity = interpolate(textSpring, [0, 1], [0, 1]);
-  const textScale = interpolate(textSpring, [0, 1], [0.85, 1]);
-  const textTranslateY = interpolate(textSpring, [0, 1], [18, 0]);
-  const glowOpacity = interpolate(textSpring, [0, 0.5, 1], [0, 0.7, 0]);
+  const textScale =
+    interpolate(textSpring, [0, 1], [0, 1]) +
+    Math.sin(frame * 0.12) * 0.03 * textSpring;
+
+  // Pulsing glow similar to active step highlight
+  const glowPulse = 0.45 + Math.sin(frame * 0.12) * 0.2;
+  const glowOpacity = interpolate(textSpring, [0, 1], [0, glowPulse]);
 
   return (
     <AbsoluteFill>
@@ -65,7 +69,7 @@ export const SceneOutro: React.FC = () => {
           position: "absolute",
           top: "28%",
           left: "50%",
-          transform: `translateX(-50%) translateY(${textTranslateY}px) scale(${textScale})`,
+          transform: `translateX(-50%) scale(${textScale})`,
           opacity: textOpacity,
         }}
       >
@@ -77,7 +81,7 @@ export const SceneOutro: React.FC = () => {
             position: "absolute",
             top: 0,
             left: 0,
-            filter: "blur(20px) brightness(1.3)",
+            filter: `blur(${20 + Math.sin(frame * 0.12) * 6}px) brightness(1.3)`,
             opacity: glowOpacity,
           }}
         />

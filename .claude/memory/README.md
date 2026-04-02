@@ -21,3 +21,4 @@ Persistent context for Claude across sessions. Two folders, simple rules.
 
 - [product.md](project_context/product.md) — What Cami AI is, target audience, messaging guidelines
 - [voiceover-script.md](project_context/voiceover-script.md) — Final voiceover text for all 10 sections
+- [design-decisions.md](project_context/design-decisions.md) — Design principles and rationale (visual-audio sync, redundancy avoidance, highlight patterns)

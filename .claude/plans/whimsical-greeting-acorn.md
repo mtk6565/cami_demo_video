@@ -1,35 +1,18 @@
-# Plan: Logo Glow Highlight at "Meet Cami"
+# Plan: Memory Update
 
 ## Context
-Adding a visual highlight to the Cami logo synced with the voiceover saying "Meet Cami" at 4.16s. Creates visual-audio sync similar to the badge highlights.
-
-## File to modify
-- `src/sequences/SceneHook.tsx`
+Capturing session learnings into the memory system.
 
 ## Changes
 
-### Add logo glow pulse at frame 5 (4.16s absolute = 0.16s into hook)
-- Spring-animated `filter: drop-shadow()` on the logo
-- Glow color: `rgba(124, 58, 237, 0.4)` (purple, matching project accent)
-- Spring config: `{ damping: 10, mass: 0.6 }` — slightly bouncier/faster than other springs so the glow blooms and naturally fades back
-- The spring drives glow radius from 0 → ~30px and back as the spring overshoots and settles
-- Use `interpolate` with spring to control the glow: peak at spring overshoot, then settle to a subtle residual glow (~10px)
+### 1. Append to `tech/architecture.md`
+Add note about hook scene redesign: Start scene added (4s), hook scene restructured with flat background, PNG badges with underline highlight, logo scale pulse, subheading removed.
 
-```typescript
-const logoGlow = spring({
-  frame: Math.max(0, frame - 5),
-  fps,
-  config: { damping: 10, mass: 0.6 },
-});
-const glowRadius = interpolate(logoGlow, [0, 1], [0, 20]);
-const glowOpacity = interpolate(logoGlow, [0, 1], [0, 0.4]);
-// Apply as: filter: `drop-shadow(0 0 ${glowRadius}px rgba(124,58,237,${glowOpacity}))`
-```
+### 2. Append to `tech/transition-patterns.md`
+Add scale pulse pattern: spring config `{ damping: 6, mass: 0.8, stiffness: 150 }`, scale 1.0→1.12, used on Start headline and Hook logo synced with voiceover.
 
-### No other changes
-- Badge highlights, sizing, gap, entrance animations all stay the same
+### 3. Create `project_context/design-decisions.md`
+Design principles established: visual-audio sync, avoid redundant on-screen text, badge highlight via underline bar (not CSS filters), PNG over SVG for reliability.
 
-## Verification
-1. `npm run dev` — preview in Remotion Studio
-2. At ~frame 5 into hook: logo gets a purple glow bloom that settles
-3. Badge highlights still work at their frames (95, 120, 134)
+### 4. Update `project_context/` section in README.md
+Add entry for the new design-decisions.md file.

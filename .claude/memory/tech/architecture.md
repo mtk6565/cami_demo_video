@@ -58,3 +58,5 @@ Outro              41.5–45.5s  Cami CTA
 - Output directory `out/` is gitignored
 - `.prettierrc` — 2-space indent, bracket spacing, no tabs
 - `.env.local` — ElevenLabs credentials (gitignored, must have `export` prefix for `source` to work)
+
+- **2026-04-02:** Hook scene redesigned: flat #E8F5FC background (matching SceneStart), PNG badges with animated underline highlight (scale pop + purple bar synced with voiceover), logo scale pulse at "Meet Cami". Subheading removed — voiceover covers the message. SceneStart added as a 4s opening scene before hook. Hook duration is `fps * 6 + 6` (6.2s).

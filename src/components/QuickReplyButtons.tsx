@@ -26,7 +26,7 @@ export const QuickReplyButtons: React.FC<QuickReplyButtonsProps> = ({
       }}
     >
       {buttons.map((btn, i) => {
-        const btnDelay = delay + i * 6;
+        const btnDelay = delay;
         const adjustedFrame = Math.max(0, frame - btnDelay);
 
         const pop = spring({
