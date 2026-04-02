@@ -6,6 +6,12 @@ const SECTIONS = [
     id: "hook",
     startSeconds: 0,
     maxSeconds: 6,
+    text: "Tired of juggling bookings.",
+  },
+  {
+    id: "hook",
+    startSeconds: 0,
+    maxSeconds: 6,
     text: "Meet Cami. The AI Pet Operating system that automates your bookings, reminders and payments seamlessly.",
   },
   {
