@@ -193,7 +193,7 @@ export const SceneWhatsAppFlow: React.FC = () => {
             <PersistentBubble frame={frame} startPhase={PHASES[0]} endPhase={PHASES[1]} durationInFrames={durationInFrames} skipExitFade>
               <ChatBubble
                 sender="user"
-                message="Hey, can I book Bella in for a groom? 🐕"
+                message="Hey, can I book Bella in for grooming? 🐕"
                 delay={15}
                 timestamp="9:41 AM"
               />
@@ -492,7 +492,7 @@ const Phase3Scroll: React.FC<{
             the global frame (270+). With delay=0, the spring is long settled → no re-animation. */}
         <ChatBubble
           sender="user"
-          message="Hey, can I book Bella in for a groom? 🐕"
+          message="Hey, can I book Bella in for grooming? 🐕"
           delay={0}
           timestamp="9:41 AM"
         />

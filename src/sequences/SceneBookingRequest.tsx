@@ -36,7 +36,7 @@ export const SceneBookingRequest: React.FC = () => {
         <PhoneMockup contactName="Cami 🐾">
           <ChatBubble
             sender="user"
-            message="Hey, can I book Bella in for a groom? 🐕"
+            message="Hey, can I book Bella in for grooming? 🐕"
             delay={15}
           />
           {/* Cami AI typing label */}
