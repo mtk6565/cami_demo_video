@@ -41,7 +41,7 @@ export const CamiAd: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#FAFBFC",
+        backgroundColor: "#E8F5FC",
         fontFamily: FONT_BODY,
       }}
     >
@@ -55,7 +55,7 @@ export const CamiAd: React.FC = () => {
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/start.mp3")} /></Sequence>
         </Series.Sequence>
 
-        <Series.Sequence durationInFrames={fps * 6}>
+        <Series.Sequence durationInFrames={fps * 6 + 6}>
           <SceneHook />
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
         </Series.Sequence>

@@ -30,9 +30,17 @@ export const SceneStart: React.FC = () => {
   const textScale = interpolate(textSpring, [0, 1], [0.9, 1]);
   const textOpacity = interpolate(textSpring, [0, 1], [0, 1]);
 
-  // Icons entrance — simultaneous slide-up, delayed 10 frames after text
+  // Text scale pulse — subtle bump after entrance settles
+  const textPulse = spring({
+    frame: Math.max(0, frame - 5),
+    fps,
+    config: { damping: 6, mass: 0.8, stiffness: 150 },
+  });
+  const pulseScale = interpolate(textPulse, [0, 1], [1, 1.12]);
+
+  // Icons entrance — simultaneous slide-up, delayed to appear at ~1.23s
   const iconsSpring = spring({
-    frame: Math.max(0, frame - 10),
+    frame: Math.max(0, frame - 37),
     fps,
     config: { damping: 12, mass: 0.7 },
   });
@@ -59,11 +67,11 @@ export const SceneStart: React.FC = () => {
       >
         {/* Headline image */}
         <Img
-          src={staticFile("images/start/Tired of juggling bookings_.png")}
+          src={staticFile("images/start/Tired of juggling bookings_.svg")}
           style={{
             width: "85%",
             maxWidth: 800,
-            transform: `scale(${textScale})`,
+            transform: `scale(${textScale * pulseScale})`,
             opacity: textOpacity,
           }}
         />

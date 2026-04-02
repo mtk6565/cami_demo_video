@@ -21,8 +21,17 @@ export const SceneOutro: React.FC = () => {
   });
   const bg2Opacity = interpolate(bg2Spring, [0, 1], [0, 1]);
 
-  // getcami.io text fades in with bg2
-  const textOpacity = bg2Opacity;
+  // getcami.io text — delayed spring with scale + slide-up + glow
+  const textFrame = Math.max(0, frame - 25);
+  const textSpring = spring({
+    frame: textFrame,
+    fps,
+    config: { damping: 12, mass: 0.7 },
+  });
+  const textOpacity = interpolate(textSpring, [0, 1], [0, 1]);
+  const textScale = interpolate(textSpring, [0, 1], [0.85, 1]);
+  const textTranslateY = interpolate(textSpring, [0, 1], [18, 0]);
+  const glowOpacity = interpolate(textSpring, [0, 0.5, 1], [0, 0.7, 0]);
 
   return (
     <AbsoluteFill>
@@ -56,13 +65,25 @@ export const SceneOutro: React.FC = () => {
           position: "absolute",
           top: "28%",
           left: "50%",
-          transform: "translateX(-50%)",
+          transform: `translateX(-50%) translateY(${textTranslateY}px) scale(${textScale})`,
           opacity: textOpacity,
         }}
       >
+        {/* Glow bloom layer */}
         <Img
           src={staticFile("images/outro/getcami.io.png")}
-          style={{ width: 253 }}
+          style={{
+            width: 253,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            filter: "blur(20px) brightness(1.3)",
+            opacity: glowOpacity,
+          }}
+        />
+        <Img
+          src={staticFile("images/outro/getcami.io.png")}
+          style={{ width: 253, position: "relative" }}
         />
       </div>
     </AbsoluteFill>

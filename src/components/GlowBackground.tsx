@@ -35,7 +35,7 @@ export const GlowBackground: React.FC<GlowBackgroundProps> = ({
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(160deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%)",
+          background: "linear-gradient(160deg, #E8F5FC 0%, #E8F5FC 50%, #E8F5FC 100%)",
         }}
       />
 
