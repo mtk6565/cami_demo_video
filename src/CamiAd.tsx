@@ -39,7 +39,7 @@ export const CamiAd: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#E8F5FC",
+        backgroundColor: "#FAFBFC",
         fontFamily: FONT_BODY,
       }}
     >
