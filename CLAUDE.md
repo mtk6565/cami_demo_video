@@ -23,55 +23,55 @@ Remotion video project for generating animated promotional ads for **Cami AI**. 
 - `source .env.local && npm run generate-audio` — Generate voiceover clips via ElevenLabs API
 - `npx remotion render CamiWhatsAppAd out/video.mp4` — Render the portrait (1080×1920) video
 - `npx remotion render CamiWhatsAppAd-Landscape out/video-landscape.mp4` — Render landscape (1920×1080)
-- `npx remotion render CamiWhatsAppAd-WhatsApp out/video-whatsapp.mp4` — Render WhatsApp-optimized (720×1280, smaller file)
+- `npx remotion render CamiWhatsAppAd-WhatsApp out/video-whatsapp.mp4` — Render WhatsApp-optimized (960×1080, compact)
 
 ## Architecture
 
 ```
 src/
 ├── index.ts              # Remotion entry point (registerRoot)
-├── Root.tsx              # Composition definitions (ids, dimensions, fps, duration) — NOT used by index.ts
-├── Video.tsx             # Active RemotionRoot (referenced by index.ts) — THIS is the source of truth for composition config
-├── CamiAd.tsx            # Main composition — sequences 3 scenes: Hook, WhatsAppFlow, Outro + audio clips
-├── fonts.ts              # Font loading configuration
-├── components/           # Reusable UI primitives (GlowBackground, ChatBubble, PhoneMockup, Headline, StepBadge, StepProgress, QuickReplyButtons)
+├── Video.tsx             # Composition definitions — source of truth for ids, dimensions, fps, duration
+├── Root.tsx              # STALE — not wired up, do not use
+├── CamiAd.tsx            # Main composition — sequences Hook, WhatsAppFlow, Outro + audio
+├── fonts.ts              # Font loading — DM Sans (body) + SeasonMix (headline)
+├── components/           # UI primitives (GlowBackground, ChatBubble, PhoneMockup, Headline, StepBadge, StepProgress, QuickReplyButtons)
 └── sequences/
     ├── SceneHook.tsx         # Opening hook headline with social icons
     ├── SceneWhatsAppFlow.tsx # Unified WhatsApp conversation (8 phases, persistent phone frame)
     ├── SceneOutro.tsx        # Closing CTA and branding
-    └── Scene*.tsx            # Legacy individual scenes (no longer used in CamiAd.tsx)
+    └── Scene*.tsx            # Legacy individual scenes (unused)
 
 audio/
-├── generate.ts           # ElevenLabs TTS generation script — produces per-section MP3 clips
+├── generate.ts           # ElevenLabs TTS generation — produces per-section MP3 clips
 ├── output/               # Generated MP3 clips (gitignored)
-├── artifacts/            # Old/superseded audio files
-└── script/
-    └── voiceover.md      # Full annotated voiceover script with delivery notes
+└── script/voiceover.md   # Full annotated voiceover script with delivery notes
 
-public/audio/             # MP3 clips copied here by generate.ts for Remotion's staticFile()
+public/
+├── audio/                # MP3 clips copied here by generate.ts for Remotion's staticFile()
+├── fonts/                # DM Sans (variable ttf) + SeasonMix (woff2 per weight)
+└── images/               # In-scene images (bella.jpg, bella_after.jpg)
 ```
 
-- **IMPORTANT**: `index.ts` imports from `Video.tsx`, NOT `Root.tsx`. When changing composition config (duration, fps, dimensions), update `Video.tsx`. `Root.tsx` exists but is not wired up.
-- **Compositions** are defined in `Video.tsx` — portrait (1080x1920) and landscape (1920x1080), both 1095 frames at 30fps (36.5 seconds).
+- **Compositions** are defined in `Video.tsx` — portrait (1080×1920), landscape (1920×1080), and WhatsApp (960×1080), all 1095 frames at 30fps (36.5 seconds).
 - `CamiAd.tsx` sequences 3 scenes: Hook (5s) → WhatsAppFlow (27.5s) → Outro (4s).
 - `SceneWhatsAppFlow.tsx` is a single unified component with 8 phases — the phone frame, background, and step progress render once and persist across all phases. Only chat content crossfades between phases.
 
 ## Scene Timeline
 
 ```
-Total: 36.5 seconds (1095 frames @ 30fps)
+Total: 36.5s (1095 frames @ 30fps)
 
-Scene 1: HOOK               (0–5s)        "Introducing Cami"
-Scene 2: WHATSAPP FLOW      (5–32.5s)     Unified persistent WhatsApp conversation
-  Phase 1: Booking Request    (5–8.5s)    Client sends WhatsApp message
-  Phase 2: Cami Reply         (8.5–12.5s) AI replies instantly with slots
-  Phase 3: Slot Pick          (12.5–15.5s) Client picks a time
-  Phase 4: Deposit            (15.5–19s)  Payment confirmed, slot locked
-  Phase 5: Confirmation       (19–23s)    Auto-confirm + 24h reminder (badge)
-  Phase 6: Grooming Pics      (23–25.5s)  In-store photos
-  Phase 7: Thank You          (25.5–28.5s) Thank You & Reviews
-  Phase 8: Repeat Invite      (28.5–32.5s) 1-month recurring invite (badge)
-Scene 3: OUTRO               (32.5–36.5s) Cami CTA
+Hook               0–5s       "Introducing Cami"
+WhatsApp Flow      5–32.5s    8-phase persistent conversation:
+  1. Booking Request   5–8.5s
+  2. Cami Reply        8.5–12.5s
+  3. Slot Pick         12.5–15.5s
+  4. Deposit           15.5–19s
+  5. Confirmation      19–23s      (context badge: "24h before")
+  6. Grooming Pics     23–25.5s
+  7. Thank You         25.5–28.5s
+  8. Repeat Invite     28.5–32.5s  (context badge: "1 month later")
+Outro              32.5–36.5s  Cami CTA
 ```
 
 ## Transition Design (Critical)
@@ -119,6 +119,7 @@ To prevent the phone/steps from shifting position between phases:
 - Functional React components (React.FC)
 - Strict TypeScript (`noUnusedLocals`, `strict: true`)
 - Remotion ESLint flat config
+- Fonts: DM Sans (body) + SeasonMix (headline) — loaded in `fonts.ts` via `@remotion/fonts`
 
 ## Audio / Voiceover
 
@@ -135,4 +136,22 @@ To prevent the phone/steps from shifting position between phases:
 
 - `remotion.config.ts` — Video format (jpeg), overwrite output enabled, Tailwind webpack override
 - Output directory `out/` is gitignored
+- `.prettierrc` — 2-space indent, bracket spacing, no tabs
 - `.env.local` — ElevenLabs credentials (gitignored, must have `export` prefix for `source` to work)
+
+## Memory System
+
+This project uses a memory system in `.claude/memory/` to persist important context across sessions.
+
+### Structure
+
+- `.claude/memory/README.md` — Index of all memory files
+- `.claude/memory/tech/` — Architecture decisions, stack choices, bug root causes, patterns, config notes
+- `.claude/memory/project_context/` — Domain knowledge, business logic, requirements, direction, milestones
+
+### How to Use
+
+- At the start of a task, check `README.md` to see if any memory files are relevant
+- Read specific memory files when working in a related area
+- Do NOT modify memory files unless running `/update-memory-mk`
+- When you learn something significant during a session, suggest running `/update-memory-mk`
