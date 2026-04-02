@@ -7,6 +7,7 @@ import {
   staticFile,
   useVideoConfig,
 } from "remotion";
+import { SceneStart } from "./sequences/SceneStart";
 import { SceneHook } from "./sequences/SceneHook";
 import { SceneWhatsAppFlow } from "./sequences/SceneWhatsAppFlow";
 import { SceneOutro } from "./sequences/SceneOutro";
@@ -15,19 +16,20 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 45.5 seconds (1365 frames @ 30fps)
+ * Total: 49.5 seconds (1485 frames @ 30fps)
  *
- * Scene 1: HOOK             (0–6s)       "Meet Cami"
- * Scene 2: WHATSAPP FLOW    (6–41.5s)    Unified persistent WhatsApp conversation
- *   Phase 1: Booking Request  (6–9.5s)   Client sends WhatsApp message
- *   Phase 2: Cami Reply       (9.5–14.5s) AI replies instantly with slots
- *   Phase 3: Slot Pick        (14.5–20.5s) Client picks a time + pet preferences
- *   Phase 4: Deposit          (20.5–24s) Payment confirmed, slot locked
- *   Phase 5: Confirmation     (24–28.5s) Auto-confirm + 24h reminder
- *   Phase 6: Grooming Pics    (28.5–31s) In-store pics
- *   Phase 7: Thank You        (31–36.5s) Thank You & Reviews
- *   Phase 8: Repeat Invite    (36.5–41.5s) 1-month recurring invite
- * Scene 3: OUTRO             (41.5–45.5s) Cami CTA
+ * Scene 0: START             (0–4s)       "Tired of juggling bookings?"
+ * Scene 1: HOOK              (4–10s)      "Meet Cami"
+ * Scene 2: WHATSAPP FLOW     (10–45.5s)   Unified persistent WhatsApp conversation
+ *   Phase 1: Booking Request  (10–13.5s)  Client sends WhatsApp message
+ *   Phase 2: Cami Reply       (13.5–18.5s) AI replies instantly with slots
+ *   Phase 3: Slot Pick        (18.5–24.5s) Client picks a time + pet preferences
+ *   Phase 4: Deposit          (24.5–28s)  Payment confirmed, slot locked
+ *   Phase 5: Confirmation     (28–32.5s)  Auto-confirm + 24h reminder
+ *   Phase 6: Grooming Pics    (32.5–35s)  In-store pics
+ *   Phase 7: Thank You        (35–40.5s)  Thank You & Reviews
+ *   Phase 8: Repeat Invite    (40.5–45.5s) 1-month recurring invite
+ * Scene 3: OUTRO             (45.5–49.5s) Cami CTA
  */
 
 /** Frames to delay audio after its visual phase starts — lets animations land first */
@@ -48,6 +50,11 @@ export const CamiAd: React.FC = () => {
        * is relative to the scene/phase start — not a global absolute frame.
        */}
       <Series>
+        <Series.Sequence durationInFrames={fps * 4}>
+          <SceneStart />
+          <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/start.mp3")} /></Sequence>
+        </Series.Sequence>
+
         <Series.Sequence durationInFrames={fps * 6}>
           <SceneHook />
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>

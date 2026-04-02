@@ -3,10 +3,10 @@ import { dirname, resolve } from "path";
 
 const SECTIONS = [
   {
-    id: "hook",
+    id: "start",
     startSeconds: 0,
-    maxSeconds: 6,
-    text: "Tired of juggling bookings.",
+    maxSeconds: 3,
+    text: "Bookings coming in from everywhere — all at once. Sound familiar?",
   },
   {
     id: "hook",
