@@ -12,7 +12,11 @@ Persistent context for Claude across sessions. Two folders, simple rules.
 ## Index
 
 ### tech/
-(empty)
+
+- [architecture.md](tech/architecture.md) — File structure, compositions, scene timeline, key config
+- [transition-patterns.md](tech/transition-patterns.md) — Persistent shell pattern, conversation continuity, layout stability rules
+- [audio-pipeline.md](tech/audio-pipeline.md) — ElevenLabs generation, audio placement in Remotion
 
 ### project_context/
-(empty)
+
+- [product.md](project_context/product.md) — What Cami AI is, target audience, messaging guidelines

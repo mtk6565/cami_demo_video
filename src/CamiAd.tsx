@@ -15,19 +15,19 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 36.5 seconds (1095 frames @ 30fps)
+ * Total: 37.5 seconds (1125 frames @ 30fps)
  *
- * Scene 1: HOOK             (0–5s)       "Introducing Cami"
- * Scene 2: WHATSAPP FLOW    (5–32.5s)    Unified persistent WhatsApp conversation
- *   Phase 1: Booking Request  (5–8.5s)   Client sends WhatsApp message
- *   Phase 2: Cami Reply       (8.5–12.5s) AI replies instantly with slots
- *   Phase 3: Slot Pick        (12.5–15.5s) Client picks a time
- *   Phase 4: Deposit          (15.5–19s) Payment confirmed, slot locked
- *   Phase 5: Confirmation     (19–23s)   Auto-confirm + 24h reminder
- *   Phase 6: Grooming Pics    (23–25.5s) In-store pics
- *   Phase 7: Thank You        (25.5–28.5s) Thank You & Reviews
- *   Phase 8: Repeat Invite    (28.5–32.5s) 1-month recurring invite
- * Scene 3: OUTRO             (32.5–36.5s) Cami CTA
+ * Scene 1: HOOK             (0–6s)       "Meet Cami"
+ * Scene 2: WHATSAPP FLOW    (6–33.5s)    Unified persistent WhatsApp conversation
+ *   Phase 1: Booking Request  (6–9.5s)   Client sends WhatsApp message
+ *   Phase 2: Cami Reply       (9.5–13.5s) AI replies instantly with slots
+ *   Phase 3: Slot Pick        (13.5–16.5s) Client picks a time
+ *   Phase 4: Deposit          (16.5–20s) Payment confirmed, slot locked
+ *   Phase 5: Confirmation     (20–24s)   Auto-confirm + 24h reminder
+ *   Phase 6: Grooming Pics    (24–26.5s) In-store pics
+ *   Phase 7: Thank You        (26.5–29.5s) Thank You & Reviews
+ *   Phase 8: Repeat Invite    (29.5–33.5s) 1-month recurring invite
+ * Scene 3: OUTRO             (33.5–37.5s) Cami CTA
  */
 
 /** Frames to delay audio after its visual phase starts — lets animations land first */
@@ -48,7 +48,7 @@ export const CamiAd: React.FC = () => {
        * is relative to the scene/phase start — not a global absolute frame.
        */}
       <Series>
-        <Series.Sequence durationInFrames={fps * 5}>
+        <Series.Sequence durationInFrames={fps * 6}>
           <SceneHook />
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/hook.mp3")} /></Sequence>
         </Series.Sequence>
