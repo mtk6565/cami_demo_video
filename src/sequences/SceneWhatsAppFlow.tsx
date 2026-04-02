@@ -20,13 +20,13 @@ import { StepProgress } from "../components/StepProgress";
  * Phase timeline (all frames relative to this component's start):
  *
  * Phase 1: Booking Request   (0–104)     3.5s   step=1
- * Phase 2: Cami Reply        (105–224)   4s     step=2
- * Phase 3: Slot Pick         (225–314)   3s     step=3
- * Phase 4: Deposit           (315–419)   3.5s   step=4
- * Phase 5: Confirmation      (420–539)   4s     step=5  badge="24 hours before"
- * Phase 6: Grooming Pics     (540–614)   2.5s   step=6
- * Phase 7: Thank You         (615–704)   3s     step=7
- * Phase 8: Repeat Invite     (705–824)   4s     step=8  badge="1 month later"
+ * Phase 2: Cami Reply        (105–254)   5s     step=2
+ * Phase 3: Slot Pick         (255–434)   6s     step=3
+ * Phase 4: Deposit           (435–539)   3.5s   step=4
+ * Phase 5: Confirmation      (540–659)   4s     step=5  badge="24 hours before"
+ * Phase 6: Grooming Pics     (660–734)   2.5s   step=6
+ * Phase 7: Thank You         (735–824)   3s     step=7
+ * Phase 8: Repeat Invite     (825–944)   4s     step=8  badge="1 month later"
  */
 
 interface Phase {
@@ -39,21 +39,21 @@ interface Phase {
 
 const PHASES: Phase[] = [
   { start: 0, end: 104, step: 1, color: "#7C3AED" },
-  { start: 105, end: 224, step: 2, color: "#7C3AED" },
-  { start: 225, end: 314, step: 3, color: "#C2F6BA" },
-  { start: 315, end: 419, step: 4, color: "#C2F6BA" },
+  { start: 105, end: 254, step: 2, color: "#7C3AED" },
+  { start: 255, end: 434, step: 3, color: "#C2F6BA" },
+  { start: 435, end: 539, step: 4, color: "#C2F6BA" },
   {
-    start: 420,
-    end: 539,
+    start: 540,
+    end: 659,
     step: 5,
     color: "#7C3AED",
     badge: { emoji: "⏰", text: "24 hours before appointment" },
   },
-  { start: 540, end: 614, step: 6, color: "#EDE9FE" },
-  { start: 615, end: 704, step: 7, color: "#F8F96C" },
+  { start: 660, end: 734, step: 6, color: "#EDE9FE" },
+  { start: 735, end: 824, step: 7, color: "#F8F96C" },
   {
-    start: 705,
-    end: 824,
+    start: 825,
+    end: 944,
     step: 8,
     color: "#EDE9FE",
     badge: { emoji: "🔄", text: "1 month later" },
@@ -524,15 +524,22 @@ const Phase3Scroll: React.FC<{
           <ChatBubble
             sender="bot"
             message={
-              "Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾\n\nJust pay the deposit to lock it in 👇"
+              "Great pick! 🙌\n\n🐕 Bella — Full Groom\n📅 Wed, 2 PM\n\nWe'll use her special shampoo too 🧴🐾"
             }
             delay={45}
+            timestamp="9:42 AM"
+          />
+          <ChatBubble
+            sender="bot"
+            message="Just pay the deposit to lock it in 👇"
+            delay={70}
+            showTail={false}
             timestamp="9:42 AM"
           />
           <QuickReplyButtons
             layout="full"
             buttons={[{ label: "Pay AED 50 Deposit", emoji: "💳" }]}
-            delay={60}
+            delay={85}
           />
         </Sequence>
       </div>
