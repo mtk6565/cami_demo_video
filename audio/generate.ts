@@ -60,7 +60,7 @@ const SECTIONS = [
     id: "outro",
     startSeconds: 41.5,
     maxSeconds: 4,
-    text: "Your entire customer journey — powered by Cami. More time with the furry friends, less time on the phone.",
+    text: "Cami. More time with your furry friends — less time on the phone.",
   },
 ];
 
