@@ -16,11 +16,11 @@ import { FONT_BODY } from "./fonts";
 /*
  * CAMI WHATSAPP AI AD — SCENE TIMELINE
  * ==========================================
- * Total: 49.5 seconds (1485 frames @ 30fps)
+ * Total: 49.67 seconds (1490 frames @ 30fps)
  *
- * Scene 0: START             (0–4s)       "Tired of juggling bookings?"
- * Scene 1: HOOK              (4–10s)      "Meet Cami"
- * Scene 2: WHATSAPP FLOW     (10–45.5s)   Unified persistent WhatsApp conversation
+ * Scene 0: START             (0–4.17s)    "Tired of juggling bookings?" + floating bubbles
+ * Scene 1: HOOK              (4.17–10.37s) "Meet Cami"
+ * Scene 2: WHATSAPP FLOW     (10.37–45.87s) Unified persistent WhatsApp conversation
  *   Phase 1: Booking Request  (10–13.5s)  Client sends WhatsApp message
  *   Phase 2: Cami Reply       (13.5–18.5s) AI replies instantly with slots
  *   Phase 3: Slot Pick        (18.5–24.5s) Client picks a time + pet preferences
@@ -50,7 +50,7 @@ export const CamiAd: React.FC = () => {
        * is relative to the scene/phase start — not a global absolute frame.
        */}
       <Series>
-        <Series.Sequence durationInFrames={fps * 4}>
+        <Series.Sequence durationInFrames={125}>
           <SceneStart />
           <Sequence from={AUDIO_DELAY} layout="none"><Audio src={staticFile("audio/start.mp3")} /></Sequence>
         </Series.Sequence>

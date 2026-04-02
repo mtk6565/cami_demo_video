@@ -8,6 +8,17 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { FloatingBubble } from "../components/FloatingBubble";
+
+const FLOATING_BUBBLES = [
+  { platform: "whatsapp" as const, text: "Can I book a grooming appt?", offsetX: 160, offsetY: 100, enterFrame: 45, rotation: -3 },
+  { platform: "whatsapp" as const, text: "Is Mike free to trim Yumi at 2pm?", offsetX: 450, offsetY: 140, enterFrame: 51, rotation: 2 },
+  { platform: "instagram" as const, text: "Hi! Do you have availability?", offsetX: 280, offsetY: 180, enterFrame: 57, rotation: -2 },
+  { platform: "instagram" as const, text: "Bella needs a nail trim plz!", offsetX: 550, offsetY: 210, enterFrame: 63, rotation: 3 },
+  { platform: "messenger" as const, text: "Any slots this Saturday?", offsetX: 120, offsetY: 230, enterFrame: 69, rotation: -4 },
+  { platform: "messenger" as const, text: "Can I bring 2 dogs?", offsetX: 370, offsetY: 270, enterFrame: 75, rotation: 2 },
+  { platform: "whatsapp" as const, text: "Is there a waitlist?", offsetX: 560, offsetY: 290, enterFrame: 81, rotation: -2 },
+];
 
 export const SceneStart: React.FC = () => {
   const frame = useCurrentFrame();
@@ -99,6 +110,21 @@ export const SceneStart: React.FC = () => {
             style={{ width: 96, height: 96 }}
           />
         </div>
+      </div>
+
+      {/* Floating chat bubbles — absolute layer below icons, outside flex flow */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 100,
+          left: 40,
+          right: 40,
+          height: 300,
+        }}
+      >
+        {FLOATING_BUBBLES.map((bubble, i) => (
+          <FloatingBubble key={i} {...bubble} />
+        ))}
       </div>
     </AbsoluteFill>
   );
