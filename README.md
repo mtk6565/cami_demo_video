@@ -84,8 +84,12 @@ npx remotion render CamiWhatsAppAd out/video.mp4
 # Render landscape video (1920x1080)
 npx remotion render CamiWhatsAppAd-Landscape out/video-landscape.mp4
 ```
-
+/Users/mtk/Desktop/Code/demo_video/out/CamiWhatsAppAd-WhatsApp.mp4
 Output files go to `out/` (gitignored).
+
+
+https://github.com/user-attachments/assets/74a1f37f-6270-4056-abd4-867b7d8a6549
+
 
 ## Tech Stack
 
