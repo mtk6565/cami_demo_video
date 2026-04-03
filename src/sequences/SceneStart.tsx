@@ -11,13 +11,15 @@ import {
 import { FloatingBubble } from "../components/FloatingBubble";
 
 const FLOATING_BUBBLES = [
-  { platform: "whatsapp" as const, text: "Can I book a grooming appt?", offsetX: 160, offsetY: 100, enterFrame: 45, rotation: -3 },
-  { platform: "whatsapp" as const, text: "Is Mike free to trim Yumi at 2pm?", offsetX: 450, offsetY: 140, enterFrame: 51, rotation: 2 },
-  { platform: "instagram" as const, text: "Hi! Do you have availability?", offsetX: 280, offsetY: 180, enterFrame: 57, rotation: -2 },
-  { platform: "instagram" as const, text: "Bella needs a nail trim plz!", offsetX: 550, offsetY: 210, enterFrame: 63, rotation: 3 },
-  { platform: "messenger" as const, text: "Any slots this Saturday?", offsetX: 120, offsetY: 230, enterFrame: 69, rotation: -4 },
-  { platform: "messenger" as const, text: "Can I bring 2 dogs?", offsetX: 370, offsetY: 270, enterFrame: 75, rotation: 2 },
-  { platform: "whatsapp" as const, text: "Is there a waitlist?", offsetX: 560, offsetY: 290, enterFrame: 81, rotation: -2 },
+  // Top cluster — 3 bubbles in upper region (above headline)
+  { platform: "whatsapp" as const, text: "Can I book a grooming appt?", offsetX: 90, offsetY: 110, enterFrame: 45, rotation: -3, scale: 1.3 },
+  { platform: "whatsapp" as const, text: "Is Mike free to trim Yumi at 2pm?", offsetX: 400, offsetY: 190, enterFrame: 51, rotation: 2, scale: 1.15 },
+  { platform: "instagram" as const, text: "Hi! Do you have availability?", offsetX: 550, offsetY: 80, enterFrame: 57, rotation: -2, scale: 1.0 },
+  // Bottom cluster — 4 bubbles in lower region (below icons)
+  { platform: "instagram" as const, text: "Bella needs a nail trim plz!", offsetX: 90, offsetY: 770, enterFrame: 63, rotation: 3, scale: 1.2 },
+  { platform: "messenger" as const, text: "Any slots this Saturday?", offsetX: 500, offsetY: 830, enterFrame: 69, rotation: -4, scale: 1.1 },
+  { platform: "messenger" as const, text: "Can I bring 2 dogs?", offsetX: 290, offsetY: 910, enterFrame: 75, rotation: 2, scale: 1.15 },
+  { platform: "whatsapp" as const, text: "Is there a waitlist?", offsetX: 600, offsetY: 990, enterFrame: 81, rotation: -2, scale: 1.25 },
 ];
 
 export const SceneStart: React.FC = () => {
@@ -112,14 +114,12 @@ export const SceneStart: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating chat bubbles — absolute layer below icons, outside flex flow */}
+      {/* Floating chat bubbles — full-screen absolute layer, outside flex flow */}
       <div
         style={{
           position: "absolute",
-          bottom: 100,
-          left: 40,
-          right: 40,
-          height: 300,
+          inset: 0,
+          overflow: "hidden",
         }}
       >
         {FLOATING_BUBBLES.map((bubble, i) => (
